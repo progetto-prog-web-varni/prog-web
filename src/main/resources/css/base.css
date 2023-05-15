@@ -1,0 +1,9 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+:root {
+    --bkground-color: #FFFF;
+    --primary-color: #0F4FD6;
+    --secondary-color: #ECECEE;
+}
