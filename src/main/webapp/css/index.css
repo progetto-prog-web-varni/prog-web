@@ -1,0 +1,60 @@
+a:link {
+    color: black;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a:visited {
+    color: black;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a:hover {
+    color: red;
+    background-color: transparent;
+    text-decoration: underline;
+}
+
+a:active {
+    color: yellow;
+    background-color: transparent;
+    text-decoration: underline;
+}
+
+.button {
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #008CBA;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    height: fit-content;
+    justify-content: space-evenly;
+    align-content: space-around;
+    gap: 10px 30px;
+}
+
+.container-body {
+    height: fit-content;
+    display: flex;
+}
+
+.container-menu {
+    display: flex;
+    justify-content: space-around;
+}
+
+.item {
+    flex-grow: 1;
+}
