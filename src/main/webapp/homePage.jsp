@@ -1,13 +1,6 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: dalbo
-  Date: 17/05/2023
-  Time: 15:05
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
-<jsp:include page="Components/header.jsp"></jsp:include>
+<%@ include file="Components/header.jsp" %>
 <!DOCTYPE html>
 <html>
 <!-- HOME PAGE -->
@@ -42,4 +35,4 @@
 </body>
 
 </html>
-<jsp:include page="Components/footer.jsp"> </jsp:include>
+<%@ include file="Components/footer.jsp" %>

@@ -33,3 +33,5 @@ Altri comandi utili:
   - `src.main.webapp`: Contiene le pagine web.
 
 Tutto il compilato viene incluso nella cartella `target`, che è esclusa attraverso il `.gitignore`.
+
+## TESTING METHODOLOGY
