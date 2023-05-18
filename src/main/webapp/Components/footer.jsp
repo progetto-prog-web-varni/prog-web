@@ -1,7 +1,5 @@
 <!-- FOOTER OF THE PAGE-->
 
-<body>
-
 <footer>
     <div class="container container-footer">
 				<span style="padding-left:5px; padding-top:0px; padding-right:20px; padding-bottom:5px">
@@ -22,4 +20,3 @@
             <text style="font-family: Brush Script MT, Brush Script Std, cursive"> Firme eventuali </text></p>
     </div>
 </footer>
-</body>

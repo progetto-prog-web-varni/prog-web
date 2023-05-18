@@ -1,13 +1,5 @@
 <!-- HEADER OF THE PAGE-->
-<!DOCTYPE html>
-<html lang="it">
-  <head>
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" type="text/css" href="mycss.css" >
-    <title>Tum4World</title>
-  </head>
 
-  <body>
     <header class="container">
       <span>
         <img src="C:\Users\dalbo\OneDrive\Desktop\WEB_SITE\Tum4World\img\cancelletto.jpg" width="107" height="78" style="float:left; margin:10px 50px">
@@ -28,5 +20,3 @@
         </div>
       </span>
     </header>
-  </body>
-</html>
