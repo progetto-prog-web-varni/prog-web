@@ -1,49 +1,36 @@
-
-.titolo_header{
-    text-align:center;
-    font-family:Monaco,fantasy;
+.header {
+    display: grid;
+    grid-template-columns: repeat(5, 20%);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.container-NavBar{
-    display:flex;
-    height: fit-content;
-    width: fit-content;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    gap: 10px 30px;
-    padding:4px;
+.titolo {
+    grid-column-start: 1;
+    grid-column-end: 6;
+    justify-items: center;
+    justify-self: center;
 }
 
-.stile-button-NavBar{
-    padding:4px;
-    width:150px;
-    text-align:center;
+.navbar-image {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    justify-items: center;
+    justify-self: center;
 }
 
-.logo{
-    width:107px;
-    height:78px;
-    float:left;
-    margin:10px 50px;
+.inline-links {
+    grid-column-start: 2;
+    grid-column-end: 5;
+    display: flex;
+    align-items: center;
 }
 
-a:link {
-    color: black;
-    background-color: transparent;
+.navbar-flex-item {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.navbar-flex-item>a {
     text-decoration: none;
-}
-a:visited {
     color: black;
-    background-color: transparent;
-    text-decoration: none;
-}
-a:hover {
-    color: red;
-    background-color: transparent;
-    text-decoration: underline;
-}
-a:active {
-    color: yellow;
-    background-color: transparent;
-    text-decoration: underline;
 }

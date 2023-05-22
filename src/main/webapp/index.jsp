@@ -7,10 +7,15 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/global.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css">
 
-        
+        <style>
+            <%@ include file="resources/css/base.css" %>
+            <%@ include file="resources/css/footer.css" %>
+            <%@ include file="resources/css/header.css" %>
+
+            <%@ include file="resources/css/index.css" %>
+        </style>
+
 
         <title>Tum4World | HomePage</title>
     </head>
@@ -18,19 +23,19 @@
 
     <body>
         <%@ include file="Components/header.jsp" %>
-            <div id="body" class="container-body">
-                <div class="float-left">
+            <div class="container">
+                <div class="body-item">
                     <figure>
-                        <img class="img-homePage" alt="immagine Tum4World"
-                            src="https://wips.plug.it/cips/tecnologia/cms/2017/11/sicurezza-informatica-2018.jpg">
+                        <img class="img-descrizione"
+                            src="https://wips.plug.it/cips/tecnologia/cms/2017/11/sicurezza-informatica-2018.jpg" />
                         <figcaption>
                             <p>Innovation to improve your life</p>
                         </figcaption>
                     </figure>
                 </div>
-                <div class="descrizione-homePage">
-                    <h2 class="centra">Descrizione dell'attività.</h2>
-                    <p class="centra">Tum4World è una associazione con più di 15 anni di esperienza nel settore
+                <div class="body-item">
+                    <h2 class="h2-descrizione">Descrizione dell'attività.</h2>
+                    <p>Tum4World è una associazione con più di 15 anni di esperienza nel settore
                         informatico, con l'obiettivo di rendere la programmazione alla portata di tutti completamente
                         gratis! <br>
                         Con i corsi offerti da noi puoi partire da zero e acquisire tutte le competenze necessarie per
@@ -46,7 +51,7 @@
                         lavorative.<br>
                         Che aspetti, unisciti anche tu!<br>
                     </p>
-                    <div class="centra">
+                    <div>
                         <button class="button">SCARICA VOLANTINO</button>
                     </div>
                 </div>

@@ -12,22 +12,27 @@
   <div class="inline-links">
     <div class="navbar-flex-item">
       <!-- <span style="padding:4px; width:150px; text-align:center"> -->
-      <a href="ChiSiamo.html">CHI SIAMO</a>
+      <a href="index.jsp">HOME</a>
       <!-- </span> -->
     </div>
     <div class="navbar-flex-item">
       <!-- <span style="padding:4px; width:150px; text-align:center"> -->
-      <a href="attivita.html">ATTIVITÀ</a>
+      <a href="chiSiamo.jsp">CHI SIAMO</a>
       <!-- </span> -->
     </div>
     <div class="navbar-flex-item">
       <!-- <span style="padding:4px; width:150px; text-align:center"> -->
-      <a href="contatti.html">CONTATTI</a>
+      <a href="attivita.jsp">ATTIVITA'</a>
       <!-- </span> -->
     </div>
     <div class="navbar-flex-item">
       <!-- <span style="padding:4px; width:150px; text-align:center"> -->
-      <a href="sign_in.html">SIGNIN</a>
+      <a href="contatti.jsp">CONTATTI</a>
+      <!-- </span> -->
+    </div>
+    <div class="navbar-flex-item">
+      <!-- <span style="padding:4px; width:150px; text-align:center"> -->
+      <a href="sign-up.jsp">SIGNUP</a>
       <!-- </span> -->
     </div>
     <!-- to previus visualizzation
@@ -35,7 +40,7 @@
         -->
     <div class="navbar-flex-item">
       <!-- <span style=" padding:4px; width:150px; text-align:center"> -->
-      <a href="login.html">LOGIN</a>
+      <a href="login.jsp">LOGIN</a>
       <!-- </span> -->
     </div>
   </div>
