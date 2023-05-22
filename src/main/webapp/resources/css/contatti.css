@@ -1,115 +1,53 @@
-/* Style the header */
-header {
-    background-color: white;
-    padding-right:15px;
-    padding-left:15px;
-    padding-top:5px;
-    padding-bottom:5px;
-    font-family: Verdana, sans-serif;
-    font-size: 15px;
-    line-height: 1.5;
+.contatti-info{
+    text-align:center;
+    margin: 15px;
+    border: 1px solid var(--primary-color);
+    border-radius: .7em;
 }
 
-#body{
-    display:flex;
-    justify-content: center;
-    align-items:center;
-    background-color:lightgray;
-    border:solid black;
-    border-width: 2px 0px;
-    height: fit-content;
+.contatti-form-box{
+    text-align:center;
+    margin: 15px;
+    border: 1px solid var(--primary-color);
+    border-radius: .7em;
+    padding: 15px;
 }
 
-footer{
-    background-color: white;
-    padding:15px;
-    font-family: Garamond;
-    font-size: 15px;
-    line-height: 1.5;
+.contatti-grid {
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
 }
 
-a:link {
-    color: black;
-    background-color: transparent;
-    text-decoration: none;
+.contatti-grid-center {
+    grid-column-start: 2;
+    grid-column-end: 3;
 }
-a:visited {
-    color: black;
-    background-color: transparent;
-    text-decoration: none;
-}
-a:hover {
-    color: red;
-    background-color: transparent;
-    text-decoration: underline;
-}
-a:active {
-    color: yellow;
-    background-color: transparent;
-    text-decoration: underline;
-}
-
-.button {
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    background-color: #008CBA;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-}
-
-
-.container{
+.contatti-form-flex {
     display: flex;
-    height: fit-content;
-    width: fit-content;
-    justify-content: space-around;
+    flex-flow: column nowrap;
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
-.container-menu{
-    flex-wrap: wrap;
-    justify-content: space-around;
-    gap: 10px 30px;
-}
-
-.container-body{
-    flex-wrap: nowrap;
-    height: fit-content;
-}
-
-.container-footer{
-    flex-wrap: nowrap;
-}
-
-.container-contatti{
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    height: 650px;
-    width: 600px;
-    border: solid black;
-    border-radius:12px;
-    background-color:lightgray;
-    border-width:2px;
-    margin: 50px;
-}
-
-.item{
-    flex-grow:1;
-}
-
-.myFormItem{
+.contatti-form-input{
     margin-bottom:5px;
     border: solid black;
     border-radius:4px;
     background-color:white;
     border-width:1px;
     min-width:250px;
-    width: fit-content;         /*TODO: COME MAI NON VA??*/
     block-size: fit-content;
-
+    padding: 5px;
 }
+
+.margin-bottom-5{
+    margin-bottom: 5px;
+}
+
+.menu{
+    text-align:left;
+}
+
+.final-button {
+    padding-top: 15px;
+} 

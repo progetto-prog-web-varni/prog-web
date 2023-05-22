@@ -1,0 +1,37 @@
+
+.container {
+    display: grid;
+    grid-template-columns: 20% 30% 30% 20%;
+}
+
+.attivita-title-container {
+    padding-left: 20%;
+    padding-right: 20%;
+    grid-column-start: 1;
+    grid-column-end: 5;
+}
+
+.single-activity {
+    grid-column-start: 2;
+    grid-column-end: 4;
+}
+
+.first-activity {
+    grid-row: 2;
+}
+
+.second-activity {
+    grid-row: 3;
+}
+
+.third-activity {
+    grid-row: 4;
+}
+.attivita-title {
+    color: var(--primary-color);
+    text-align: center;
+}
+
+.elenco-circle{
+    list-style-type:circle;
+}

@@ -1,33 +1,48 @@
 <!-- FOOTER OF THE PAGE-->
-
 <footer>
-	<div class="container container-footer">
-		<div class="footer-span">
-			<h1>Informazioni associazione</h1>
-			<p>
-				Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of
-				classical
-				Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at
-				Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from
-				a
-				Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the
-				undoubtable source.
-			</p>
-		</div>
-		<div class="footer-span footer-text-center">
-			<h1>Frasi motivazionali</h1>
-			<p id="inject_frasi">
-				Tutto quello che la mente di un uomo può immaginare, lo può ottenere.
-			</p>
-			<p id="inject_author">
-				Napoleon Hill
-			</p>
-		</div>
+	<div class="info_DX text-center">
+		<h1>Chi Siamo</h1>
+		<h3>Associazione Tum4World</h3>
+		<h3>Sede Legale: Via Mazzini, 34 Napoli (NA), CAP 13000, Italia</h3>
 	</div>
+	</div>
+	<div class="text-center">
+		<h1>Frasi motivazionali</h1>
+		<h3 id="inject_frasi">
+			Tutto quello che la mente di un uomo puo' immaginare, lo puo' ottenere.
+		</h3>
+		<h4 id="inject_author">
+			Napoleon Hill
+		</h4>
+	</div>
+
 	<div class="footer-copyright">
-		<p>Copyright © 2023 Tum4World Corporation<br>
-			<text style="font-family: Brush Script MT, Brush Script Std, cursive"> Firme eventuali </text>
-		</p>
+		<div>
+			<h2 class="footer-text-center">SEGUICI</h2>
+			<a href="#!">
+				<img src="resources/img/facebook.png" alt="Facebook logo" class="footer-logo">
+			</a>
+			<a href="#!">
+				<img src="resources/img/whatsapp.png" alt="WhatsApp logo" class="footer-logo">
+			</a>
+			<a href="#!">
+				<img src="resources/img/instagram.png" alt="Instagram logo" class="footer-logo">
+			</a>
+		</div>
+
+		<div>
+			<div>
+				<img src="resources/img/cancelletto.jpg" class="logo-footer">
+			</div>
+			<div>
+				<bold>Tum4World</bold>
+			</div>
+		</div>
+		<div class="padd-5">
+			<p>Copyright © 2023 Tum4World Corporation<br>
+				<text class="text-firme-footer"> Eventuali firme qui </text>
+			</p>
+		</div>
 	</div>
 </footer>
 
@@ -54,15 +69,15 @@
 			"author": "Wayne Gretzky"
 		},
 		{
-			"quote": "The most difficult thing is the decision to act, the rest is merely tenacity.",
+			"quote": "La decisione piu' difficile è di agire, il resto è semplice tenacia.",
 			"author": "Amelia Earhart"
 		},
 		{
-			"quote": "Every strike brings me closer to the next home run.",
+			"quote": "Ogni strike mi porta sempre piu' vicino al prossimo 'home run'",
 			"author": "Babe Ruth"
 		},
 		{
-			"quote": "Definiteness of purpose is the starting point of all achievement.",
+			"quote": "La definizione di uno scopo è il punto di partenza per un risultato",
 			"author": "W. Clement Stone"
 		},
 		{

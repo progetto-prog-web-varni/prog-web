@@ -35,3 +35,17 @@ Altri comandi utili:
 Tutto il compilato viene incluso nella cartella `target`, che è esclusa attraverso il `.gitignore`.
 
 ## TESTING METHODOLOGY
+
+- codice bene
+- ogni tanto un sacco di codice che non faceva nulla, rimosso
+- ogni tanto nomi dati a cose non proprimente comprensibile "MyCustomForm (?)"
+- non c'è molta divisione dei componenti, nel senso che tutto è all'interno dello stesso div/span (usare span non mi piace troppo, quindi ho rimosso, nonostante ci siano due scuole di pensiero)
+- le informazioni più importanti vanno nelle scritte più grandi
+- lo stile ogni tanto non è consistente (il bottone blu perché non lo hai usato ovunque ?)
+- quando bisogna centrare tante cose, meglio usare grid
+
+TODO: 
+
+- [ ] pagina delle singole attività, pagina delle attività tutte da rifare, troppo poco leggibile.
+  - [ ] si aggiunga un bottone alla fine di ogni piccola presentazione dove poter acceder la primaria
+  - [ ] creare pagine "figlie" con ogni attività nello specifico
