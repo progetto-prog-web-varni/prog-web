@@ -1,25 +1,27 @@
-a:link {
-    color: black;
-    background-color: transparent;
-    text-decoration: none;
+.container-body{
+    display:flex;
+    height: fit-content;
+    width: fit-content;
+    flex-wrap: nowrap;
 }
 
-a:visited {
-    color: black;
-    background-color: transparent;
-    text-decoration: none;
+.float-left{
+    float:left;
 }
 
-a:hover {
-    color: red;
-    background-color: transparent;
-    text-decoration: underline;
+.img-homePage{
+    margin:10px 10px;
+    width:320px;
+    height:240px;
 }
 
-a:active {
-    color: yellow;
-    background-color: transparent;
-    text-decoration: underline;
+.descrizione-homePage{
+    padding-right:20px;
+    width:fit-content;
+}
+
+.centra{
+    text-align:center;
 }
 
 .button {
@@ -33,28 +35,4 @@ a:active {
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
-}
-
-
-.container {
-    display: flex;
-    flex-wrap: wrap;
-    height: fit-content;
-    justify-content: space-evenly;
-    align-content: space-around;
-    gap: 10px 30px;
-}
-
-.container-body {
-    height: fit-content;
-    display: flex;
-}
-
-.container-menu {
-    display: flex;
-    justify-content: space-around;
-}
-
-.item {
-    flex-grow: 1;
 }

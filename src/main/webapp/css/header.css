@@ -1,0 +1,49 @@
+
+.titolo_header{
+    text-align:center;
+    font-family:Monaco,fantasy;
+}
+
+.container-NavBar{
+    display:flex;
+    height: fit-content;
+    width: fit-content;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 10px 30px;
+    padding:4px;
+}
+
+.stile-button-NavBar{
+    padding:4px;
+    width:150px;
+    text-align:center;
+}
+
+.logo{
+    width:107px;
+    height:78px;
+    float:left;
+    margin:10px 50px;
+}
+
+a:link {
+    color: black;
+    background-color: transparent;
+    text-decoration: none;
+}
+a:visited {
+    color: black;
+    background-color: transparent;
+    text-decoration: none;
+}
+a:hover {
+    color: red;
+    background-color: transparent;
+    text-decoration: underline;
+}
+a:active {
+    color: yellow;
+    background-color: transparent;
+    text-decoration: underline;
+}

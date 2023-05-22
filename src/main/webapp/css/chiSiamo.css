@@ -1,0 +1,27 @@
+
+.container-fondatori{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    gap:10px 30px;
+    padding-left:20px;
+    padding-right:20px;
+}
+
+.img-fondatore{
+    width:100px;
+    height:100px;
+    margin:10px;
+}
+
+.container-sede{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    gap:10px 30px;
+}
+
+.img-sede{
+    object-fit: contain;
+    margin:30px
+}
