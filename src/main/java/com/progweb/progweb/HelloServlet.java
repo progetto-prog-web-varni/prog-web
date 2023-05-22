@@ -1,4 +1,4 @@
-package com.programmazioneweb.progweb;
+package com.progweb.progweb;
 
 import java.io.*;
 import jakarta.servlet.http.*;
