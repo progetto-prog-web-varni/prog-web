@@ -5,7 +5,7 @@
 <!-- BODY of web page -->
     <!-- Static components: Aderente -->
     <div class="simp-container-item">
-        <h1 class="ris-menu-title">Menu Admin</h1>
+        <h1 class="ris-menu-title">Menu Aderente</h1>
         <div>
             <h4><a href="#">Visualizza Dati Personali</a></h4>
             <h4><a href="#">Iscrizione Attività dell'associazione</a></h4>
