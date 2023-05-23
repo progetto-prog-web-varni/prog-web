@@ -1,4 +1,10 @@
+<%@ page import="HitsCounter.HitsCounter" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+<%
+    HitsCounter.CountHits(application, page);
+%>
+
     <!DOCTYPE html>
     <html>
     <!-- HOME PAGE -->
