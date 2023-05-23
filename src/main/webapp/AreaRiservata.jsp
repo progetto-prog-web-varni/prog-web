@@ -35,7 +35,7 @@
     <div class="body-container">
       <!-- Check the correct file -->
       <%-- c:if --%>
-      <%@ include file="AreaRiservata/Simpatizzante.jsp" %>
+      <%@ include file="AreaRiservata/Aderente.jsp" %>
     </div>
 
     <%@ include file="Components/footer.jsp" %>

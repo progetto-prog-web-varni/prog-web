@@ -6,7 +6,12 @@
     grid-template-columns: 20% 25% 35% 20%;
 }
 
+/* Firefox fix for arrow in the number input */
+input[type=number] {
+    -moz-appearance: textfield;
+  }
 
 .ris-menu-title {
     color: var(--primary-color);
+    text-align: center;
 }
