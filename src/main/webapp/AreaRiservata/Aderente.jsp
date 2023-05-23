@@ -11,8 +11,8 @@
             <h4><a href="#">Iscrizione Attività dell'associazione</a></h4>
             <h4><a href="#">Cancella Iscrizione Al sito</a></h4>
 
+            <h4>Esegui Donazione</h4>
             <div class="ris-esegui-donazione">
-                <h4>Esegui Donazione</h4>
                 <form action="">
                     <input type="number" name="donazione_value" id="donazione_value" 
                         min="0,00" step="0,01" 

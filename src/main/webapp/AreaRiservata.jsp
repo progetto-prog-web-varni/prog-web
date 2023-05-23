@@ -20,13 +20,9 @@
     <%@ include file="resources/css/area_riservata.css" %>
 
     <%-- c:if --%>
-    <% if (pageContext.getRequest().getParameter("value") == "1") { %>
-      <%@ include file="resources/css/simpatizzante.css" %>
-    <% }  else if (pageContext.getRequest().getParameter("value") == "2") { %>
-      <%@ include file="resources/css/amministratore.css" %>
-    <% } else if (pageContext.getRequest().getParameter("value") == "3") {%>
-      <%@ include file="resources/css/aderente.css" %>
-    <% } %>
+    <%@ include file="resources/css/simpatizzante.css" %>
+    <%@ include file="resources/css/amministratore.css" %>
+    <%@ include file="resources/css/aderente.css" %>
   </style>
 
   <title>Tum4World | Area Riservata</title>
@@ -34,21 +30,25 @@
 
 
 <body>
-  <%@ include file="Components/header.jsp" %>
+<%@ include file="Components/header.jsp" %>
 
-    <!-- BODY of web page -->
-    <div class="body-container">
-      <!-- Check the correct file -->
-      <% if (pageContext.getRequest().getParameter("value").equals("1") ) { %>
-      <%@ include file="AreaRiservata/Simpatizzante.jsp" %>
-      <% }  else if (pageContext.getRequest().getParameter("value").equals("2")) { %>
-      <%@ include file="AreaRiservata/Amministratore.jsp" %>
-      <% } else if (pageContext.getRequest().getParameter("value").equals("3")) {%>
-      <%@ include file="AreaRiservata/Aderente.jsp" %>
-      <% } %>
-    </div>
+<!-- BODY of web page -->
+<div class="body-container">
+  <!-- Check the correct file -->
+  <% try {
+      if (pageContext.getRequest().getParameter("value").equals("1") ) { %>
+  <%@ include file="AreaRiservata/Simpatizzante.jsp" %>
+  <% }  else if (pageContext.getRequest().getParameter("value").equals("2")) { %>
+  <%@ include file="AreaRiservata/Amministratore.jsp" %>
+  <% } else if (pageContext.getRequest().getParameter("value").equals("3")) {%>
+  <%@ include file="AreaRiservata/Aderente.jsp" %>
+  <% } } catch (Exception e) {
+      out.println("Error occurred:" + e + "  Provare a inserire un value in fond all'URL");
+    } %>
+</div>
 
-    <%@ include file="Components/footer.jsp" %>
+<%@ include file="Components/footer.jsp" %>
 </body>
 
 </html>
+}
