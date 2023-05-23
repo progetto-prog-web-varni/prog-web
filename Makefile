@@ -1,6 +1,15 @@
 docker-run:
 	docker compose up -d
 
+docker-with-maven: maven
+	rm -rf target/*
+	docker compose up
+
+maven:
+	docker compose down
+	./mvnw install -f pom.xml
+	docker compose up -d
+
 docker-run-no-detach:
 	docker compose up
 

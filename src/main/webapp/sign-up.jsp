@@ -21,7 +21,7 @@
 <body>
   <%@ include file="Components/header.jsp" %>
     <form class="centra">
-      <h3>Aderisci come <i>Simpatizzante</i> o <i>Aderente</i></h3>
+      <h2>Aderisci come <i>Simpatizzante</i> o <i>Aderente</i></h2>
       <div class="sign-up-grid">
         <div class="sign-up-grid-item">
           <label for="fname" class="margin-bottom-5">Nome</label>
@@ -40,7 +40,7 @@
           <small>Format: 123-456-7890</small><br><br>
 
           <h3>Preferenza iscrizione</h3>
-          <!-- TODO: sistemare questa with -->
+          <!-- TODO: questa width è fissata, non credo sia una cosa bella, ma intanto funziona -->
           <fieldset class="border-0 sign-up-form-selection">
             <select name="membershipType">
               <option value="Simpatizzante">Simpatizzante</option>
@@ -53,10 +53,10 @@
           <input class="sign-up-form-input" type="username" id="username" name="username"
             placeholder="Inserisci username">
           <label for="password" class="margin-bottom-5">Password</label>
-          <input class="sign-up-form-input" type="psw" id="password" name="password"
+          <input class="sign-up-form-input" type="password" id="password" name="password"
             placeholder="Inserisci password"><br>
           <label for="password" class="margin-bottom-5">Conferma Password</label>
-          <input class="sign-up-form-input" type="psw" id="confirm_password" name="password"
+          <input class="sign-up-form-input" type="password" id="confirm_password" name="password"
             placeholder="Conferma password">
           <small>Formato: 8 caratteri</small>
 
