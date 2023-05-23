@@ -14,3 +14,20 @@ public class Activity {
 
     //qua ci possiamo mettere altri metodi
 }
+
+/*altro modo
+public class Activity {
+    private int userId;
+    private boolean[] activities;
+
+    public Activity(int userId, boolean[] activities) {
+        this.userId = userId;
+        this.activities = activities;
+    }
+
+    //qua ci possiamo mettere altri metodi
+} */
+
+
+
+
