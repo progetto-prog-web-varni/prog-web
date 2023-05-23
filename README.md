@@ -49,3 +49,5 @@ TODO:
 - [ ] pagina delle singole attività, pagina delle attività tutte da rifare, troppo poco leggibile.
   - [ ] si aggiunga un bottone alla fine di ogni piccola presentazione dove poter acceder la primaria
   - [ ] creare pagine "figlie" con ogni attività nello specifico
+
+- [ ] Capire Perché non funziona lo shadow del **signup**, oppure renderlo coerente con il contatto, quindi con il contorno blu
