@@ -16,7 +16,12 @@
     <%@ include file="resources/css/footer.css" %>
     <%@ include file="resources/css/header.css" %>
     
-    <%@ include file="resources/css/index.css" %>
+    <%@ include file="resources/css/area_riservata.css" %>
+
+    <%-- c:if --%>
+    <%@ include file="resources/css/simpatizzante.css" %>
+    <%@ include file="resources/css/amministratore.css" %>
+    <%@ include file="resources/css/aderente.css" %>
   </style>
 
   <title>Tum4World | Area Riservata</title>
@@ -29,6 +34,7 @@
     <!-- BODY of web page -->
     <div class="body-container">
       <!-- Check the correct file -->
+      <%-- c:if --%>
       <%@ include file="AreaRiservata/Simpatizzante.jsp" %>
     </div>
 

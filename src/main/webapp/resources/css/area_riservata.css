@@ -1,0 +1,12 @@
+.body-container {
+    padding-top: 25px;
+    padding-bottom: 25px;
+
+    display: grid;
+    grid-template-columns: 20% 25% 35% 20%;
+}
+
+
+.ris-menu-title {
+    color: var(--primary-color);
+}
