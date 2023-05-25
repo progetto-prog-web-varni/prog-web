@@ -20,19 +20,19 @@
 		<div>
 			<h2 class="footer-text-center">SEGUICI</h2>
 			<a href="#!">
-				<img src="resources/img/facebook.png" alt="Facebook logo" class="footer-logo">
+				<img src="${pageContext.request.contextPath}/resources/img/facebook.png" alt="Facebook logo" class="footer-logo">
 			</a>
 			<a href="#!">
-				<img src="resources/img/whatsapp.png" alt="WhatsApp logo" class="footer-logo">
+				<img src="${pageContext.request.contextPath}/resources/img/whatsapp.png" alt="WhatsApp logo" class="footer-logo">
 			</a>
 			<a href="#!">
-				<img src="resources/img/instagram.png" alt="Instagram logo" class="footer-logo">
+				<img src="${pageContext.request.contextPath}/resources/img/instagram.png" alt="Instagram logo" class="footer-logo">
 			</a>
 		</div>
 
 		<div>
 			<div>
-				<img src="resources/img/cancelletto.jpg" class="logo-footer">
+				<img src="${pageContext.request.contextPath}/resources/img/cancelletto.jpg" class="logo-footer">
 			</div>
 			<div>
 				<bold>Tum4World</bold>

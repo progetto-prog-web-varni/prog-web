@@ -16,27 +16,27 @@
   <div class="inline-links">
     <div class="navbar-flex-item">
       <!-- <span style="padding:4px; width:150px; text-align:center"> -->
-      <a href="index.jsp">HOME</a>
+      <a href="${pageContext.request.contextPath}/index.jsp">HOME</a>
       <!-- </span> -->
     </div>
     <div class="navbar-flex-item">
       <!-- <span style="padding:4px; width:150px; text-align:center"> -->
-      <a href="chiSiamo.jsp">CHI SIAMO</a>
+      <a href="${pageContext.request.contextPath}/chiSiamo.jsp">CHI SIAMO</a>
       <!-- </span> -->
     </div>
     <div class="navbar-flex-item">
       <!-- <span style="padding:4px; width:150px; text-align:center"> -->
-      <a href="attivita.jsp">ATTIVITA'</a>
+      <a href="${pageContext.request.contextPath}/attivita.jsp">ATTIVITA'</a>
       <!-- </span> -->
     </div>
     <div class="navbar-flex-item">
       <!-- <span style="padding:4px; width:150px; text-align:center"> -->
-      <a href="contatti.jsp">CONTATTI</a>
+      <a href="${pageContext.request.contextPath}/contatti.jsp">CONTATTI</a>
       <!-- </span> -->
     </div>
     <div class="navbar-flex-item">
       <!-- <span style="padding:4px; width:150px; text-align:center"> -->
-      <a href="sign-up.jsp">SIGNUP</a>
+      <a href="${pageContext.request.contextPath}/sign-up.jsp">SIGNUP</a>
       <!-- </span> -->
     </div>
     <!-- to previus visualizzation
@@ -44,7 +44,7 @@
         -->
     <div class="navbar-flex-item">
       <!-- <span style=" padding:4px; width:150px; text-align:center"> -->
-      <a href="login.jsp">LOGIN</a>
+      <a href="${pageContext.request.contextPath}/login.jsp">LOGIN</a>
       <!-- </span> -->
     </div>
   </div>

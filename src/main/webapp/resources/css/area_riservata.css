@@ -10,6 +10,11 @@
 input[type=number] {
     -moz-appearance: textfield;
   }
+.simp-container-item {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    text-align: center;
+}
 
 .ris-menu-title {
     color: var(--primary-color);
