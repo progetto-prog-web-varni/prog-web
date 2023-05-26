@@ -32,7 +32,7 @@
     <%@ include file="base.jsp"%>
     <div>
         <!-- Qui vanno tutti i dati dinamici in base a quello cliccato -->
-        <h1>Second</h1>
+        <h3>Clicca a Lato per vedere qualcosa</h3>
     </div>
 </div>
 

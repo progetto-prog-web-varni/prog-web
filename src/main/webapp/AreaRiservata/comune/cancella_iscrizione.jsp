@@ -32,7 +32,8 @@
     <%@ include file="../aderente/base.jsp"%>
     <div>
         <!-- Qui vanno tutti i dati dinamici in base a quello cliccato -->
-        <h1>Second</h1>
+        <h3 class="attivita-title">Cancella Iscrizioni</h3>
+        <h4>Scelta tra le attivita' che vengono seguite</h4>
     </div>
 </div>
 

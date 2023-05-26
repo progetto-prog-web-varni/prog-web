@@ -20,7 +20,7 @@
 
   <body>
     <%@ include file="Components/header.jsp" %>
-      <form class="sign-in-grid">
+      <form class="sign-in-grid" action="" method="POST">
         <div class="inner-grid-signin">
           <h3>Login Sezione Privata</h3>
           <label for="username" class="margin-bottom-5">Username</label>
@@ -38,5 +38,10 @@
       </form>
       <%@ include file="Components/footer.jsp" %>
   </body>
+
+  <script>
+    // check:
+    // - ci deve essere la password
+  </script>
 
   </html>

@@ -34,7 +34,10 @@
     <%@ include file="base.jsp"%>
     <div>
         <!-- Qui vanno tutti i dati dinamici in base a quello cliccato -->
-        <h1>Second</h1>
+        <h1>Analytics sito</h1>
+        <%
+            out.println(HitsCounter.returnAllCounter());
+        %>
     </div>
 </div>
 
