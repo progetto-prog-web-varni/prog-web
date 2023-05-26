@@ -114,7 +114,7 @@
 
 	let counter = 1;
 
-	var intervalId = window.setInterval(function () {
+	let intervalId = window.setInterval(() => {
 		element_to_inject.innerText = frasi[counter]["quote"];
 		author_to_inject.innerText = frasi[counter]["author"];
 		counter++;
