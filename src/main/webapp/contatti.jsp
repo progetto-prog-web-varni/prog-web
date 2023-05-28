@@ -19,19 +19,23 @@
         function validazioneEmail()
         {
             // recupero il valore della email indicata nel form
-            var email=document.modulo.email.value;
+            var email = document.modulo.email.value;
             // se non ho inserito nulla nel campo
             if(email==''){
-                alert("Devi indicare un indirizzo email");
+                //alert("Email non inserita");
+                window.open("popup-error.jsp","mozillaWindow", "popup");
                 return false;
             }
             // verifico se è un indirizzo valido
-            if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))
-            {
-                alert("L'indirizzo email che hai inserito e' valido")
+            if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+                //let $pippo = $("#pippo");
+                //$pippo.insertBefore = "<p>test</p>";
+                //alert("Form compilato correttamente");
+                window.open("popup-success.jsp","mozillaWindow", "popup");
             }
             else {
-                alert("L'indirizzo email che hai inserito non e' valido");
+                //alert("Inserire una mail valida!");
+                window.open("popup-error.jsp","mozillaWindow","popup");
             }
             return false;
         }
@@ -43,7 +47,7 @@
 
 <body>
     <%@ include file="Components/header.jsp" %>
-        <div class="contatti-grid">
+        <div class="contatti-grid" id="pippo">
             <form name="modulo" method="POST" class="contatti-grid-center" onsubmit="return validazioneEmail()" oninput="richiesta_effettuata.jsp">
                 <div class="contatti-info">
                     <h2>I NOSTRI CONTATTI:</h2>
