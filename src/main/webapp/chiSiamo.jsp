@@ -44,7 +44,7 @@
                 <div class="container-fondatori" >
 					<span>
 						<div>
-							<img src="resources\img\p1.jpg" class="img-fondatore">
+							<img src="resources\img\p1.jpg" class="img-fondatore" alt="Immagine Joel">
 						</div>
 						<p>
 							<strong>Joel</strong><br>Co-founder, CEO<br><small>Joined Oct, 2007</small>
@@ -52,7 +52,7 @@
 					</span>
                     <span>
 						<div>
-							<img src="resources\img\p2.jpg" class="img-fondatore">
+							<img src="resources\img\p2.jpg" class="img-fondatore" alt="Immagine Leo">
 						</div>
 						<p>
 							<strong>Leo</strong><br>Co-founder, COO<br><small>Joined Oct, 2007</small>
@@ -60,7 +60,7 @@
 					</span>
                     <span>
 						<div>
-							<img src="resources\img\p3.jpg" class="img-fondatore">
+							<img src="resources\img\p3.jpg" class="img-fondatore" alt="Immagine Anna">
 						</div>
 						<p>
 							<strong>Anna</strong><br>Co-founder, CFO<br><small>Joined Nov, 2007</small>
@@ -68,7 +68,7 @@
 					</span>
                     <span>
 						<div>
-							<img src="resources\img\p4.jpg" class="img-fondatore">
+							<img src="resources\img\p4.jpg" class="img-fondatore" alt="Immagine Andrea">
 						</div>
 						<p>
 							<strong>Andrea</strong><br>Co-founder, CPA<br><small>Joined Oct, 2007</small>
@@ -76,7 +76,7 @@
 					</span>
                     <span >
 						<div>
-							<img src="resources\img\p5.jpg" class="img-fondatore">
+							<img src="resources\img\p5.jpg" class="img-fondatore" alt="Immagine Sara">
 						</div>
 						<p>
 							<strong>Sara</strong><br>Co-founder, PM<br><small>Joined Dec, 2007</small>
