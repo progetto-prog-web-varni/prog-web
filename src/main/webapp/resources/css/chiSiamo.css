@@ -1,3 +1,49 @@
+.container {
+    display: grid;
+    grid-template-columns: 20% 30% 30% 20%;
+}
+
+.chiSiamo-title-container {
+    padding-left: 20%;
+    padding-right: 20%;
+    grid-column-start: 1;
+    grid-column-end: 5;
+}
+
+.chiSiamo-title {
+    color: var(--primary-color);
+    text-align: center;
+}
+
+.single-paragraph {
+    grid-column-start: 2;
+    grid-column-end: 4;
+}
+
+.fondatori {
+    grid-row: 2;
+}
+
+.genesi {
+    grid-row: 3;
+}
+
+.sede{
+    grid-row: 4;
+}
+
+.FAQ{
+    grid-row:5;
+}
+
+.FAQ-question{
+    font-weight: bold;
+}
+
+.FAQ-answer{
+    display:none;
+}
+
 .container-fondatori{
     display:flex;
     flex-wrap:wrap;

@@ -26,7 +26,7 @@
         <div class="sign-up-grid-item">
           <label for="fname" class="margin-bottom-5">Nome</label>
           <input class="sign-up-form-input" type="text" id="fname" name="fname" placeholder="Mario">
-          <label for="lname" class="margin-bottom-5">Cognome</label class="margin-bottom-5">
+          <label for="lname" class="margin-bottom-5">Cognome</label>
           <input class="sign-up-form-input" type="text" id="lname" name="lname" placeholder="Rossi">
           <label for="birthday" class="margin-bottom-5">Data di Nascita</label>
           <input class="sign-up-form-input" type="date" id="birthday" name="birthday" placeholder="01/01/2000"

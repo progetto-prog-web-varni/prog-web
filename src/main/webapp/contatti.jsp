@@ -15,6 +15,28 @@
         <%@ include file="resources/css/contatti.css" %>
     </style>
 
+    <script>
+        function validazioneEmail()
+        {
+            // recupero il valore della email indicata nel form
+            var email=document.modulo.email.value;
+            // se non ho inserito nulla nel campo
+            if(email==''){
+                alert("Devi indicare un indirizzo email");
+                return false;
+            }
+            // verifico se è un indirizzo valido
+            if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))
+            {
+                alert("L'indirizzo email che hai inserito e' valido")
+            }
+            else {
+                alert("L'indirizzo email che hai inserito non e' valido");
+            }
+            return false;
+        }
+    </script>
+
     <title>Tum4World | Contatti</title>
 </head>
 
@@ -22,7 +44,7 @@
 <body>
     <%@ include file="Components/header.jsp" %>
         <div class="contatti-grid">
-            <form class="contatti-grid-center">
+            <form name="modulo" method="POST" class="contatti-grid-center" onsubmit="return validazioneEmail()" oninput="richiesta_effettuata.jsp">
                 <div class="contatti-info">
                     <h2>I NOSTRI CONTATTI:</h2>
                     <h4>Via Mazzini, 34 342 876 2213 </h4>
