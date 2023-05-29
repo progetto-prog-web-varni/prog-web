@@ -27,6 +27,7 @@
 .third-activity {
     grid-row: 4;
 }
+
 .attivita-title {
     color: var(--primary-color);
     text-align: center;

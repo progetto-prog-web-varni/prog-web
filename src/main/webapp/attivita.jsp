@@ -29,7 +29,7 @@
         </div>
 
         <div class="single-activity first-activity">
-          <strong>Tum4World for Little Coders</strong>
+          <h3>Tum4World for Little Coders</h3>
           <p>
             Questo corso ha l’obiettivo di formare bambini e ragazzi dai 7 ai 16 anni attraverso percorsi innovativi
             ed avvicinarli al mondo digitale in maniera attiva e costruttiva e non come fruitori passivi. <br>
@@ -51,10 +51,15 @@
             Tutte le attività da noi presentate sono tenute in maniera lucida e appassionata da coach competenti e
             preparati che dedicano gran parte del loro tempo alla ricerca e allo sviluppo. <br><br>
           </p>
+          <div style="text-align: center">
+            <button class="button" onclick="window.open('foto-attivita-little-coders.jsp')">VISUALIZZA IMMAGINI LITTLE CODERS</button>
+          </div>
+          <br><br>
         </div>
+
         <div class="single-activity second-activity">
 
-          <strong>Tum4World for professionals </strong>
+          <h3>Tum4World for professionals </h3>
           <p>
             Diventa un esperto informatico con questo corso di informatica!<br>
             Offriamo una formazione all’avanguardia attraverso le nostre attività on-demand per aiutarvi ad ottenere
@@ -79,10 +84,15 @@
           <p>
             Dai uno slancio al tuo curriculum, apprendi nuovi linguaggi di programmazione con i nostri corsi!<br><br>
           </p>
+          <div style="text-align: center">
+            <button class="button" onclick="window.open('foto-attivita-professionals.jsp')">VISUALIZZA IMMAGINI PROFESSIONALS</button>
+          </div>
+          <br><br>
         </div>
+
         <div class="single-activity third-activity">
 
-          <strong>Tum4World for Seniors</strong>
+          <h3>Tum4World for Seniors</h3>
           <p>
             Al giorno d’oggi quasi due anziani su tre utilizzano Internet.<br>
             Dall’ultimo report Istat “Cittadini e ICT” 2019 emerge una situazione di generale stagnazione, legata a
@@ -108,6 +118,10 @@
             <li>Utilizzo di dispositivi mobile come smartphone e tablet
           </ul>
           </ul>
+          <div style="text-align: center">
+            <button class="button" onclick="window.open('foto-attivita-seniors.jsp')">VISUALIZZA IMMAGINI SENIORS</button>
+          </div>
+          <br><br>
         </div>
       </div>
       <%@ include file="Components/footer.jsp" %>

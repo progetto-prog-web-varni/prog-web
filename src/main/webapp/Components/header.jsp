@@ -5,7 +5,7 @@
   </div>
   <div class="navbar-image">
     <span>
-      <img src="resources\img\cancelletto.jpg" width="100" height="80">
+      <img src="resources\img\logo2.jpeg" width="100" height="100">
     </span>
   </div>
 

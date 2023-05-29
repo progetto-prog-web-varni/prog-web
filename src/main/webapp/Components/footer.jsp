@@ -32,7 +32,7 @@
 
 		<div>
 			<div>
-				<img src="resources/img/cancelletto.jpg" class="logo-footer">
+				<img src="resources/img/logo2.jpeg" class="logo-footer">
 			</div>
 			<div>
 				<bold>Tum4World</bold>
