@@ -11,7 +11,7 @@
         <%@ include file="resources/css/base.css" %>
         <%@ include file="resources/css/footer.css" %>
         <%@ include file="resources/css/header.css" %>
-
+        <%@ include file="resources/css/popup.css" %>
         <%@ include file="resources/css/contatti.css" %>
     </style>
 
@@ -22,22 +22,41 @@
             var email = document.modulo.email.value;
             // se non ho inserito nulla nel campo
             if(email==''){
-                //alert("Email non inserita");
-                window.open("popup-error.jsp","mozillaWindow", "popup");
+                visualizzaDanger();
                 return false;
             }
             // verifico se è un indirizzo valido
             if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-                //let $pippo = $("#pippo");
-                //$pippo.insertBefore = "<p>test</p>";
-                //alert("Form compilato correttamente");
-                window.open("popup-success.jsp","mozillaWindow", "popup");
+                visualizzaSuccess();
             }
             else {
-                //alert("Inserire una mail valida!");
-                window.open("popup-error.jsp","mozillaWindow","popup");
+                visualizzaDanger();
             }
             return false;
+        }
+
+        function visualizzaReset(){
+            document.getElementById("popup-danger").style.display = "none";
+            document.getElementById("popup-success").style.display = "none";
+            document.getElementById("popup-reset").style.display = "block";
+        }
+
+        function visualizzaDanger(){
+            document.getElementById("popup-danger").style.display = "block";
+            document.getElementById("popup-success").style.display = "none";
+            document.getElementById("popup-reset").style.display = "none";
+        }
+
+        function visualizzaSuccess(){
+            document.getElementById("popup-danger").style.display = "none";
+            document.getElementById("popup-success").style.display = "block";
+            document.getElementById("popup-reset").style.display = "none";
+        }
+
+        function nascondiPopup(){
+            document.getElementById("popup-danger").style.display = "none";
+            document.getElementById("popup-success").style.display = "none";
+            document.getElementById("popup-reset").style.display = "none";
         }
     </script>
 
@@ -48,7 +67,7 @@
 <body>
     <%@ include file="Components/header.jsp" %>
         <div class="contatti-grid" id="pippo">
-            <form name="modulo" method="POST" class="contatti-grid-center" onsubmit="return validazioneEmail()" oninput="richiesta_effettuata.jsp">
+            <form name="modulo" method="POST" class="contatti-grid-center" onsubmit="return validazioneEmail()" onreset="return visualizzaReset()">
                 <div class="contatti-info">
                     <h2>I NOSTRI CONTATTI:</h2>
                     <h4>Via Mazzini, 34 342 876 2213 </h4>
@@ -93,9 +112,25 @@
                         meglio!</small>
                     <div class="final-button">
                         <input type="submit" value="Submit" class="button">
-                        <input type="reset" value="Reset" class="button">
+                        <input type="reset" value="Reset" class="button" >
                     </div>
                 </div>
+
+                <div id="popup-danger" class="alert">
+                    <span class="close" onclick="return nascondiPopup()">&times;</span>
+                    <strong>Danger!</strong> Enter a valid mail!
+                </div>
+
+                <div id="popup-success" class="alert success">
+                    <span class="close" onclick="return nascondiPopup()">&times;</span>
+                    <strong>Success!</strong> Thank you for filling out the form!
+                </div>
+
+                <div id="popup-reset" class="alert info">
+                    <span class="close" onclick="return nascondiPopup()">&times;</span>
+                    <strong>Info:</strong> Reset is done!
+                </div>
+
             </form>
         </div>
         <%@ include file="Components/footer.jsp" %>

@@ -13,6 +13,13 @@
     padding: 15px;
 }
 
+contatti-form-popup{
+    text-align:center;
+    margin: 15px;
+    border: 1px solid var(--primary-color);
+    border-radius: .7em;
+}
+
 .contatti-grid {
     display: grid;
     grid-template-columns: 20% 60% 20%;
@@ -59,13 +66,20 @@
     opacity: 1;
     transition: opacity 0.6s;
     margin-bottom: 15px;
+    display: none;
 }
 
-.alert.success {background-color: #04AA6D;}
-.alert.info {background-color: #2196F3;}
-.alert.warning {background-color: #ff9800;}
+.alert.success {
+    background-color: #04AA6D;
+    display: none;
+}
+.alert.info {
+    background-color: #2196F3;
+    display: none;
+}
+.alert.warning {background-color: #ff9800;}  /* potrebbe essere utile*/
 
-.closebtn {
+.close {
     margin-left: 15px;
     color: white;
     font-weight: bold;
@@ -76,6 +90,6 @@
     transition: 0.3s;
 }
 
-.closebtn:hover {
+.close:hover {
     color: black;
 }
