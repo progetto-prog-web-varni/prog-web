@@ -22,7 +22,7 @@
   <%@ include file="Components/header.jsp" %>
 
     <!-- do not add action here, resolved in the js -->
-    <form class="centra">
+    <form class="centra" onreset="resetFunc()" onsubmit="submitFunc()">
       <h2>Aderisci come <i>Simpatizzante</i> o <i>Aderente</i></h2>
 
       <div id="error-div" class="signup-error" hidden="hidden">
@@ -114,8 +114,9 @@ un carattere numerico, un carattere maiuscolo e un carattere tra $, ! e ?), -->
   const password = document.getElementById("password");
   const confirm_password = document.getElementById("confirm_password");
 
-  resetbtn.addEventListener("click", (event) => {
-    console.log("Reset Form", event);
+  const resetFunc = () => {
+    // event.preventDefault();
+    // console.log("Reset Form", event);
     fname.innerText = "";
     lname.innerText = "";
     birthday.innerText = "";
@@ -125,15 +126,19 @@ un carattere numerico, un carattere maiuscolo e un carattere tra $, ! e ?), -->
     username.innerText = "";
     password.innerText = "";
     confirm_password.innerText = "";
-  });
+  };
 
-  submitbtn.addEventListener("click", (event) => {
+  resetbtn.addEventListener("click", resetFunc);
+
+  const submitFunc = () => {
+    //event.preventDefault();
     if(confirm_password.value !== password.value) {
       console.log("Le password non corrispondono");
-
     }
-    console.log("SUBMIT" + event);
-  })
+    //console.log("SUBMIT");
+  };
+
+  submitbtn.addEventListener("click", submitFunc)
 </script>
 
 </html>

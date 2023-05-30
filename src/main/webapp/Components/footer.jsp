@@ -49,7 +49,7 @@
 <script>
 	const frasi = [
 		{
-			"quote": "La vita non è basata sul prendere e avere, è dare e essere",
+			"quote": "La vita non e' basata sul prendere e avere, e' dare e essere",
 			"author": "Kevin Kruse"
 		},
 		{
@@ -57,7 +57,7 @@
 			"author": "Albert Einstein"
 		},
 		{
-			"quote": "Due strade che divergono in un bosco, e io prendo quella meno trafficata, e questo è quello che ha fatto la differenza",
+			"quote": "Due strade che divergono in un bosco, e io prendo quella meno trafficata, e questo e' quello che ha fatto la differenza",
 			"author": "Robert Frost"
 		},
 		{
@@ -65,11 +65,11 @@
 			"author": "Florence Nightingale"
 		},
 		{
-			"quote": "Hai il 100% di possibilità di mancare il bersaglio, se neanche spari",
+			"quote": "Hai il 100% di possibilita' di mancare il bersaglio, se neanche spari",
 			"author": "Wayne Gretzky"
 		},
 		{
-			"quote": "La decisione piu' difficile è di agire, il resto è semplice tenacia.",
+			"quote": "La decisione piu' difficile è di agire, il resto e' semplice tenacia.",
 			"author": "Amelia Earhart"
 		},
 		{
@@ -81,43 +81,41 @@
 			"author": "W. Clement Stone"
 		},
 		{
-			"quote": "We must balance conspicuous consumption with conscious capitalism.",
-			"author": "Kevin Kruse"
-		},
-		{
-			"quote": "Life is what happens to you while you're busy making other plans.",
+			"quote": "La vita e' quella cosa che accade mentre sei troppo impegnato a fare dei piani.",
 			"author": "John Lennon"
 		},
 		{
-			"quote": "We become what we think about.",
+			"quote":  "Diventiamo quello che pensiamo.",
 			"author": "Earl Nightingale"
 		},
 		{
-			"quote": "Twenty years from now you will be more disappointed by the things that you didn't do than by the ones you did do, so throw off the bowlines, sail away from safe harbor, catch the trade winds in your sails.  Explore, Dream, Discover.",
+			"quote":  "Fra vent'anni, sarai molto piu' deluso dalle cose che non hai fatto, piuttosto che da quelle che hai fatto, quindi apri le vele, viaggia lontano dai porti sicuri, prendi il buon vento. Esplora, Sogna e Scopri.",
 			"author": "Mark Twain"
 		},
 		{
-			"quote": "Life is 10% what happens to me and 90% of how I react to it.",
+			"quote": "La vita e' al 10% quello che mi succede e il 90% come reagisco.",
 			"author": "Charles Swindoll"
 		},
 		{
-			"quote": "The most common way people give up their power is by thinking they don't have any.",
+			"quote": "La cosa piu' comune per il quale le persone persono potere e' pensare di non averne.",
 			"author": "Alice Walker"
 		},
 		{
-			"quote": "The mind is everything. What you think you become.",
+			"quote": "La mentalita' e' tutto. Quello a cui pensi, lo diventi.",
 			"author": "Buddha"
 		},
 	];
 	const element_to_inject = document.getElementById('inject_frasi');
 	const author_to_inject = document.getElementById('inject_author');
 
-	let counter = 1;
 
-	let intervalId = window.setInterval(() => {
+	let counter = 1;
+	const interval = 20*1000; // 20 * 1000 millisecondi
+
+	window.setInterval(() => {
 		element_to_inject.innerText = frasi[counter]["quote"];
 		author_to_inject.innerText = frasi[counter]["author"];
 		counter++;
-	}, 5000);
+	}, interval);
 
 </script>
