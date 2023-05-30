@@ -10,3 +10,9 @@ services:
       - ./target:/usr/local/tomcat/webapps
     ports:
       - "8080:8080"
+  derby:
+    build:
+      dockerfile: Dockerfile
+      context: ./derby
+    ports:
+      - "1527:1527"
