@@ -8,7 +8,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.*;
 
-@WebServlet(name = "LoginServlet", value = "/login")
+@WebServlet(name = "LoginServlet", value = "/login-serv")
 public class LoginServlet extends HttpServlet{
 
     DbConf config = new DbConf();
