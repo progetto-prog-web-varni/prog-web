@@ -1,0 +1,13 @@
+.ris-esegui-donazione {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.donazione-number-input {
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    min-width: 30px;
+    max-width: 70px;
+    border-radius: var(--border-radius);
+}

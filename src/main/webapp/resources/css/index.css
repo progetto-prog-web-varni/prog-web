@@ -1,0 +1,29 @@
+.container {
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 25px;
+
+    min-width: 60vh;
+
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.body-item {
+    width: 50%;
+    text-align: center;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.img-descrizione {
+    align-self: center;
+}
+
+.h2-descrizione {
+    color: var(--primary-color);
+    font-size: 30px;
+}

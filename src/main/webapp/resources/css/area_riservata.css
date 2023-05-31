@@ -1,0 +1,22 @@
+.body-container {
+    padding-top: 25px;
+    padding-bottom: 25px;
+
+    display: grid;
+    grid-template-columns: 20% 25% 35% 20%;
+}
+
+/* Firefox fix for arrow in the number input */
+input[type=number] {
+    -moz-appearance: textfield;
+  }
+.simp-container-item {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    text-align: center;
+}
+
+.ris-menu-title {
+    color: var(--primary-color);
+    text-align: center;
+}

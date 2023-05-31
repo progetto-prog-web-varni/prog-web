@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap');
+
+/* Default Variables */
+:root {
+    /* Colors */
+    --bkground-color: #FFFF;
+    --primary-color: #0F4FD6;
+    --secondary-color: #ECECEE;
+    --project-white: white;
+
+    /* Paddings */
+
+    /* Margins and Borders */
+    --border-radius: .7em;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Lexend', sans-serif;
+}
+
+/* General Settings */
+a:link {
+    color: black;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a:visited {
+    color: black;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--primary-color);
+    background-color: transparent;
+    text-decoration: underline;
+}
+
+select {
+    width: 300px;
+}
+
+option {
+    width: 300px;
+}
+
+.generic-text-center {
+    text-align: center;
+}
+
+/* Custom Components Style */
+.button {
+    border: none;
+    color: var(--project-white);
+    padding: 10px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    background-color: var(--primary-color);
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: .7em;
+}

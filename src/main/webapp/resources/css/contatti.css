@@ -1,0 +1,53 @@
+.contatti-info{
+    text-align:center;
+    margin: 15px;
+    border: 1px solid var(--primary-color);
+    border-radius: .7em;
+}
+
+.contatti-form-box{
+    text-align:center;
+    margin: 15px;
+    border: 1px solid var(--primary-color);
+    border-radius: .7em;
+    padding: 15px;
+}
+
+.contatti-grid {
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+}
+
+.contatti-grid-center {
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+.contatti-form-flex {
+    display: flex;
+    flex-flow: column nowrap;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.contatti-form-input{
+    margin-bottom:5px;
+    border: solid black;
+    border-radius:4px;
+    background-color:white;
+    border-width:1px;
+    min-width:250px;
+    block-size: fit-content;
+    padding: 5px;
+}
+
+.margin-bottom-5{
+    margin-bottom: 5px;
+}
+
+.menu{
+    text-align:left;
+}
+
+.final-button {
+    padding-top: 15px;
+} 

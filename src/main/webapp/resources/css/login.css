@@ -1,0 +1,35 @@
+.sign-in-grid {
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+}
+
+.inner-grid-signin {
+    grid-column-start: 2;
+    grid-column-end: 3;
+
+    padding-top: 15%;
+    padding-bottom: 25%;
+    
+    display: flex;
+    flex-flow: column nowrap;
+
+}
+
+.sign-up-form-input {
+    margin-bottom:5px;
+    border: solid black;
+    border-radius:4px;
+    background-color:white;
+    border-width:1px;
+    min-width:250px;
+    block-size: fit-content;
+    padding: 5px;
+}
+
+.margin-bottom-5 {
+    margin-bottom: 5px;
+}
+
+.margin-top-10 {
+    margin-top: 25px;
+}
