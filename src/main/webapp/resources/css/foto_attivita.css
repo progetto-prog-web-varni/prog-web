@@ -1,0 +1,28 @@
+
+.attivita-title {
+    color: var(--primary-color);
+    text-align: center;
+}
+
+.container_foto {
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+    grid-template-rows: auto auto auto auto;
+    gap: 15px 0px;
+    grid-template-areas:
+            ". title ."
+            ". img1 ."
+            ". img2 ."
+            ". img3 ."
+            ". img4 .";
+}
+
+.centered{
+    text-align: center;
+}
+
+.title { grid-area: title; }
+.img1 { grid-area: img1; }
+.img2 { grid-area: img2; }
+.img3 { grid-area: img3; }
+.img4 { grid-area: img4; }
