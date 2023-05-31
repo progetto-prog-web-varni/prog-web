@@ -1,8 +1,6 @@
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpServletRequest;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.*;
+import javax.servlet.http.*;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
