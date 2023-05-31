@@ -27,15 +27,15 @@
         </div>
 
         <div class="centered img1">
-            <img src="resources\img\foto_attivita\bambini1.jpg" alt="foto robot con bambino">
+            <img src="${pageContext.request.contextPath}/resources/img/foto_attivita/bambini1.jpg" alt="foto robot con bambino">
         </div>
 
         <div class="centered img2">
-            <img src="resources\img\foto_attivita\bambini2.jpg"  alt="foto robot con bambino">
+            <img src="${pageContext.request.contextPath}/resources/img/foto_attivita/bambini2.jpg"  alt="foto robot con bambino">
         </div>
 
         <div class="centered img3">
-            <img src="resources\img\foto_attivita\bambini3.jpg"  alt="foto robot con bambino">
+            <img src="${pageContext.request.contextPath}/resources/img/foto_attivita/bambini3.jpg"  alt="foto robot con bambino">
         </div>
 
     </div>

@@ -28,15 +28,15 @@
         </div>
 
         <div class="centered img1">
-            <img src="resources\img\foto_attivita\professional1.jpeg"  alt="foto programmatore">
+            <img src="${pageContext.request.contextPath}/resources/img/foto_attivita/professional1.jpeg"  alt="foto programmatore">
         </div>
 
         <div class="centered img2" >
-            <img src="resources\img\foto_attivita\professional2.jpeg"  alt="foto programmatore">
+            <img src="${pageContext.request.contextPath}/resources/img/foto_attivita/professional2.jpeg"  alt="foto programmatore">
         </div>
 
         <div class="centered img3" >
-            <img src="resources\img\foto_attivita\professional3.jpeg"  alt="foto programmatore">
+            <img src="${pageContext.request.contextPath}/resources/img/foto_attivita/professional3.jpeg"  alt="foto programmatore">
         </div>
     </div>
 
