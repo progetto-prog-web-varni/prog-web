@@ -51,3 +51,18 @@ TODO:
   - [ ] creare pagine "figlie" con ogni attività nello specifico
 
 - [ ] Capire Perché non funziona lo shadow del **signup**, oppure renderlo coerente con il contatto, quindi con il contorno blu
+
+- [ ] `contatti.css` riga 20, classe inutilizzata, anche perché non rappresenta una classe.
+
+# Derby
+
+Docs: [HERE](https://db.apache.org/derby/papers/DerbyTut/ij_intro.html).
+
+Interactive SQL shell.
+```bash
+java org.apache.derby.tools.ij
+```
+
+## Eddie
+
+Models nella parte di Servlet forse?

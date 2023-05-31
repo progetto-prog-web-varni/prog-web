@@ -39,4 +39,9 @@
       <%@ include file="Components/footer.jsp" %>
   </body>
 
+  <script>
+    // check:
+    // - ci deve essere la password
+  </script>
+
   </html>

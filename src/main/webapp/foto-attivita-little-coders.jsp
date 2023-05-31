@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: alberto
-  Date: 29/05/23
-  Time: 15:21
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
@@ -34,15 +27,15 @@
         </div>
 
         <div class="centered img1">
-            <img src="resources\img\foto_attivita\bambini1.jpg" alt="foto robot con bambino">
+            <img src="${pageContext.request.contextPath}/resources/img/foto_attivita/bambini1.jpg" alt="foto robot con bambino">
         </div>
 
         <div class="centered img2">
-            <img src="resources\img\foto_attivita\bambini2.jpg"  alt="foto robot con bambino">
+            <img src="${pageContext.request.contextPath}/resources/img/foto_attivita/bambini2.jpg"  alt="foto robot con bambino">
         </div>
 
         <div class="centered img3">
-            <img src="resources\img\foto_attivita\bambini3.jpg"  alt="foto robot con bambino">
+            <img src="${pageContext.request.contextPath}/resources/img/foto_attivita/bambini3.jpg"  alt="foto robot con bambino">
         </div>
 
     </div>
