@@ -47,6 +47,10 @@ option {
     width: 300px;
 }
 
+.generic-text-center {
+    text-align: center;
+}
+
 /* Custom Components Style */
 .button {
     border: none;

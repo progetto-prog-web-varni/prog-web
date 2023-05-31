@@ -31,7 +31,7 @@
         <div class="single-activity first-activity">
           <h3>Tum4World for Little Coders</h3>
           <p>
-            Questo corso ha l’obiettivo di formare bambini e ragazzi dai 7 ai 16 anni attraverso percorsi innovativi
+            Questo corso ha l'obiettivo di formare bambini e ragazzi dai 7 ai 16 anni attraverso percorsi innovativi
             ed avvicinarli al mondo digitale in maniera attiva e costruttiva e non come fruitori passivi. <br>
             Il corso è previsto per gruppi dalle 10 alle 25 persone, per permettere maggiore interazione tra i
             partecipanti e per imparare e mettere subito in pratica in maniera creativa le nozioni di coding, pensiero
@@ -62,9 +62,9 @@
           <h3>Tum4World for professionals </h3>
           <p>
             Diventa un esperto informatico con questo corso di informatica!<br>
-            Offriamo una formazione all’avanguardia attraverso le nostre attività on-demand per aiutarvi ad ottenere
+            Offriamo una formazione all'avanguardia attraverso le nostre attività on-demand per aiutarvi ad ottenere
             le migliori conoscenze e competenze possibili per ambire al lavoro dei sogni.<br>
-            Il nostro centro di formazione offre un’ampia gamma di attività per programmatori organizzati in modo
+            Il nostro centro di formazione offre un'ampia gamma di attività per programmatori organizzati in modo
             professionale, con metodi innovativi e non liberali. <br>
             I nostri corsi sono preferibilmente di gruppo ma anche individuali e si basano su competenze e casistiche
             reali.<br>
@@ -94,15 +94,15 @@
 
           <h3>Tum4World for Seniors</h3>
           <p>
-            Al giorno d’oggi quasi due anziani su tre utilizzano Internet.<br>
-            Dall’ultimo report Istat “Cittadini e ICT” 2019 emerge una situazione di generale stagnazione, legata a
-            fattori non ancora affrontati in profondità, con qualche segnale positivo legato all’incremento
-            dell’accesso internet degli adulti over 65….<br>
-            L’obiettivo di questo corso è quello di dare conoscenze e competenze di base alle persone più anziane
+            Al giorno d'oggi quasi due anziani su tre utilizzano Internet.<br>
+            Dall'ultimo report Istat “Cittadini e ICT” 2019 emerge una situazione di generale stagnazione, legata a
+            fattori non ancora affrontati in profondità, con qualche segnale positivo legato all'incremento
+            dell'accesso internet degli adulti over 65….<br>
+            L'obiettivo di questo corso è quello di dare conoscenze e competenze di base alle persone più anziane
             (over 65) in modo da renderli indipendenti e consapevoli al 100% dello strumento e dei tool più utilizzati
             nel web e nel loro personal Computer. <br>
-            Spesso gli anziani si sentono dire che non riusciranno a capire l’argomento, che il web è una rete che può
-            essere utilizzata solo dai giovani. Una cosa è certa: non è mai troppo tardi per imparare l’informatica e
+            Spesso gli anziani si sentono dire che non riusciranno a capire l'argomento, che il web è una rete che può
+            essere utilizzata solo dai giovani. Una cosa è certa: non è mai troppo tardi per imparare l'informatica e
             per affidarsi a questo corso base.<br>
             Ogni insegnante avrà una preparazione tale da spiegare in modo semplice, efficace tutti i contenuti della
             formazione di base, adattandola ad ogni individuo. <br>

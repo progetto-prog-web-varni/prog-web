@@ -27,7 +27,7 @@
             <div class="chiSiamo-title-container">
                 <h1 class="chiSiamo-title">Chi Siamo</h1>
                 <h3>
-                    Tum4World è un’associazione nata nel 2007 da un gruppo di studenti universitari volenterosi di rendere la programmazione e il mondo dell’informatica una realtà alla portata di tutti o, come si direbbe tra gli appassionati, opensource.
+                    Tum4World è un'associazione nata nel 2007 da un gruppo di studenti universitari volenterosi di rendere la programmazione e il mondo dell'informatica una realtà alla portata di tutti o, come si direbbe tra gli appassionati, opensource.
                 </h3>
                 <br><br>
             </div>
@@ -37,8 +37,8 @@
                     I fondatori
                 </strong>
                 <p>
-                    Sono cinque i fondatori di Tum4World, tutti ex-studenti dell’Università degli Studi di Napoli Federico II.<br>
-                    Hanno intrapreso l’idea di realizzare questo portale per avvicinare quante più persone al loro mondo con l’idea lungimirante di creare una rete stabile di contatti permettendo a chiunque di costruire una carriera affrontando con successo il processo di assunzione o semplicemente
+                    Sono cinque i fondatori di Tum4World, tutti ex-studenti dell'Università degli Studi di Napoli Federico II.<br>
+                    Hanno intrapreso l'idea di realizzare questo portale per avvicinare quante più persone al loro mondo con l'idea lungimirante di creare una rete stabile di contatti permettendo a chiunque di costruire una carriera affrontando con successo il processo di assunzione o semplicemente
                     di raggiungere obiettivi formativi personali.<br>
                 </p>
                 <div class="container-fondatori" >
@@ -86,11 +86,11 @@
             </div>
 
             <div class="single-paragraph genesi">
-                <h2><br> Come è sorta l’idea di creare Tum4World? </h2>
+                <h2><br> Come è sorta l'idea di creare Tum4World? </h2>
                 <p>
-                    Parla Andrea, co-fondatore dell’azienda: <br>
+                    Parla Andrea, co-fondatore dell'azienda: <br>
                 <blockquote>
-                    - Sin dal primo giorno di università, si è creato un certo feeling tra noi cinque, per le stesse idee riguardo molte tematiche del mondo dell’informatica e della vita universitaria. <br>
+                    - Sin dal primo giorno di università, si è creato un certo feeling tra noi cinque, per le stesse idee riguardo molte tematiche del mondo dell'informatica e della vita universitaria. <br>
                     Una cosa ci legava indissolubilmente: la “filosofia opensource”. <br>
                     Per i non addetti al lavoro, con questo termine si intende un sistema di valori che celebrano lo scambio aperto, la partecipazione collettiva, la trasparenza e lo sviluppo attivo e concreto della community.  <br>
                     Era proprio questo il nostro sogno: aspiravamo a creare una realtà completamente opensource, dai più piccoli ai più anziani.  <br>
@@ -104,7 +104,7 @@
             <div class="single-paragraph sede">
                 <h2> Sede associazione </h2>
                 <p> La sede principale è a Napoli in via Mazzini 34.<br>
-                    Ci troviamo in un’area collinare dove è possibile ammirare la bellissima Napoli dall’alto. <br>
+                    Ci troviamo in un'area collinare dove è possibile ammirare la bellissima Napoli dall'alto. <br>
                     La sede è stata costruita negli anni 2005, risulta essere spaziosa e moderna, con ampli spazi per conferenze e meeting.
                 </p>
                 <div class = "container-sede" >
