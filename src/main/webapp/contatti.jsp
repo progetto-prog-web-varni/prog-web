@@ -15,51 +15,6 @@
         <%@ include file="resources/css/contatti.css" %>
     </style>
 
-    <script>
-        function validazioneEmail()
-        {
-            // recupero il valore della email indicata nel form
-            var email = document.modulo.email.value;
-            // se non ho inserito nulla nel campo
-            if(email==''){
-                visualizzaDanger();
-                return false;
-            }
-            // verifico se è un indirizzo valido
-            if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-                visualizzaSuccess();
-            }
-            else {
-                visualizzaDanger();
-            }
-            return false;
-        }
-
-        function visualizzaReset(){
-            document.getElementById("popup-danger").style.display = "none";
-            document.getElementById("popup-success").style.display = "none";
-            document.getElementById("popup-reset").style.display = "block";
-        }
-
-        function visualizzaDanger(){
-            document.getElementById("popup-danger").style.display = "block";
-            document.getElementById("popup-success").style.display = "none";
-            document.getElementById("popup-reset").style.display = "none";
-        }
-
-        function visualizzaSuccess(){
-            document.getElementById("popup-danger").style.display = "none";
-            document.getElementById("popup-success").style.display = "block";
-            document.getElementById("popup-reset").style.display = "none";
-        }
-
-        function nascondiPopup(){
-            document.getElementById("popup-danger").style.display = "none";
-            document.getElementById("popup-success").style.display = "none";
-            document.getElementById("popup-reset").style.display = "none";
-        }
-    </script>
-
     <title>Tum4World | Contatti</title>
 </head>
 
@@ -67,7 +22,7 @@
 <body>
     <%@ include file="Components/header.jsp" %>
         <div class="contatti-grid" id="pippo">
-            <form action="EmailSendingServlet" name="modulo" method="POST" class="contatti-grid-center" onsubmit="return validazioneEmail()" onreset="return visualizzaReset()">
+            <form name="modulo" class="contatti-grid-center" onreset="return visualizzaReset()">
                 <div class="contatti-info">
                     <h2>I NOSTRI CONTATTI:</h2>
                     <h4>Via Mazzini, 34 342 876 2213 </h4>
@@ -111,7 +66,7 @@
                     <small class="margin-bottom-5">Scrivi chiaramente quello che ti serve, così potremo aiutarti
                         meglio!</small>
                     <div class="final-button">
-                        <input type="submit" value="Submit" class="button">
+                        <input value="Submit" class="button" id="submit-btn">
                         <input type="reset" value="Reset" class="button" >
                     </div>
                 </div>
@@ -133,6 +88,78 @@
 
             </form>
         </div>
+
+    <script>
+        const smt_btn = document.getElementById("submit-btn");
+        smt_btn.addEventListener("click", (event) => {
+            console.log("Arrivato");
+            if (validazioneEmail()) return;
+
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "EmailServlet", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = () => {
+                if(xhr.readyState === 4 && xhr.state === 200){
+                    // Richiesta completata con successo
+                    // visualizza stato ok
+                    visualizzaSuccess();
+                } else {
+                    // visualizza stato errore
+                    visualizzaDanger();
+                }
+            }
+
+            const nomeVal = "mario";
+            const sentStr = `nome=${nomeVal}`;
+            xhr.send("nome=ciao&cognome=ciao&email=conta@info.net&reason=reason&feedback=feedback");
+
+        })
+
+        function validazioneEmail()
+        {
+            // recupero il valore della email indicata nel form
+            let email = document.modulo.email.value;
+            // se non ho inserito nulla nel campo
+            if(email==''){
+                visualizzaDanger();
+                return false;
+            }
+            // verifico se è un indirizzo valido
+            if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+                visualizzaSuccess();
+            }
+            else {
+                visualizzaDanger();
+                return false;
+            }
+            return true;
+        }
+
+        function visualizzaReset(){
+            document.getElementById("popup-danger").style.display = "none";
+            document.getElementById("popup-success").style.display = "none";
+            document.getElementById("popup-reset").style.display = "block";
+        }
+
+        function visualizzaDanger(){
+            document.getElementById("popup-danger").style.display = "block";
+            document.getElementById("popup-success").style.display = "none";
+            document.getElementById("popup-reset").style.display = "none";
+        }
+
+        function visualizzaSuccess(){
+            document.getElementById("popup-danger").style.display = "none";
+            document.getElementById("popup-success").style.display = "block";
+            document.getElementById("popup-reset").style.display = "none";
+        }
+
+        function nascondiPopup(){
+            document.getElementById("popup-danger").style.display = "none";
+            document.getElementById("popup-success").style.display = "none";
+            document.getElementById("popup-reset").style.display = "none";
+        }
+    </script>
         <%@ include file="Components/footer.jsp" %>
 </body>
 

@@ -1,3 +1,5 @@
+package Controllers;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.*;
 import javax.servlet.http.*;
@@ -15,7 +17,7 @@ import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 
-@WebServlet(value = "mail-servlet")
+@WebServlet(name = "EmailServlet", value = "/EmailServlet")
 public class MailServlet extends HttpServlet {
 
     String host = "smtp.gmail.com";
@@ -87,7 +89,7 @@ public class MailServlet extends HttpServlet {
         msg.setText(message);
 
         // sends the e-mail
-        //Transport.send(msg);
+        Transport.send(msg);
 
     }
 

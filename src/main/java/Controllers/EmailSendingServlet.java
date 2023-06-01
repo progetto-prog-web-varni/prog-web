@@ -1,4 +1,5 @@
-import javax.servlet.*;
+package Controllers;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,10 +12,8 @@ import java.io.IOException;
  * A servlet that takes message details from user and send it as a new e-mail
  * through an SMTP server.
  *
- * @author www.codejava.net
- *
  */
-@WebServlet("/EmailSendingServlet")
+@WebServlet(name = "Controllers.EmailSendingServlet", value = "/Controllers.EmailSendingServlet")
 public class EmailSendingServlet extends HttpServlet {
     private String host;
     private String port;
