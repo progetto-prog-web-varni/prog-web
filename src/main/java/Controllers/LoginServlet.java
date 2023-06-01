@@ -1,4 +1,4 @@
-package com.example.LoginAndAuth;
+package Controllers;
 
 import com.example.DbConfImporter.DbConf;
 
