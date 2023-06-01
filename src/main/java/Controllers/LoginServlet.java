@@ -1,51 +1,61 @@
 package Controllers;
 
-import com.example.DbConfImporter.DbConf;
+import ConfImporter.DbConf;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.sql.*;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
-@WebServlet(name = "LoginServlet", value = "/login-serv")
+@WebServlet(name = "LoginServlet", value = "/LoginServlet")
 public class LoginServlet extends HttpServlet{
 
-    DbConf config = new DbConf();
-    public Connection conn = null;
-    public void init() {
-        try {
-            Class.forName("org.apache.derby.jdbc.ClientDriver");
-            conn = DriverManager.getConnection(config.dbURL, config.user, config.password);
-        } catch (ClassNotFoundException | SQLException ex) {
-            ex.printStackTrace();
-        }
-    }
+    DbConf dbConf = new DbConf();
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("application/json;charset=UTF-8");
-        try {
-            response.getWriter().write("Questa arrivata");
-        } catch (Exception ex) {
-           System.out.println(ex);
-        }
-    }
+    Connection conn = null;
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        processRequest(request, response);
+    public void init() throws ServletException {
+        super.init();
+        try {
+            Class.forName("org.apache.derby.jdbc.ClientDriver");
+            conn = DriverManager.getConnection(dbConf.dbURL, dbConf.user, dbConf.password);
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        processRequest(request, response);
+
+        if(conn != null) {
+            System.out.println("Got Connected");
+        }
+
+        response.setContentType("text/html");
+
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+
+        System.out.println("Username: " + username + "\t Password" + password);
+
+        PrintWriter out = response.getWriter();
+
+        if(password.equals("admin123")){
+            out.print("Welcome, " + username);
+            HttpSession session = request.getSession();
+            System.out.println(session);
+            session.setAttribute("name", username);
+        }
+        else{
+            out.print("Sorry, username or password error!");
+            request.getRequestDispatcher("login.html").include(request, response);
+        }
+        out.close();
     }
 
-    public void destroy() {
-        try {
-            conn.close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-    }
 }

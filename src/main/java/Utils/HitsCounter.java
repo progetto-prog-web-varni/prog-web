@@ -1,4 +1,4 @@
-package com.example.PageAnalysis;
+package Utils;
 
 import java.io.Serializable;
 import java.util.LinkedList;
