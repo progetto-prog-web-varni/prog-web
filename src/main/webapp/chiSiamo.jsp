@@ -163,49 +163,11 @@
             </div>
         </div>
 
-
-        <button onclick="retrieveRegistrati()">Visualizza Registrati</button>
-        <div id="results3"></div>
         <%@ include file="Components/footer.jsp" %>
+
     </body>
 
     <script>
-        function retrieveRegistrati() {
-            var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === XMLHttpRequest.DONE) {
-                    if (xhr.status === 200) {
-                        var data = JSON.parse(xhr.responseText);
-                        // Aggiungi qui il codice per elaborare i dati ottenuti
-                        displayDataRegistrati(data);
-                    } else {
-                        console.error('Errore durante la richiesta AJAX');
-                    }
-                }
-            };
-            xhr.open('GET', 'RetrieveRegistratiServlet', true);
-            xhr.send();
-        }
-
-
-        function displayDataRegistrati(data) {
-            // Aggiungi qui il codice per visualizzare i dati ottenuti nella pagina HTML
-            var resultsDiv = document.getElementById('results3');
-            resultsDiv.innerHTML = '';
-
-            for (var i = 0; i < data.length; i++) {
-                var entry = data[i];
-                var name = entry[0];
-                var surname = entry[1];
-
-                var resultRow = document.createElement('div');
-                resultRow.textContent = name + ' ' + surname;
-                resultsDiv.appendChild(resultRow);
-            }
-        }
-
-
-
 
         document.addEventListener("DOMContentLoaded", function() {
             var acceptBtn = document.getElementById("accept-btn");
@@ -230,14 +192,11 @@
                 sessionStorage.setItem("cookiesAccettati", "false");
             });
 
-            // Controlla la scelta dei cookie al caricamento della pagina
             if (sessionStorage.getItem("cookiesAccettati") === "false") {
                 cookieBanner.style.display = "none";
             }
         });
 
     </script>
-
-
 
     </html>

@@ -10,9 +10,10 @@
       @import './resources/css/base.css';
       @import './resources/css/header.css';
       @import './resources/css/footer.css';
-
+      @import './resources/css/cookies.css';
       @import './resources/css/attivita.css';
     </style>
+
 
     <title>Tum4World | Attività</title>
   </head>
@@ -126,5 +127,36 @@
       </div>
       <%@ include file="Components/footer.jsp" %>
   </body>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var acceptBtn = document.getElementById("accept-btn");
+      var rejectBtn = document.getElementById("reject-btn");
+      var cookieBanner = document.getElementById("cookie-banner");
+
+      acceptBtn.addEventListener("click", function() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "CookieServlet", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            cookieBanner.style.display = "none";
+            sessionStorage.setItem("cookiesAccettati", "true");
+          }
+        };
+        xhr.send();
+      });
+
+      rejectBtn.addEventListener("click", function() {
+        cookieBanner.style.display = "none";
+        sessionStorage.setItem("cookiesAccettati", "false");
+      });
+
+      if (sessionStorage.getItem("cookiesAccettati") === "false") {
+        cookieBanner.style.display = "none";
+      }
+    });
+
+  </script>
 
   </html>

@@ -84,7 +84,6 @@
                 sessionStorage.setItem("cookiesAccettati", "false");
             });
 
-            // Controlla la scelta dei cookie al caricamento della pagina
             if (sessionStorage.getItem("cookiesAccettati") === "false") {
                 cookieBanner.style.display = "none";
             }

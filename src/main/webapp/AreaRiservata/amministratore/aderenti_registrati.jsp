@@ -16,6 +16,7 @@
         <%@ include file="../../resources/css/base.css" %>
         <%@ include file="../../resources/css/footer.css" %>
         <%@ include file="../../resources/css/header.css" %>
+        <%@ include file="../../resources/css/cookies.css" %>
 
         <%@ include file="../../resources/css/area_riservata.css" %>
 
@@ -45,26 +46,8 @@
 </body>
 
 <script>
-    function retrieveAderenti() {
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    var data = JSON.parse(xhr.responseText);
-                    // Aggiungi qui il codice per elaborare i dati ottenuti
-                    displayDataAderenti(data);
-                } else {
-                    console.error('Errore durante la richiesta AJAX');
-                }
-            }
-        };
-        xhr.open('GET', 'RetrieveAderentiServlet', true);
-        xhr.send();
-    }
-
 
     function displayDataAderenti(data) {
-        // Aggiungi qui il codice per visualizzare i dati ottenuti nella pagina HTML
         var resultsDiv = document.getElementById('results1');
         resultsDiv.innerHTML = '';
 
@@ -78,6 +61,25 @@
             resultsDiv.appendChild(resultRow);
         }
     }
+
+    function retrieveAderenti() {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    var data = JSON.parse(xhr.responseText);
+                    displayDataAderenti(data);
+                } else {
+                    console.error('Errore durante la richiesta AJAX');
+                }
+            }
+        };
+        xhr.open('GET', '../../RetrieveAderentiServlet', true);
+        xhr.send();
+    }
+
+
+
 </script>
 
 </html>
