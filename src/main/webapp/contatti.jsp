@@ -15,50 +15,6 @@
         <%@ include file="resources/css/contatti.css" %>
     </style>
 
-    <script>
-        function validazioneEmail()
-        {
-            // recupero il valore della email indicata nel form
-            var email = document.modulo.email.value;
-            // se non ho inserito nulla nel campo
-            if(email==''){
-                visualizzaDanger();
-                return false;
-            }
-            // verifico se è un indirizzo valido
-            if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-                visualizzaSuccess();
-            }
-            else {
-                visualizzaDanger();
-            }
-            return false;
-        }
-
-        function visualizzaReset(){
-            document.getElementById("popup-danger").style.display = "none";
-            document.getElementById("popup-success").style.display = "none";
-            document.getElementById("popup-reset").style.display = "block";
-        }
-
-        function visualizzaDanger(){
-            document.getElementById("popup-danger").style.display = "block";
-            document.getElementById("popup-success").style.display = "none";
-            document.getElementById("popup-reset").style.display = "none";
-        }
-
-        function visualizzaSuccess(){
-            document.getElementById("popup-danger").style.display = "none";
-            document.getElementById("popup-success").style.display = "block";
-            document.getElementById("popup-reset").style.display = "none";
-        }
-
-        function nascondiPopup(){
-            document.getElementById("popup-danger").style.display = "none";
-            document.getElementById("popup-success").style.display = "none";
-            document.getElementById("popup-reset").style.display = "none";
-        }
-    </script>
 
     <title>Tum4World | Contatti</title>
 </head>
@@ -134,6 +90,10 @@
             </form>
         </div>
         <%@ include file="Components/footer.jsp" %>
+
+
 </body>
+
+
 
 </html>

@@ -35,10 +35,49 @@
     <div>
         <!-- Qui vanno tutti i dati dinamici in base a quello cliccato -->
         <h1>Second</h1>
+        <button onclick="retrieveAderenti()">Visualizza Aderenti</button>
+        <div id="results1"></div>
+
     </div>
 </div>
 
 <%@ include file="../../Components/footer.jsp" %>
 </body>
+
+<script>
+    function retrieveAderenti() {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    var data = JSON.parse(xhr.responseText);
+                    // Aggiungi qui il codice per elaborare i dati ottenuti
+                    displayDataAderenti(data);
+                } else {
+                    console.error('Errore durante la richiesta AJAX');
+                }
+            }
+        };
+        xhr.open('GET', 'RetrieveAderentiServlet', true);
+        xhr.send();
+    }
+
+
+    function displayDataAderenti(data) {
+        // Aggiungi qui il codice per visualizzare i dati ottenuti nella pagina HTML
+        var resultsDiv = document.getElementById('results1');
+        resultsDiv.innerHTML = '';
+
+        for (var i = 0; i < data.length; i++) {
+            var entry = data[i];
+            var name = entry[0];
+            var surname = entry[1];
+
+            var resultRow = document.createElement('div');
+            resultRow.textContent = name + ' ' + surname;
+            resultsDiv.appendChild(resultRow);
+        }
+    }
+</script>
 
 </html>
