@@ -8,18 +8,50 @@ public class User {
     private String email;
     private String username;
     private String password;
-    private String role;
+    private enum role {
+        ADMIN,
+        SIMPATIZZANTE,
+        ADERENTE,
+    };
 
     //costruttore senza id
-    public User(String name, String surname, String birthdate, String email, String username, String password, String role) {
+    public User(String name, String surname, String birthdate, String email, String username, String password) {
         this.name = name;
         this.surname = surname;
         this.birthdate = birthdate;
         this.email = email;
         this.username = username;
         this.password = password;
-        this.role = role;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public String getBirthdate() {
+        return birthdate;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     //qua ci possiamo mettere altri metodi
+
 }

@@ -1,6 +1,7 @@
 package Controllers;
 
 import ConfImporter.DbConf;
+import Utils.Database;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
@@ -14,27 +15,16 @@ import java.sql.SQLException;
 @WebServlet(name = "LoginServlet", value = "/LoginServlet")
 public class LoginServlet extends HttpServlet{
 
-    DbConf dbConf = new DbConf();
-
-    Connection conn = null;
+    Database db;
 
     @Override
     public void init() throws ServletException {
         super.init();
-        try {
-            Class.forName("org.apache.derby.jdbc.ClientDriver");
-            conn = DriverManager.getConnection(dbConf.dbURL, dbConf.user, dbConf.password);
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        }
+        this.db = new Database();
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        if(conn != null) {
-            System.out.println("Got Connected");
-        }
 
         response.setContentType("text/html");
 
@@ -44,17 +34,11 @@ public class LoginServlet extends HttpServlet{
         System.out.println("Username: " + username + "\t Password" + password);
 
         PrintWriter out = response.getWriter();
-
-        if(password.equals("admin123")){
-            out.print("Welcome, " + username);
-            HttpSession session = request.getSession();
-            System.out.println(session);
-            session.setAttribute("name", username);
-        }
-        else{
-            out.print("Sorry, username or password error!");
-            request.getRequestDispatcher("login.html").include(request, response);
-        }
+        if(db.loginQuery(username, password)){
+            response.getWriter().write("Correct User and Password");
+        } else {
+            response.getWriter().write("Incorrect user or password");
+        };
         out.close();
     }
 
