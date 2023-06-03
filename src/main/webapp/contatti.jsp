@@ -22,7 +22,7 @@
 <body>
     <%@ include file="Components/header.jsp" %>
         <div class="contatti-grid" id="pippo">
-            <form name="modulo" class="contatti-grid-center" onreset="return visualizzaReset()">
+            <form class="contatti-grid-center" method="post" name="modulo" action="MailServlet" onsubmit="return validazioneEmail()" >
                 <div class="contatti-info">
                     <h2>I NOSTRI CONTATTI:</h2>
                     <h4>Via Mazzini, 34 342 876 2213 </h4>
@@ -35,8 +35,7 @@
                         <label for="lname" class="margin-bottom-5">Cognome</label>
                         <input class="contatti-form-input" type="text" id="lname" name="lname" placeholder="Rossi">
                         <label for="email" class="margin-bottom-5">Indirizzo Email</label>
-                        <input class="contatti-form-input" type="text" id="email" name="email"
-                            placeholder="mario.rossi@gmail.com">
+                        <input class="contatti-form-input" type="text" id="email" name="email" placeholder="mario.rossi@gmail.com">
                     </div>
                     <h3 class="margin-bottom-5">Motivo di contatto</h3>
                     <div class="menu">
@@ -45,11 +44,11 @@
                             <label for="assistenza">Assistenza compilazione</label>
                         </div>
                         <div>
-                            <input type="radio" id="info" name="contact_reason" value="info">
+                            <input type="radio" id="info" name="contact_reason" value="Informazioni aggiuntive camp">
                             <label for="info">Informazioni aggiuntive camp</label>
                         </div>
                         <div>
-                            <input type="radio" id="err" name="contact_reason" value="err">
+                            <input type="radio" id="err" name="contact_reason" value="Errore iscrizione">
                             <label for="err">Errore nell'iscrizione</label>
                         </div>
                         <div>
@@ -66,8 +65,8 @@
                     <small class="margin-bottom-5">Scrivi chiaramente quello che ti serve, così potremo aiutarti
                         meglio!</small>
                     <div class="final-button">
-                        <input value="Submit" class="button" id="submit-btn">
-                        <input type="reset" value="Reset" class="button" >
+                        <input type="submit" value="Submit" class="button" id="submit_btn">      <!-- BOTTONE SUBMIT -->
+                        <input type="reset" value="Reset" class="button" id="reset_btn" >    <!-- BOTTONE RESET -->
                     </div>
                 </div>
 
@@ -89,32 +88,9 @@
             </form>
         </div>
 
+
+
     <script>
-        const smt_btn = document.getElementById("submit-btn");
-        smt_btn.addEventListener("click", (event) => {
-            console.log("Arrivato");
-            if (validazioneEmail()) return;
-
-
-            let xhr = new XMLHttpRequest();
-            xhr.open("POST", "EmailServlet", true);
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.onreadystatechange = () => {
-                if(xhr.readyState === 4 && xhr.state === 200){
-                    // Richiesta completata con successo
-                    // visualizza stato ok
-                    visualizzaSuccess();
-                } else {
-                    // visualizza stato errore
-                    visualizzaDanger();
-                }
-            }
-
-            const nomeVal = "mario";
-            const sentStr = `nome=${nomeVal}`;
-            xhr.send("nome=ciao&cognome=ciao&email=conta@info.net&reason=reason&feedback=feedback");
-
-        })
 
         function validazioneEmail()
         {

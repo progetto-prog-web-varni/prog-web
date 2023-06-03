@@ -1,13 +1,9 @@
-package Controllers;
+package com.example.controllerProva;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.*;
-import javax.servlet.http.*;
-
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.io.*;
 import java.util.Date;
 import java.util.Properties;
 import javax.mail.Authenticator;
@@ -16,38 +12,46 @@ import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
+import java.io.IOException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "EmailServlet", value = "/EmailServlet")
+@WebServlet(name = "MailServlet", value = "/MailServlet")
 public class MailServlet extends HttpServlet {
 
-    String host = "smtp.gmail.com";
-    String port = "587";
-    String mailFrom = "gigiobagigio728@gmail.com";
-    String password = "Pass00fNR#";
+    private static final long serialVersionUID = 1L;         //boh?
 
-    // outgoing message information
-    String mailTo = "no.reply00f@gmail.com";
-    String subject = "Richiesta contatto";
-
-    // message contains HTML markups
-    String message = " Richiesta ricevuta correttamente, le faremo sapere al più presto! ";
-
-    public void init() {
-
-    }
-
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String fname = request.getParameter("fname");
-        String lname = request.getParameter("lname");
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String nome = request.getParameter("fname");
+        String cognome = request.getParameter("lname");
         String email = request.getParameter("email");
-        String reason = request.getParameter("contact_reason");
+        String contact_reason = request.getParameter("contact_reason");
         String feedback = request.getParameter("feedback");
 
-        System.out.println("Nome e cognome: " + fname + " " + lname);
-        System.out.println("email: " + email);
-        System.out.println("Contact Reason: " + reason);
-        System.out.println("Feed back is: " + feedback);
+        // manda la mail
+        inviaEmail(nome, cognome, email, contact_reason, feedback);
 
+        // reindirizza alla pagina di conferma
+        response.sendRedirect("confirm_contatti.jsp?email=" + email);
+    }
+
+    private void inviaEmail(String nome, String cognome, String email, String contact_reason, String feedback) {
+        //qui invia la mail bro
+
+        String host = "smtp.office365.com";
+        String port = "587";
+        String mailFrom = "gfalert@outlook.com";
+        String password = "PdBezSdYUW6RGrf44WYj";
+
+        // outgoing message information
+        //String mailTo = "dalbosco.alby@gmail.com";
+        String mailTo = email;
+        String subject = "Richiesta contatto Tum4World";
+
+        // message contains HTML markups
+        String message = " <h1>Richiesta contatto Tum4World </h1> <p> Gentile " + nome + " " + cognome + ", la sua richiesta ricevuta e' stata ricevuta correttamente dal nostro staff, le faremo sapere al piu' presto!</p> " + " <p> Questi sono i dettagli della sua richiesta: <br> - Contattato per: " + contact_reason + " <br> - Dettagli richiesta: " + feedback + " </p> <br> <br> <br> <p> Lo staff Tum4World </p>";
         try {
             sendHtmlEmail(host, port, mailFrom, password, mailTo,
                     subject, message);
@@ -56,7 +60,11 @@ public class MailServlet extends HttpServlet {
             System.out.println("Failed to sent email.");
             ex.printStackTrace();
         }
+
+        System.out.println("Dati della mail:");
+        System.out.println(message);
     }
+
 
     public void sendHtmlEmail(String host, String port, final String userName, final String password,
                               String toAddress, String subject, String message) throws AddressException, MessagingException {
@@ -86,17 +94,9 @@ public class MailServlet extends HttpServlet {
         msg.setSubject(subject);
         msg.setSentDate(new Date());
         // set plain text message
-        msg.setText(message);
+        msg.setContent(message, "text/html");
 
         // sends the e-mail
         Transport.send(msg);
-
-    }
-
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    }
-
-    public void destroy() {
-
     }
 }
