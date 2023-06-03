@@ -28,34 +28,43 @@ public class Database {
     }
 
     /*
-        To run query outside this function.
+        Return conn pointer, to run query outside this function.
      */
     public Connection getConn() {
         return conn;
     }
 
+    /*
+        Read File and add every user present in the file.
+     */
     private void createFakeDB(){
         BufferedReader reader;
         try {
             InputStream is = getFileAsIOStream("database.txt");
-            StringBuilder resultStringBuilder = new StringBuilder();
             reader = new BufferedReader(new InputStreamReader(is));
             String line;
 
             while ((line = reader.readLine()) != null) {
-                resultStringBuilder.append(line).append("\n");
-            }
 
-            /*while (line != null) {
-                for (String s: line.split(",")) {
-                    System.out.println(s);
-                };
-                // read next line
-                line = reader.readLine();
-            }*/
+                User u = new User();
+                u.setId(userArray.size() + 1);
+                
+                String[] lineStr = line.split(";");
+                u.setName(lineStr[0].trim());
+                u.setSurname(lineStr[1].trim());
+                u.setBirthdate(lineStr[2].trim());
+                u.setEmail(lineStr[3].trim());
+                u.setUsername(lineStr[4].trim());
+                u.setPassword(lineStr[5].trim());
+                try {
+                    u.setRole(lineStr[6].trim());
+                } catch (Exception e) {
+                    System.out.println("Errore nel parsing del role" + e);
+                }
+
+                userArray.add(u);
+            }
             reader.close();
-            // funziona
-            System.out.println(resultStringBuilder.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }

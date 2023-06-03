@@ -5,7 +5,6 @@ public class DbConf {
     public String dbURL = "dbc:sqlite:sqlite_database_file_path";
     public String user = "App";
     public String password = "pw";
-
 }
 
 
