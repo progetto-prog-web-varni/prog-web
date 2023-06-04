@@ -16,6 +16,7 @@
         <%@ include file="../../resources/css/base.css" %>
         <%@ include file="../../resources/css/footer.css" %>
         <%@ include file="../../resources/css/header.css" %>
+        <%@ include file="../../resources/css/cookies.css" %>
 
         <%@ include file="../../resources/css/area_riservata.css" %>
 
@@ -35,10 +36,45 @@
     <div>
         <!-- Qui vanno tutti i dati dinamici in base a quello cliccato -->
         <h1>Second</h1>
+        <button onclick="retrieveSimpatizzanti()">Visualizza Simpatizzanti</button>
+        <div id="results2"></div>
     </div>
 </div>
 
 <%@ include file="../../Components/footer.jsp" %>
 </body>
 
+
+<script>
+    function retrieveSimpatizzanti() {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    var data = JSON.parse(xhr.responseText);
+                    displayDataSimpatizzanti(data);
+                } else {
+                    console.error('Errore durante la richiesta AJAX');
+                }
+            }
+        };
+        xhr.open('GET', '../../RetrieveSimpatizzantiServlet', true);
+        xhr.send();
+    }
+
+    function displayDataSimpatizzanti(data) {
+        var resultsDiv = document.getElementById('results2');
+        resultsDiv.innerHTML = '';
+
+        for (var i = 0; i < data.length; i++) {
+            var entry = data[i];
+            var name = entry[0];
+            var surname = entry[1];
+
+            var resultRow = document.createElement('div');
+            resultRow.textContent = name + ' ' + surname;
+            resultsDiv.appendChild(resultRow);
+        }
+    }
+</script>
 </html>

@@ -16,6 +16,7 @@
         <%@ include file="../../resources/css/base.css" %>
         <%@ include file="../../resources/css/footer.css" %>
         <%@ include file="../../resources/css/header.css" %>
+        <%@ include file="../../resources/css/cookies.css" %>
 
         <%@ include file="../../resources/css/area_riservata.css" %>
 
@@ -35,10 +36,50 @@
     <div>
         <!-- Qui vanno tutti i dati dinamici in base a quello cliccato -->
         <h1>Second</h1>
+        <button onclick="retrieveAderenti()">Visualizza Aderenti</button>
+        <div id="results1"></div>
+
     </div>
 </div>
 
 <%@ include file="../../Components/footer.jsp" %>
 </body>
+
+<script>
+
+    function displayDataAderenti(data) {
+        var resultsDiv = document.getElementById('results1');
+        resultsDiv.innerHTML = '';
+
+        for (var i = 0; i < data.length; i++) {
+            var entry = data[i];
+            var name = entry[0];
+            var surname = entry[1];
+
+            var resultRow = document.createElement('div');
+            resultRow.textContent = name + ' ' + surname;
+            resultsDiv.appendChild(resultRow);
+        }
+    }
+
+    function retrieveAderenti() {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    var data = JSON.parse(xhr.responseText);
+                    displayDataAderenti(data);
+                } else {
+                    console.error('Errore durante la richiesta AJAX');
+                }
+            }
+        };
+        xhr.open('GET', '../../RetrieveAderentiServlet', true);
+        xhr.send();
+    }
+
+
+
+</script>
 
 </html>
