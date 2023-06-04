@@ -13,13 +13,6 @@
     padding: 15px;
 }
 
-contatti-form-popup{
-    text-align:center;
-    margin: 15px;
-    border: 1px solid var(--primary-color);
-    border-radius: .7em;
-}
-
 .contatti-grid {
     display: grid;
     grid-template-columns: 20% 60% 20%;

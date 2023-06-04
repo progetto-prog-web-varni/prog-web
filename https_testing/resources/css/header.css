@@ -1,0 +1,31 @@
+/* START HEADER.css */
+.titolo {
+    grid-column-start: 1;
+    grid-column-end: 6;
+    justify-items: center;
+    justify-self: center;
+}
+
+.navbar-image {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    justify-items: center;
+    justify-self: center;
+}
+
+.inline-links {
+    grid-column-start: 2;
+    grid-column-end: 5;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-flex-item {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.navbar-flex-item>a {
+    text-decoration: none;
+    color: black;
+}

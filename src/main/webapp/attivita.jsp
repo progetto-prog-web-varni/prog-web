@@ -51,7 +51,7 @@
             Tutte le attività da noi presentate sono tenute in maniera lucida e appassionata da coach competenti e
             preparati che dedicano gran parte del loro tempo alla ricerca e allo sviluppo. <br><br>
           </p>
-          <div style="text-align: center">
+          <div class="generic-text-center">
             <button class="button" onclick="window.open('foto-attivita-little-coders.jsp')">VISUALIZZA IMMAGINI LITTLE CODERS</button>
           </div>
           <br><br>
@@ -84,7 +84,7 @@
           <p>
             Dai uno slancio al tuo curriculum, apprendi nuovi linguaggi di programmazione con i nostri corsi!<br><br>
           </p>
-          <div style="text-align: center">
+          <div class="generic-text-center">
             <button class="button" onclick="window.open('foto-attivita-professionals.jsp')">VISUALIZZA IMMAGINI PROFESSIONALS</button>
           </div>
           <br><br>
@@ -118,7 +118,7 @@
             <li>Utilizzo di dispositivi mobile come smartphone e tablet
           </ul>
           </ul>
-          <div style="text-align: center">
+          <div class="generic-text-center">
             <button class="button" onclick="window.open('foto-attivita-seniors.jsp')">VISUALIZZA IMMAGINI SENIORS</button>
           </div>
           <br><br>

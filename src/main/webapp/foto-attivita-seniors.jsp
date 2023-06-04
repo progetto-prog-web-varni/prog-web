@@ -27,15 +27,15 @@
         </div>
 
         <div class="centered img1">
-            <img src="resources\img\foto_attivita\anziani1.jpg" alt="foto anziani">
+            <img src="${pageContext.request.contextPath}/resources/img/foto_attivita/anziani1.jpg" alt="foto anziani">
         </div>
 
         <div class="centered img2">
-            <img src="resources\img\foto_attivita\anziani2.jpg"  alt="foto anziani">
+            <img src="${pageContext.request.contextPath}/resources/img/foto_attivita/anziani2.jpg"  alt="foto anziani">
         </div>
 
         <div class="centered img3">
-            <img src="resources\img\foto_attivita\anziani3.jpg"  alt="foto anziani">
+            <img src="${pageContext.request.contextPath}/resources/img/foto_attivita/anziani3.jpg"  alt="foto anziani">
         </div>
 
     </div>

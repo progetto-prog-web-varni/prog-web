@@ -19,6 +19,7 @@ public class Database {
     public Database() {
         // Default connessione al db
         /*
+        try {}
         Class.forName("org.apache.derby.jdbc.ClientDriver");
             conn = DriverManager.getConnection(dbConf.dbURL);
             System.out.println("Got Connected");
