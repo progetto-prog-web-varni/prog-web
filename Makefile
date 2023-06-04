@@ -26,3 +26,5 @@ docker-install:
 	wget -o /tmp/install-docker.sh https://get.docker.com/; sudo /tmp/install-docker.sh;
 
 recreate-db:
+	# ij> run 'default.sql'
+	# Da definire ij e tutte le altre varibili.
