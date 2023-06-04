@@ -9,14 +9,13 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.rmi.server.ExportException;
-import java.util.ArrayList;
-import java.util.List;
 
 @WebServlet(name = "LoginServlet", value = "/LoginServlet")
 public class LoginServlet extends HttpServlet{
 
     Database db;
+
+    public LoginServlet() { super(); }
 
     @Override
     public void init() throws ServletException {
@@ -34,38 +33,35 @@ public class LoginServlet extends HttpServlet{
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         PrintWriter resp = response.getWriter();
-        response.setContentType("application/json;charset=UTF-8");
         String username;
         String password;
-        String cookies;
         try {
             username = request.getParameter("username");
             password = request.getParameter("password");
-            cookies = request.getParameter("cookies");
         } catch (NullPointerException  e) {
-            response.setStatus(HttpServletResponse.SC_OK);
+            response.setContentType("application/json;charset=UTF-8");
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             resp.write(createResponse("false", "Richiesto l'inserimento di password e username"));
             return;
         }
 
         if(db.loginQuery(username, password)){
             response.setStatus(HttpServletResponse.SC_OK);
-            resp.write(createResponse("true", "Inseriti Password e user corretti"));
-            if(cookies.equals("true")){
-                // set cookies - NON FUNZIONA EUQSTA COSA
-                System.out.println("create sessions and send cookies");
-                Cookie cookie = new Cookie("auth", "QUESTO VALORE ASSEGANTO A CASO");
-                // Imposta la durata del cookie (in secondi)
-                cookie.setMaxAge(60); // 24 ore
-                // Imposta il percorso del cookie (se necessario)
-                cookie.setPath("/");
-                // Aggiunge il cookie alla risposta
-                response.addCookie(cookie);
-            }
-            // response.sendRedirect(request.getContextPath() + "/AreaRiservata/index.jsp");
+            HttpSession session = request.getSession();
+            session.setAttribute("username", username);
+            //setting session to expire in 1 min FOR TESTING
+            session.setMaxInactiveInterval(60);
+            Cookie userName = new Cookie("username", username);
+            userName.setMaxAge(60*60);
+            response.setContentType("text/html");
+            response.addCookie(userName);
+            response.addHeader("x-location", "new location");
+            response.sendRedirect("AreaRiservata.jsp");
         } else {
-            response.setStatus(HttpServletResponse.SC_OK);
-            resp.write(createResponse("false", "User o password non corrispondo o l'utente non esiste"));
+            response.setContentType("application/json;charset=UTF-8");
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            // response.sendRedirect("Login.jsp?error=Username%20inesistente%20o%20password%20errata.");
+            resp.write(createResponse("false", "User o password non corrispondono o l'utente non esiste"));
         };
     }
 }

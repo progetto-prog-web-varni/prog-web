@@ -1,4 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+<%
+  String params = request.getParameter("error");
+  %>
   <!DOCTYPE html>
   <html>
   <!-- HOME PAGE -->
@@ -23,9 +27,16 @@
     <!-- action="LoginServlet" method="POST" -->
       <form class="sign-in-grid" >
         <div class="inner-grid-signin">
+
+          <% if (params != "") { %>
+          <div class="alert" hidden>
+            <span class="close" onclick="return hidePopup()">&times;</span>
+            <span><strong>Errore!</strong><% out.print(params); %> </span>
+          </div>
+          <% } %>
           <div id="popup-danger" class="alert" hidden>
             <span class="close" onclick="return hidePopup()">&times;</span>
-            <span id="danger-text"><strong>Errore!</strong> Email o password non inseriti!</span>
+            <span id="danger-text"><strong>Errore!</strong> Errore Generico </span>
           </div>
           <h3>Login Sezione Privata</h3>
           <label for="username" class="margin-bottom-5">Username</label>
@@ -56,57 +67,50 @@
       const username = document.getElementById("username");
       const password = document.getElementById("password");
 
-      if(!validateForm()) {
-        return;
-      }
+      if(!validateForm()) { return; }
+
       try {
+
         let xhr = new XMLHttpRequest();
         xhr.open('POST', 'LoginServlet', true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-        xhr.onreadystatechange = () => {
-          if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-            let data = JSON.parse(xhr.responseText);
-            console.log(data);
-            if (data["success"] === "false"){
-              activeErrorBanner();
-              errorText.innerText = data["message"];
-            } else {
-              // client side redirect
-              location.href = 'AreaRiservata/index.jsp';
-            }
-          } else {
-            activeErrorBanner();
-            let data = JSON.parse(xhr.responseText);
-            errorText.innerText = data["message"];
-          }
-        };
+        xhr.onreadystatechange = () => requestOnStateChanges(xhr);
 
-        let cookies = checkIfOkCookies();
-        let pyl = "username=" + username.value + "&password=" + password.value + "&cookies=" + cookies;
+        let pyl = "username=" + username.value + "&password=" + password.value;
         xhr.send(pyl);
+
       } catch (e) {
         errorBox.innerText = e;
         activeErrorBanner();
       }
+
     });
 
     const validateForm = () => {
       if(username.value === "" || password.value === ""){
-        activeErrorBanner();
+        errorText.innerText = "Necessario inserire username e password";
+        activeErrorBanner()
         return false;
       }
       return true;
     };
 
-    const checkIfOkCookies = () => {
-      let x = document.cookie;
-      if(x.includes("ciaone")) {
-        return true;
-      } else {
-        return false;
+    const requestOnStateChanges = (xhr) => {
+      try {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if(xhr.status === 200 || xhr.status === 302) document.location.href = xhr.responseURL;
+          else {
+            activeErrorBanner();
+            let data = JSON.parse(xhr.responseText);
+            errorText.innerText = data["message"];
+          }
+        }
+      } catch(e) {
+        console.log("Error in xhr, probably parsing JSON data.")
+        console.log(e);
       }
-    };
+    }
 
     const activeErrorBanner = () => errorBox.style.display = "block";
 
