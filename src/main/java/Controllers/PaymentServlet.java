@@ -1,5 +1,6 @@
-package com.example.RetrieveInfo;
+package Controllers;
 
+import Utils.Database;
 import com.google.gson.Gson;
 
 import javax.servlet.*;
@@ -11,40 +12,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@WebServlet(name = "RetrieveRegistratiServlet", value = "/RetrieveRegistratiServlet")
-public class RetrieveRegistratiServlet extends HttpServlet {
+@WebServlet(name = "PaymentServlet", value = "/PaymentServlet")
+public class PaymentServlet extends HttpServlet {
 
-    String dbURL = "jdbc:derby://localhost:1527/WebDB";
-    String user = "App";
-    String password = "pw";
-    Connection conn = null;
+    Database db = null;
 
-    public void init(){
-        try {
-            Class.forName("org.apache.derby.jdbc.ClientDriver");
-            conn = DriverManager.getConnection(dbURL, user, password);
-        } catch (ClassNotFoundException | SQLException ex) {
-            ex.printStackTrace();
-        }
+    public void init() {
+        this.db = new Database();
     }
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException{
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("application/json;charset=UTF-8");
 
         try {
-            Statement stmt = conn.createStatement();
-            String sql = "SELECT * FROM USERS WHERE ROLE='aderente' OR ROLE='simpatizzante'";
+            Statement stmt = db.getConn().createStatement();
+            String sql = "SELECT * FROM PAYMENT";
             ResultSet results = stmt.executeQuery(sql);
 
             List<List<Object>> data = new ArrayList<>();
 
             while (results.next()) {
-                String name = results.getString(2);
-                String surname = results.getString(3);
+                String id = results.getString(1);
+                int amount = results.getInt(2);
 
                 List<Object> entry = new ArrayList<>();
-                entry.add(name);
-                entry.add(surname);
+                entry.add(id);
+                entry.add(amount);
 
                 data.add(entry);
             }
@@ -73,9 +66,9 @@ public class RetrieveRegistratiServlet extends HttpServlet {
         processRequest(request, response);
     }
 
-    public void destroy(){
+    public void destroy() {
         try {
-            conn.close();
+            db.getConn().close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }

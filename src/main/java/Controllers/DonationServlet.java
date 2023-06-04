@@ -1,5 +1,6 @@
-package com.example.RetrieveInfo;
+package Controllers;
 
+import Utils.Database;
 import com.google.gson.Gson;
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -14,18 +15,11 @@ import java.util.Calendar;
 
 @WebServlet(name = "DonationServlet", value = "/DonationServlet")
 public class DonationServlet extends HttpServlet {
-    String dbURL = "jdbc:derby://localhost:1527/WebDB";
-    String user = "App";
-    String password = "pw";
-    Connection conn = null;
+
+    Database db = null;
 
     public void init() {
-        try {
-            Class.forName("org.apache.derby.jdbc.ClientDriver");
-            conn = DriverManager.getConnection(dbURL, user, password);
-        } catch (ClassNotFoundException | SQLException ex) {
-            ex.printStackTrace();
-        }
+        this.db = new Database();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -54,13 +48,13 @@ public class DonationServlet extends HttpServlet {
             Calendar calendar = Calendar.getInstance();
             int mese = calendar.get(Calendar.MONTH) + 1; // "+1" perché i mesi in Calendar sono zero-based
 
-            PreparedStatement checkStmt = conn.prepareStatement("SELECT * FROM PAYMENT WHERE MESE = ?");
+            PreparedStatement checkStmt = this.db.getConn().prepareStatement("SELECT * FROM PAYMENT WHERE MESE = ?");
             checkStmt.setInt(1, mese);
             boolean recordExists = checkStmt.executeQuery().next();
             checkStmt.close();
 
             if (recordExists) {
-                PreparedStatement updateStmt = conn.prepareStatement("UPDATE PAYMENT SET valore = valore + ? WHERE MESE = ?");
+                PreparedStatement updateStmt = this.db.getConn().prepareStatement("UPDATE PAYMENT SET valore = valore + ? WHERE MESE = ?");
                 updateStmt.setInt(1, amount);
                 updateStmt.setInt(2, mese);
                 int rowsAffected = updateStmt.executeUpdate();
@@ -68,7 +62,7 @@ public class DonationServlet extends HttpServlet {
 
                 return rowsAffected > 0;
             } else {
-                PreparedStatement insertStmt = conn.prepareStatement("INSERT INTO PAYMENT (mese, valore) VALUES (?, ?)");
+                PreparedStatement insertStmt = this.db.getConn().prepareStatement("INSERT INTO PAYMENT (mese, valore) VALUES (?, ?)");
                 insertStmt.setInt(1, mese);
                 insertStmt.setInt(2, amount);
                 int rowsAffected = insertStmt.executeUpdate();
@@ -84,7 +78,7 @@ public class DonationServlet extends HttpServlet {
 
     public void destroy() {
         try {
-            conn.close();
+            this.db.getConn().close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }

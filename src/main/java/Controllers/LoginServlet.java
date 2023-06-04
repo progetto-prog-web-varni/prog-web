@@ -9,6 +9,9 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+
+import static Utils.Database.loginQuery;
 
 @WebServlet(name = "LoginServlet", value = "/LoginServlet")
 public class LoginServlet extends HttpServlet{
@@ -35,6 +38,7 @@ public class LoginServlet extends HttpServlet{
         PrintWriter resp = response.getWriter();
         String username;
         String password;
+        // Prova a recuperare i parametri dalla richiesta
         try {
             username = request.getParameter("username");
             password = request.getParameter("password");
@@ -45,22 +49,31 @@ public class LoginServlet extends HttpServlet{
             return;
         }
 
-        if(db.loginQuery(username, password)){
-            response.setStatus(HttpServletResponse.SC_OK);
-            HttpSession session = request.getSession();
-            session.setAttribute("username", username);
-            //setting session to expire in 1 min FOR TESTING
-            session.setMaxInactiveInterval(60);
-            Cookie userName = new Cookie("username", username);
-            userName.setMaxAge(60*60);
-            response.setContentType("text/html");
-            response.addCookie(userName);
-            response.sendRedirect("AreaRiservata/");
-        } else {
+        // Funzione che fa la query del login e torna un bool per indicare se si può fare il login
+        try {
+            if (loginQuery(this.db.getConn(), username, password)) {
+                response.setStatus(HttpServletResponse.SC_OK);
+                HttpSession session = request.getSession();
+                session.setAttribute("username", username);
+                // Set Cookie and Session
+                session.setMaxInactiveInterval(60);
+                Cookie userName = new Cookie("username", username);
+                userName.setMaxAge(60 * 60);
+                response.setContentType("text/html");
+                response.addCookie(userName);
+                // Redirect
+                response.sendRedirect("AreaRiservata/");
+            } else {
+                // Gestisci l'errore in caso non siano corrette le informazioni di login
+                response.setContentType("application/json;charset=UTF-8");
+                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                resp.write(createResponse("false", "User o password non corrispondono o l'utente non esiste"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
             response.setContentType("application/json;charset=UTF-8");
-            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            // response.sendRedirect("Login.jsp?error=Username%20inesistente%20o%20password%20errata.");
-            resp.write(createResponse("false", "User o password non corrispondono o l'utente non esiste"));
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            resp.write(createResponse("false", "Avvenuto errore nella comunicazione con il database."));
         };
     }
 }
