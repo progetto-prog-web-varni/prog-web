@@ -55,8 +55,7 @@ public class LoginServlet extends HttpServlet{
             userName.setMaxAge(60*60);
             response.setContentType("text/html");
             response.addCookie(userName);
-            response.addHeader("x-location", "new location");
-            response.sendRedirect("AreaRiservata.jsp");
+            response.sendRedirect("AreaRiservata/");
         } else {
             response.setContentType("application/json;charset=UTF-8");
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
