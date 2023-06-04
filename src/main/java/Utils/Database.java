@@ -2,6 +2,7 @@ package Utils;
 
 import ConfImporter.DbConf;
 import Models.Activity;
+import Models.Counter;
 import Models.Payment;
 import Models.User;
 
@@ -17,6 +18,8 @@ public class Database {
     private static final ArrayList<User> userArray = new ArrayList<>();
 
     private static final ArrayList<Payment> paymentArray = new ArrayList<>();
+
+    private static final ArrayList<Counter> counterArray = new ArrayList<>();
 
     private static boolean fakeDbIsSet = false;
 
@@ -49,8 +52,9 @@ public class Database {
             boolean paymentStatus = recoverPaymentFromFile();
             boolean activityStatus = recoverActvitiesFromFile();
             boolean userStatus = recoverUserFromFile();
+            boolean counterStatus = recoverHitsCounterFile();
 
-            if (paymentStatus && activityStatus && userStatus) fakeDbIsSet = true;
+            if (paymentStatus && activityStatus && userStatus && counterStatus) fakeDbIsSet = true;
         }
     }
 
@@ -101,6 +105,31 @@ public class Database {
                 a.setActivity3(lineStr[3].trim());
 
                 activityArray.add(a);
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    private boolean recoverHitsCounterFile() {
+        BufferedReader reader;
+        try {
+            InputStream is = getFileAsIOStream("hitscunt.txt");
+            reader = new BufferedReader(new InputStreamReader(is));
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+
+                Counter a = new Counter();
+
+                String[] lineStr = line.split(";");
+
+                a.setPageName(lineStr[0].trim());
+                a.setHits(Integer.parseInt(lineStr[1].trim()));
+                counterArray.add(a);
             }
             reader.close();
         } catch (IOException e) {
@@ -190,4 +219,79 @@ public class Database {
         }
     }
 
+    public void createOrUpdateCounter(Connection conn, String pageName) throws SQLException{
+        // Fake DB
+        //if(!dbConf.useRealDB) {
+        synchronized (this) {
+            for (Counter c : counterArray) {
+                if (c.pageName.equals(pageName)) {
+                    c.hits++;
+                }
+            }
+
+            Counter nc = new Counter(pageName);
+            counterArray.add(nc);
+        }
+       /* }
+        // Default
+        TODO: capire se fare questa cosa, vuol dire cambiare il database
+        try {
+            PreparedStatement checkStmt = conn.prepareStatement("SELECT * FROM USERS WHERE NAME = ? AND SURNAME = ?");
+            checkStmt.setString(1, username);
+            checkStmt.setString(2, password);
+            boolean recordExists = checkStmt.executeQuery().next();
+            checkStmt.close();
+
+            // Return true/false
+            return recordExists;
+
+        }catch (SQLException ex) {
+            ex.printStackTrace();
+            return false;
+        }*/
+    }
+
+    public String getAllCounter(Connection conn) {
+        // Fake DB
+        if (!dbConf.useRealDB) {
+            synchronized (this) {
+                StringBuffer s = new StringBuffer();
+
+                if (counterArray.isEmpty()) {
+                    s.append("[]");
+                    return s.toString();
+                }
+
+                s.append("[");
+                for (Counter c : counterArray) {
+                    s.append("[\"")
+                            .append(c.getPageName().trim())
+                            .append("\", ")
+                            .append(c.getHits())
+                            .append("],");
+                }
+                s.append("]");
+                return s.toString();
+            }
+
+        }
+
+        return "";
+        /* Default
+        TODO: capire anche questa cosa
+        try {
+            PreparedStatement checkStmt = conn.prepareStatement("SELECT * FROM USERS WHERE NAME = ? AND SURNAME = ?");
+            checkStmt.setString(1, username);
+            checkStmt.setString(2, password);
+            boolean recordExists = checkStmt.executeQuery().next();
+            checkStmt.close();
+
+            // Return true/false
+            return recordExists;
+
+        }catch (SQLException ex) {
+            ex.printStackTrace();
+            return false;
+        }*/
+    }
 }

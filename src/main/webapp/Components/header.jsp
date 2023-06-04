@@ -1,7 +1,3 @@
-<%@ page import="Utils.HitsCounter" %>
-<%
-  HitsCounter.countsHits(page);
-%>
 <!-- HEADER OF THE PAGE-->
 <div class="header">
   <div class="titolo">

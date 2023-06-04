@@ -1,4 +1,4 @@
-<%@ page import="Utils.HitsCounter" %>
+<%@ page import="Utils.Database" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%-- Check if login, se no redirect --%>
@@ -39,9 +39,6 @@
     <div>
         <!-- Qui vanno tutti i dati dinamici in base a quello cliccato -->
         <h1>Analytics sito</h1>
-        <%
-            out.println(HitsCounter.returnAllCounter());
-        %>
         <button onclick="loadPageData()">Carica dati</button>
         <div id="pageChartContainer" style="display: none;"></div>
     </div>
@@ -50,7 +47,8 @@
 <%@ include file="../../Components/footer.jsp" %>
 
 <%
-    String testData = "[[\"Home\", 10], [\"About\", 5], [\"Contact\", 8]]";
+    Database db = new Database();
+    String testData = db.getAllCounter(null);
 %>
 </body>
 
