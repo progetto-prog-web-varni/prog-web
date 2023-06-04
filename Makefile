@@ -8,6 +8,7 @@ docker-with-maven: maven
 maven:
 	docker compose down
 	./mvnw install -f pom.xml
+	docker compose build
 	docker compose up -d
 
 docker-run-no-detach:
