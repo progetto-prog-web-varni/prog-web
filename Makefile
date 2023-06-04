@@ -7,6 +7,7 @@ docker-with-maven: maven
 
 maven:
 	docker compose down
+	./mvnw clean -f pom.xml
 	./mvnw install -f pom.xml
 	docker compose build
 	docker compose up -d

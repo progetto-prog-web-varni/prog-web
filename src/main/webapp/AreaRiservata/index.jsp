@@ -13,10 +13,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    <%@ include file="resources/css/base.css" %>
-    <%@ include file="resources/css/footer.css" %>
-    <%@ include file="resources/css/header.css" %>
-    <%@ include file="resources/css/cookies.css" %>
+    <%@ include file="../resources/css/base.css" %>
+    <%@ include file="../resources/css/footer.css" %>
+    <%@ include file="../resources/css/header.css" %>
   </style>
 
   <title>Tum4World | Area Riservata</title>
@@ -24,14 +23,15 @@
 
 
 <body>
-<%@ include file="Components/header.jsp" %>
+<%@ include file="../Components/header.jsp" %>
 
 <div>
   <h1 class="generic-text-center">Redirect</h1>
 </div>
 
-<%@ include file="Components/footer.jsp" %>
+<%@ include file="../Components/footer.jsp" %>
 </body>
+
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {
@@ -63,5 +63,6 @@
   });
 
 </script>
+
 
 </html>

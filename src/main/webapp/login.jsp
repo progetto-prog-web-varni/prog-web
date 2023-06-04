@@ -1,4 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+<%
+  String params = request.getParameter("error");
+  %>
   <!DOCTYPE html>
   <html>
   <!-- HOME PAGE -->
@@ -21,8 +25,20 @@
 
   <body>
     <%@ include file="Components/header.jsp" %>
-      <form class="sign-in-grid">
+    <!-- action="LoginServlet" method="POST" -->
+      <form class="sign-in-grid" >
         <div class="inner-grid-signin">
+
+          <% if (params != "") { %>
+          <div class="alert" hidden>
+            <span class="close" onclick="return hidePopup()">&times;</span>
+            <span><strong>Errore!</strong><% out.print(params); %> </span>
+          </div>
+          <% } %>
+          <div id="popup-danger" class="alert" hidden>
+            <span class="close" onclick="return hidePopup()">&times;</span>
+            <span id="danger-text"><strong>Errore!</strong> Errore Generico </span>
+          </div>
           <h3>Login Sezione Privata</h3>
           <label for="username" class="margin-bottom-5">Username</label>
           <input class="sign-up-form-input margin-bottom-5" type="username" id="username" name="username"
@@ -34,13 +50,72 @@
           <!-- TODO: non c'è scritto nelle specifiche
           <small>Dimenticato La password</small>
             --> 
-          <input type="submit" value="Login" class="button margin-top-10">
+          <input value="Login" class="button margin-top-10" id="submit-button">
         </div>
       </form>
       <%@ include file="Components/footer.jsp" %>
   </body>
 
   <script>
+    const submitBtn = document.getElementById("submit-button");
+    const username = document.getElementById("username");
+    const password = document.getElementById("password");
+    const errorBox = document.getElementById("popup-danger");
+    const errorText = document.getElementById("danger-text");
+
+    submitBtn.addEventListener("click", () => {
+
+      const username = document.getElementById("username");
+      const password = document.getElementById("password");
+
+      if(!validateForm()) { return; }
+
+      try {
+
+        let xhr = new XMLHttpRequest();
+        xhr.open('POST', 'LoginServlet', true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        xhr.onreadystatechange = () => requestOnStateChanges(xhr);
+
+        let pyl = "username=" + username.value + "&password=" + password.value;
+        xhr.send(pyl);
+
+      } catch (e) {
+        errorBox.innerText = e;
+        activeErrorBanner();
+      }
+
+    });
+
+    const validateForm = () => {
+      if(username.value === "" || password.value === ""){
+        errorText.innerText = "Necessario inserire username e password";
+        activeErrorBanner()
+        return false;
+      }
+      return true;
+    };
+
+    const requestOnStateChanges = (xhr) => {
+      try {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if(xhr.status === 200 || xhr.status === 302) document.location.href = xhr.responseURL;
+          else {
+            activeErrorBanner();
+            let data = JSON.parse(xhr.responseText);
+            errorText.innerText = data["message"];
+          }
+        }
+      } catch(e) {
+        console.log("Error in xhr, probably parsing JSON data.")
+        console.log(e);
+      }
+    }
+
+    const activeErrorBanner = () => errorBox.style.display = "block";
+
+    const hidePopup = () => errorBox.style.display = "none";
     document.addEventListener("DOMContentLoaded", function() {
       var acceptBtn = document.getElementById("accept-btn");
       var rejectBtn = document.getElementById("reject-btn");

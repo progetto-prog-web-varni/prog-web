@@ -1,4 +1,4 @@
-<%@ page import="com.example.PageAnalysis.HitsCounter" %>
+<%@ page import="Utils.HitsCounter" %>
 <%
   HitsCounter.countsHits(page);
 %>
