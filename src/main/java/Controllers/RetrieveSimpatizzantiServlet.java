@@ -1,5 +1,6 @@
-package com.example.RetrieveInfo;
+package Controllers;
 
+import Utils.Database;
 import com.google.gson.Gson;
 
 import javax.servlet.*;
@@ -12,25 +13,17 @@ import java.util.List;
 
 @WebServlet(name = "RetrieveSimpatizzantiServlet", value = "/RetrieveSimpatizzantiServlet")
 public class RetrieveSimpatizzantiServlet extends HttpServlet {
-    String dbURL = "jdbc:derby://localhost:1527/WebDB";
-    String user = "App";
-    String password = "pw";
-    Connection conn = null;
+    Database db = null;
 
     public void init(){
-        try {
-            Class.forName("org.apache.derby.jdbc.ClientDriver");
-            conn = DriverManager.getConnection(dbURL, user, password);
-        } catch (ClassNotFoundException | SQLException ex) {
-            ex.printStackTrace();
-        }
+        this.db = new Database();
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException{
         response.setContentType("application/json;charset=UTF-8");
 
         try {
-            Statement stmt = conn.createStatement();
+            Statement stmt = this.db.getConn().createStatement();
             String sql = "SELECT * FROM USERS WHERE ROLE='simpatizzante'";
             ResultSet results = stmt.executeQuery(sql);
 
@@ -73,7 +66,7 @@ public class RetrieveSimpatizzantiServlet extends HttpServlet {
 
     public void destroy(){
         try {
-            conn.close();
+            this.db.getConn().close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }

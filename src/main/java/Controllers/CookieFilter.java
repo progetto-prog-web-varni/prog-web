@@ -1,4 +1,6 @@
-package com.example.Cookies;
+package Controllers;
+
+import ConfImporter.CookieConf;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -37,7 +39,7 @@ public class CookieFilter implements Filter {
 
         if (cookies != null) {
             for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("ciaone")) {
+                if (cookie.getName().equals(CookieConf.CookieName)) {
                     // Il cookie specificato è presente
                     return true;
                 }

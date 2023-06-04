@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+// Filtro per la gestione delle sessions
 @WebFilter("/AreaRiservata/*")
 public class AuthMiddleware implements Filter {
 

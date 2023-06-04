@@ -1,0 +1,5 @@
+2; true; true; false;
+3; false; true; true;
+4; false; false; true;
+5; true; true; true;
+6; true; false; true;

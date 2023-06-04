@@ -1,4 +1,6 @@
-package com.example.controllerProva;
+package Controllers;
+
+import ConfImporter.SMTPConf;
 
 import javax.servlet.ServletException;
 import javax.mail.internet.AddressException;
@@ -40,20 +42,23 @@ public class MailServlet extends HttpServlet {
     private void inviaEmail(String nome, String cognome, String email, String contact_reason, String feedback) {
         //qui invia la mail bro
 
-        String host = "smtp.office365.com";
-        String port = "587";
-        String mailFrom = "gfalert@outlook.com";
-        String password = "PdBezSdYUW6RGrf44WYj";
+        String host = SMTPConf.host;
+        String port = SMTPConf.port;
+        String mailFrom = SMTPConf.mailFrom;
+        String password = SMTPConf.password;
 
         // outgoing message information
         //String mailTo = "dalbosco.alby@gmail.com";
-        String mailTo = email;
         String subject = "Richiesta contatto Tum4World";
 
         // message contains HTML markups
-        String message = " <h1>Richiesta contatto Tum4World </h1> <p> Gentile " + nome + " " + cognome + ", la sua richiesta ricevuta e' stata ricevuta correttamente dal nostro staff, le faremo sapere al piu' presto!</p> " + " <p> Questi sono i dettagli della sua richiesta: <br> - Contattato per: " + contact_reason + " <br> - Dettagli richiesta: " + feedback + " </p> <br> <br> <br> <p> Lo staff Tum4World </p>";
+        String message = " <h1>Richiesta contatto Tum4World </h1> <p> Gentile "
+                + nome + " " + cognome + ", la sua richiesta ricevuta e' stata ricevuta correttamente dal nostro staff,"
+                + "le faremo sapere al piu' presto!</p> " + " <p> Questi sono i dettagli della sua richiesta: <br> - Co"
+                + "ntattato per: " + contact_reason + " <br> - Dettagli richiesta: "
+                + feedback + " </p> <br> <br> <br> <p> Lo staff Tum4World </p>";
         try {
-            sendHtmlEmail(host, port, mailFrom, password, mailTo,
+            sendHtmlEmail(host, port, mailFrom, password, email,
                     subject, message);
             System.out.println("Email sent.");
         } catch (Exception ex) {
@@ -75,7 +80,8 @@ public class MailServlet extends HttpServlet {
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.starttls.enable", "true");
 
-        // creo una nuova sessione con Autenticatore, classe Java che rappresenta un oggetto che simula l'autenticazione per una connessione network.
+        // creo una nuova sessione con Autenticatore, classe Java che rappresenta un
+        // oggetto che simula l'autenticazione per una connessione network.
         Authenticator auth = new Authenticator() {
             public PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(userName, password);

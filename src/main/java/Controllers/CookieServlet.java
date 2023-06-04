@@ -1,4 +1,6 @@
-package com.example.Cookies;
+package Controllers;
+
+import ConfImporter.CookieConf;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,7 +14,7 @@ import java.io.IOException;
 public class CookieServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        Cookie cookie = new Cookie("ciaone", "");
+        Cookie cookie = new Cookie(CookieConf.CookieName, "");
         cookie.setMaxAge(60);
         cookie.setPath("/");
         response.addCookie(cookie);
