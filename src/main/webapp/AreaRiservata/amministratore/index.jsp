@@ -16,6 +16,7 @@
         <%@ include file="../../resources/css/base.css" %>
         <%@ include file="../../resources/css/footer.css" %>
         <%@ include file="../../resources/css/header.css" %>
+        <%@ include file="../../resources/css/cookies.css" %>
 
         <%@ include file="../../resources/css/area_riservata.css" %>
 

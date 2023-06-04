@@ -1,0 +1,49 @@
+#cookie-banner {
+    position: fixed;
+    left: 0;
+    top: calc(100vh - 100px);
+    transform: translateY(-50%);
+    width: 300px;
+    max-height: 100vh;
+    background-color: #6a1b1b;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    z-index: 999;
+    color: white;
+}
+
+.message {
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
+
+.buttons {
+    display: flex;
+}
+
+button {
+    padding: 5px 10px;
+    margin: 0 5px;
+    border: 1px solid black;
+    color: white;
+    background-color: #6a1b1b;
+    border-radius: 5px;
+}
+
+#accept-btn {
+    background-color: #6a1b1b;
+    color: white;
+
+}
+
+#reject-btn {
+    background-color: #6a1b1b;
+    color: white;
+}
