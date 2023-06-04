@@ -1,9 +1,18 @@
 package Models;
 
 public class Counter {
+    private int ID;
     public String pageName;
     // public LinkedList<LocalDateTime> hits;
     public int hits;
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public int getID() {
+        return ID;
+    }
 
     public Counter() {
     }

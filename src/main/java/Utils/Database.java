@@ -127,6 +127,7 @@ public class Database {
 
                 String[] lineStr = line.split(";");
 
+                a.setID(counterArray.size() + 1);
                 a.setPageName(lineStr[0].trim());
                 a.setHits(Integer.parseInt(lineStr[1].trim()));
                 counterArray.add(a);
@@ -221,27 +222,33 @@ public class Database {
 
     public void createOrUpdateCounter(Connection conn, String pageName) throws SQLException{
         // Fake DB
-        //if(!dbConf.useRealDB) {
-        synchronized (this) {
-            for (Counter c : counterArray) {
-                if (c.pageName.equals(pageName)) {
-                    c.hits++;
+        if(!dbConf.useRealDB) {
+            synchronized (this) {
+                for (Counter c : counterArray) {
+                    if (c.pageName.equals(pageName)) {
+                        c.hits++;
+                    }
                 }
+                Counter nc = new Counter(pageName);
+                counterArray.add(nc);
             }
-
-            Counter nc = new Counter(pageName);
-            counterArray.add(nc);
         }
-       /* }
         // Default
-        TODO: capire se fare questa cosa, vuol dire cambiare il database
+        /*
+        TODO: add this
         try {
-            PreparedStatement checkStmt = conn.prepareStatement("SELECT * FROM USERS WHERE NAME = ? AND SURNAME = ?");
-            checkStmt.setString(1, username);
-            checkStmt.setString(2, password);
+            PreparedStatement checkStmt = conn.prepareStatement("SELECT * FROM COUNTERS WHERE PAGENAME = ?");
+            checkStmt.setString(1, pageName);
             boolean recordExists = checkStmt.executeQuery().next();
             checkStmt.close();
 
+            if(recordExists) {
+                // add 1 to the returned counter
+                PreparedStatement checkStmt = conn.prepareStatement("UPDATE * FROM COUNTERS WHERE PAGENAME = ?");
+                checkStmt.setString(1, pageName);
+                boolean recordExists = checkStmt.executeQuery().next();
+                checkStmt.close();
+            }
             // Return true/false
             return recordExists;
 
