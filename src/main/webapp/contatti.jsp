@@ -67,7 +67,7 @@
 <body>
     <%@ include file="Components/header.jsp" %>
         <div class="contatti-grid" id="pippo">
-            <form name="modulo" method="POST" class="contatti-grid-center" onsubmit="return validazioneEmail()" onreset="return visualizzaReset()">
+            <form action="EmailSendingServlet" name="modulo" method="POST" class="contatti-grid-center" onsubmit="return validazioneEmail()" onreset="return visualizzaReset()">
                 <div class="contatti-info">
                     <h2>I NOSTRI CONTATTI:</h2>
                     <h4>Via Mazzini, 34 342 876 2213 </h4>
@@ -107,7 +107,7 @@
                         </div>
                     </div>
                     <h3 for="textarea"> Dettagli richiesta</h3>
-                    <textarea placeholder="Inserisci qui il tuo testo" rows="6" cols="50"></textarea><br>
+                    <textarea placeholder="Inserisci qui il tuo testo" rows="6" cols="50" name="feedback"></textarea><br>
                     <small class="margin-bottom-5">Scrivi chiaramente quello che ti serve, così potremo aiutarti
                         meglio!</small>
                     <div class="final-button">
