@@ -16,7 +16,6 @@
         <%@ include file="resources/css/cookies.css" %>
     </style>
 
-
     <title>Tum4World | Contatti</title>
 </head>
 
@@ -24,7 +23,7 @@
 <body>
     <%@ include file="Components/header.jsp" %>
         <div class="contatti-grid" id="pippo">
-            <form name="modulo" method="POST" class="contatti-grid-center" onsubmit="return validazioneEmail()" onreset="return visualizzaReset()">
+            <form class="contatti-grid-center" method="post" name="modulo" action="MailServlet" onsubmit="return validazioneEmail()" >
                 <div class="contatti-info">
                     <h2>I NOSTRI CONTATTI:</h2>
                     <h4>Via Mazzini, 34 342 876 2213 </h4>
@@ -37,8 +36,7 @@
                         <label for="lname" class="margin-bottom-5">Cognome</label>
                         <input class="contatti-form-input" type="text" id="lname" name="lname" placeholder="Rossi">
                         <label for="email" class="margin-bottom-5">Indirizzo Email</label>
-                        <input class="contatti-form-input" type="text" id="email" name="email"
-                            placeholder="mario.rossi@gmail.com">
+                        <input class="contatti-form-input" type="text" id="email" name="email" placeholder="mario.rossi@gmail.com">
                     </div>
                     <h3 class="margin-bottom-5">Motivo di contatto</h3>
                     <div class="menu">
@@ -47,11 +45,11 @@
                             <label for="assistenza">Assistenza compilazione</label>
                         </div>
                         <div>
-                            <input type="radio" id="info" name="contact_reason" value="info">
+                            <input type="radio" id="info" name="contact_reason" value="Informazioni aggiuntive camp">
                             <label for="info">Informazioni aggiuntive camp</label>
                         </div>
                         <div>
-                            <input type="radio" id="err" name="contact_reason" value="err">
+                            <input type="radio" id="err" name="contact_reason" value="Errore iscrizione">
                             <label for="err">Errore nell'iscrizione</label>
                         </div>
                         <div>
@@ -64,12 +62,12 @@
                         </div>
                     </div>
                     <h3 for="textarea"> Dettagli richiesta</h3>
-                    <textarea placeholder="Inserisci qui il tuo testo" rows="6" cols="50"></textarea><br>
+                    <textarea placeholder="Inserisci qui il tuo testo" rows="6" cols="50" name="feedback"></textarea><br>
                     <small class="margin-bottom-5">Scrivi chiaramente quello che ti serve, così potremo aiutarti
                         meglio!</small>
                     <div class="final-button">
-                        <input type="submit" value="Submit" class="button">
-                        <input type="reset" value="Reset" class="button" >
+                        <input type="submit" value="Submit" class="button" id="submit_btn">      <!-- BOTTONE SUBMIT -->
+                        <input type="reset" value="Reset" class="button" id="reset_btn" >    <!-- BOTTONE RESET -->
                     </div>
                 </div>
 
@@ -90,6 +88,53 @@
 
             </form>
         </div>
+
+    <script>
+
+        function validazioneEmail()
+        {
+            // recupero il valore della email indicata nel form
+            let email = document.modulo.email.value;
+            // se non ho inserito nulla nel campo
+            if(email==''){
+                visualizzaDanger();
+                return false;
+            }
+            // verifico se è un indirizzo valido
+            if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+                visualizzaSuccess();
+            }
+            else {
+                visualizzaDanger();
+                return false;
+            }
+            return true;
+        }
+
+        function visualizzaReset(){
+            document.getElementById("popup-danger").style.display = "none";
+            document.getElementById("popup-success").style.display = "none";
+            document.getElementById("popup-reset").style.display = "block";
+        }
+        onsubmit="return validazioneEmail()"
+        function visualizzaDanger(){
+            document.getElementById("popup-danger").style.display = "block";
+            document.getElementById("popup-success").style.display = "none";
+            document.getElementById("popup-reset").style.display = "none";
+        }
+
+        function visualizzaSuccess(){
+            document.getElementById("popup-danger").style.display = "none";
+            document.getElementById("popup-success").style.display = "block";
+            document.getElementById("popup-reset").style.display = "none";
+        }
+
+        function nascondiPopup(){
+            document.getElementById("popup-danger").style.display = "none";
+            document.getElementById("popup-success").style.display = "none";
+            document.getElementById("popup-reset").style.display = "none";
+        }
+    </script>
         <%@ include file="Components/footer.jsp" %>
 
 
