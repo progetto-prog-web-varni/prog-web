@@ -41,11 +41,6 @@
   </body>
 
   <script>
-    // check:
-    // - ci deve essere la password
-  </script>
-
-  <script>
     document.addEventListener("DOMContentLoaded", function() {
       var acceptBtn = document.getElementById("accept-btn");
       var rejectBtn = document.getElementById("reject-btn");

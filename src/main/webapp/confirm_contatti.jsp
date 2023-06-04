@@ -15,22 +15,18 @@
 <body>
 <%@ include file="Components/header.jsp" %>
 
-<div class="box">
-  <h1 class="title">Invio confermato</h1>
-  <%-- chcek data --%>
-  <%
-    String name = request.getParameter("fname");
-    String surname = request.getParameter("lname");
 
-    if (name != null && surname != null) {
-  %>
-  <p>Grazie <%= name %> <%= surname %> per aver inviato i tuoi dati, ti ricontatteremo al più presto </p>
-  <%
-    } else {
-      response.sendRedirect("contatti.jsp");
-    }
-  %>
-</div>
+<%
+  String email = request.getParameter("email");
+
+  if (email!=null ) {
+%>
+<p>Grazie per esserti registrato su Tum4World</p>
+<%
+  } else {
+    response.sendRedirect("contatti.jsp");
+  }
+%>
 
 <%@ include file="Components/footer.jsp" %>
 </body>

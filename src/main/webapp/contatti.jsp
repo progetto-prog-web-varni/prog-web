@@ -95,6 +95,8 @@
 
 </body>
 
+
+
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         var acceptBtn = document.getElementById("accept-btn");

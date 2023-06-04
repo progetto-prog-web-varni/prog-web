@@ -52,8 +52,10 @@
                         lavorative.<br>
                         Che aspetti, unisciti anche tu!<br>
                     </p>
+
+
                     <div>
-                        <button class="button">SCARICA VOLANTINO</button>
+                        <button onclick="scaricaPDF()">Scarica il volantino</button>
                     </div>
                 </div>
             </div>
@@ -61,6 +63,14 @@
     </body>
 
     <script>
+
+        function scaricaPDF() {
+            var link = document.createElement('a');
+            link.href = 'volantino.pdf';
+            link.download = 'Tum4World.pdf';
+            link.click();
+        }
+
         document.addEventListener("DOMContentLoaded", function() {
             var acceptBtn = document.getElementById("accept-btn");
             var rejectBtn = document.getElementById("reject-btn");
