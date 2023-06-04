@@ -12,6 +12,7 @@
             <%@ include file="resources/css/base.css" %>
             <%@ include file="resources/css/footer.css" %>
             <%@ include file="resources/css/header.css" %>
+            <%@ include file="resources/css/cookies.css" %>
 
             <%@ include file="resources/css/index.css" %>
         </style>
@@ -51,12 +52,53 @@
                         lavorative.<br>
                         Che aspetti, unisciti anche tu!<br>
                     </p>
+
+
                     <div>
-                        <button class="button">SCARICA VOLANTINO</button>
+                        <button onclick="scaricaPDF()">Scarica il volantino</button>
                     </div>
                 </div>
             </div>
             <%@ include file="Components/footer.jsp" %>
     </body>
+
+    <script>
+
+        function scaricaPDF() {
+            var link = document.createElement('a');
+            link.href = 'volantino.pdf';
+            link.download = 'Tum4World.pdf';
+            link.click();
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            var acceptBtn = document.getElementById("accept-btn");
+            var rejectBtn = document.getElementById("reject-btn");
+            var cookieBanner = document.getElementById("cookie-banner");
+
+            acceptBtn.addEventListener("click", function() {
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "CookieServlet", true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        cookieBanner.style.display = "none";
+                        sessionStorage.setItem("cookiesAccettati", "true");
+                    }
+                };
+                xhr.send();
+            });
+
+            rejectBtn.addEventListener("click", function() {
+                cookieBanner.style.display = "none";
+                sessionStorage.setItem("cookiesAccettati", "false");
+            });
+
+            if (sessionStorage.getItem("cookiesAccettati") === "false") {
+                cookieBanner.style.display = "none";
+            }
+        });
+
+    </script>
 
     </html>

@@ -17,11 +17,14 @@
         <%@ include file="../../resources/css/base.css" %>
         <%@ include file="../../resources/css/footer.css" %>
         <%@ include file="../../resources/css/header.css" %>
+        <%@ include file="../../resources/css/cookies.css" %>
 
         <%@ include file="../../resources/css/area_riservata.css" %>
 
         <%@ include file="../../resources/css/amministratore.css" %>
     </style>
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
 
     <title>Tum4World | Area Riservata</title>
 </head>
@@ -39,10 +42,50 @@
         <%
             out.println(HitsCounter.returnAllCounter());
         %>
+        <button onclick="loadPageData()">Carica dati</button>
+        <div id="pageChartContainer" style="display: none;"></div>
     </div>
 </div>
 
 <%@ include file="../../Components/footer.jsp" %>
+
+<%
+    String testData = "[[\"Home\", 10], [\"About\", 5], [\"Contact\", 8]]";
+%>
 </body>
+
+<script>
+    function createPageChart2(data){
+        Highcharts.chart('pageChartContainer', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Contatori dei dati'
+            },
+            xAxis: {
+                type: 'category'
+            },
+            yAxis: {
+                title: {
+                    text: 'Hits'
+                }
+            },
+            series: [{
+                name: 'Hits',
+                data: data
+            }]
+        });
+    }
+
+
+
+    function loadPageData(){
+        var data = <%= testData %>;
+        console.log(data)
+        createPageChart2(data);
+        document.getElementById('pageChartContainer').style.display = 'block';
+    }
+</script>
 
 </html>
