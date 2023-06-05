@@ -19,7 +19,7 @@ public class CounterFilter implements Filter {
         Database db = new Database() ;
 
         try {
-            db.createOrUpdateCounter(null, ((HttpServletRequest) request).getRequestURI());
+            db.createOrUpdateCounter(db.getConn(), ((HttpServletRequest) request).getRequestURI());
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Error while counting");
