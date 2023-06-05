@@ -1,6 +1,8 @@
 .ris-esegui-donazione {
     display: flex;
     flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
 }
 
 .donazione-number-input {

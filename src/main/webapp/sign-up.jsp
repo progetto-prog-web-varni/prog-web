@@ -23,7 +23,14 @@
   <%@ include file="Components/header.jsp" %>
 
     <!-- do not add action here, resolved in the js -->
-    <form class="centra" onreset="return resetFunc()" onsubmit="return submitFunc()" action="SignupServlet" method="POST">
+    <form
+            class="centra"
+            name="signup-form"
+            onreset="return resetFunc()"
+            onsubmit="return submitFunc()"
+            action="SignupServlet"
+            method="POST"
+    >
 
       <div id="popup-danger" class="alert">
         <span class="close" onclick="return nascondiPopup()">&times;</span>
@@ -65,7 +72,6 @@
 
           <!-- SELECTION -->
           <h3>Preferenza iscrizione</h3>
-          <!-- TODO: questa width è fissata, non credo sia una cosa bella, ma intanto funziona -->
           <fieldset class="border-0 sign-up-form-selection" >
             <select name="membershipType" id="selection-input">
               <option value="Simpatizzante">Simpatizzante</option>
@@ -136,6 +142,13 @@ un carattere numerico, un carattere maiuscolo e un carattere tra $, ! e ?), -->
   resetbtn.addEventListener("click", resetFunc);
 
   const submitFunc = () => {
+
+    console.log(fname.value, " ", lname.value, " ",
+                birthday.value, " ", email.value, " ",
+                phone.value, " ", selection.selectIndex, " ",
+                username.value,  " ", password.value,  " ", confirm_password.value,  " ");
+
+
     if(confirm_password.value !== password.value) return validateNotSuccess("Le password non corrispondono.");
 
     if(fname.value === "") return validateNotSuccess("Necessario inserire il proprio nome.");
@@ -151,7 +164,9 @@ un carattere numerico, un carattere maiuscolo e un carattere tra $, ! e ?), -->
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value))
       return validateNotSuccess("L'email inserita non e' valida.");
 
-    return true;
+    console.log(birthday.value);
+
+    return false;
   };
 
   const validateSuccess = () => {

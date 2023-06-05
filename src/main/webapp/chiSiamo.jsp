@@ -28,18 +28,23 @@
             <div class="chiSiamo-title-container">
                 <h1 class="chiSiamo-title">Chi Siamo</h1>
                 <h3>
-                    Tum4World è un'associazione nata nel 2007 da un gruppo di studenti universitari volenterosi di rendere la programmazione e il mondo dell'informatica una realtà alla portata di tutti o, come si direbbe tra gli appassionati, opensource.
+                    Tum4World è un'associazione nata nel 2007 da un gruppo di studenti universitari volenterosi di
+                    rendere la programmazione e il mondo dell'informatica una realtà alla portata di tutti o, come si
+                    direbbe tra gli appassionati, <i>opensource</i>.
                 </h3>
                 <br><br>
             </div>
 
             <div class="single-paragraph fondatori">
-                <strong>
-                    I fondatori
-                </strong>
+                <h2>
+                    I Fondatori
+                </h2>
                 <p>
-                    Sono cinque i fondatori di Tum4World, tutti ex-studenti dell'Università degli Studi di Napoli Federico II.<br>
-                    Hanno intrapreso l'idea di realizzare questo portale per avvicinare quante più persone al loro mondo con l'idea lungimirante di creare una rete stabile di contatti permettendo a chiunque di costruire una carriera affrontando con successo il processo di assunzione o semplicemente
+                    Sono cinque i fondatori di Tum4World, tutti ex-studenti dell'Università degli Studi di
+                    Napoli Federico II.<br>
+                    Hanno intrapreso l'idea di realizzare questo portale per avvicinare quante più persone al loro mondo
+                    con l'idea lungimirante di creare una rete stabile di contatti permettendo a chiunque di costruire
+                    una carriera affrontando con successo il processo di assunzione o semplicemente
                     di raggiungere obiettivi formativi personali.<br>
                 </p>
                 <div class="container-fondatori" >
@@ -86,18 +91,29 @@
                 </div>
             </div>
 
+            <br>
+
             <div class="single-paragraph genesi">
-                <h2><br> Come è sorta l'idea di creare Tum4World? </h2>
-                <p>
-                    Parla Andrea, co-fondatore dell'azienda: <br>
+                <h2>Come è sorta l'idea di creare Tum4World?</h2>
+                <p>Parla Andrea, co-fondatore dell'azienda:<br>
                 <blockquote>
-                    - Sin dal primo giorno di università, si è creato un certo feeling tra noi cinque, per le stesse idee riguardo molte tematiche del mondo dell'informatica e della vita universitaria. <br>
-                    Una cosa ci legava indissolubilmente: la “filosofia opensource”. <br>
-                    Per i non addetti al lavoro, con questo termine si intende un sistema di valori che celebrano lo scambio aperto, la partecipazione collettiva, la trasparenza e lo sviluppo attivo e concreto della community.  <br>
-                    Era proprio questo il nostro sogno: aspiravamo a creare una realtà completamente opensource, dai più piccoli ai più anziani.  <br>
-                    Con questo intento, abbiamo iniziato a creare una rete di rapporti intra-universitari che poi si è estesa a diverse aziende e startup locali, permettendoci di toccare con mano le prime soddisfazioni e le prime problematiche di un progetto immenso come il nostro. <br>
-                    Dopo diverse sponsorizzazioni e aiuti da parte di collaboratori che si sono uniti, abbiamo fondato Tum4World. <br>
-                    Da lì tutto è cominciato il tutto, che ci ha portato dopo 15 anni a contare più di 20 scuole aderenti, migliaia di studenti universitari partecipi attivamente al sostentamento e alla progressione della comunità, un bel gruppo di anziani super curiosi di imparare ogni giorno skills nuove e un team di collaboratori stretti che permette di mantenere sempre la linea guida del progetto Tum4World. -
+                    Sin dal primo giorno di università, si è creato un certo feeling tra noi cinque, per le stesse idee
+                    riguardo molte tematiche del mondo dell'informatica e della vita universitaria. <br>
+                    Una cosa ci legava indissolubilmente: la <i>"filosofia opensource"</i>. <br>
+                    Per i non addetti al lavoro, con questo termine si intende un sistema di valori che celebrano lo
+                    scambio aperto, la partecipazione collettiva, la trasparenza e lo sviluppo attivo e concreto della
+                    community.  <br>
+                    Era proprio questo il nostro sogno: aspiravamo a creare una realtà
+                    completamente opensource, dai più piccoli ai più anziani.  <br>
+                    Con questo intento, abbiamo iniziato a creare una rete di rapporti intra-universitari che
+                    poi si è estesa a diverse aziende e startup locali, permettendoci di toccare con mano le prime
+                    soddisfazioni e le prime problematiche di un progetto immenso come il nostro. <br>
+                    Dopo diverse sponsorizzazioni e aiuti da parte di collaboratori che si sono uniti,
+                    <strong>abbiamo fondato Tum4World.</strong> <br>
+                    Da lì tutto è cominciato il tutto, che ci ha portato dopo 15 anni a contare più di 20 scuole aderenti,
+                    migliaia di studenti universitari partecipi attivamente al sostentamento e alla progressione della comunità,
+                    un bel gruppo di anziani super curiosi di imparare ogni giorno skills nuove e un team di collaboratori
+                    stretti che permette di mantenere sempre la linea guida del progetto Tum4World. -
                 </blockquote>
                 </p>
             </div>
@@ -139,26 +155,51 @@
             <div class="single-paragraph FAQ">
                 <h1> FAQ </h1>
                 <p>
-                    <p class="FAQ-question" onmouseout="scomparsa(document.getElementById('FAQ-response-1'))"  onmouseover="comparsa(document.getElementById('FAQ-response-1'))"> Cos'è esattamente Tum4World?</p>
-                    <p class="FAQ-answer" id='FAQ-response-1'> Tum4World è una comunità di persone provenienti da tutto il mondo che stanno imparando a programmare insieme. Siamo un ente di beneficenza pubblico.</p>
+                    <p class="FAQ-question"
+                       onmouseout="scomparsa(document.getElementById('FAQ-response-1'))"
+                       onmouseover="comparsa(document.getElementById('FAQ-response-1'))">Cos'è esattamente Tum4World?  &#10148;</p>
+                    <p class="FAQ-answer" id='FAQ-response-1'> Tum4World è una comunità di persone provenienti da
+                        tutto il mondo che stanno imparando a programmare insieme. Siamo un ente di beneficenza pubblico.</p>
 
-                    <p class="FAQ-question" onmouseout="scomparsa(document.getElementById('FAQ-response-2'))"  onmouseover="comparsa(document.getElementById('FAQ-response-2'))">In che modo Tum4World mi aiuterà a imparare a programmare?</p>
-                    <p class="FAQ-answer" id="FAQ-response-2">Imparerai a programmare costruendo dozzine di progetti, passo dopo passo, direttamente nel tuo browser, nell'editor di codice o nell'app mobile.</p>
+                    <p class="FAQ-question"
+                       onmouseout="scomparsa(document.getElementById('FAQ-response-2'))"
+                       onmouseover="comparsa(document.getElementById('FAQ-response-2'))">
+                        In che modo Tum4World mi aiuterà a imparare a programmare?  &#10148;</p>
+                    <p class="FAQ-answer" id="FAQ-response-2">Imparerai a programmare costruendo dozzine di progetti,
+                        passo dopo passo, direttamente nel tuo browser, nell'editor di codice o nell'app mobile.</p>
 
-                    <p class="FAQ-question" onmouseout="scomparsa(document.getElementById('FAQ-response-3'))"  onmouseover="comparsa(document.getElementById('FAQ-response-3'))">Tum4World è davvero gratuito?</p>
-                    <p class="FAQ-answer" id='FAQ-response-3'>SÌ. Ogni aspetto di Tum4World è gratuito al 100%. I corsi, i progetti e persino le consulenze private.</p>
+                    <p class="FAQ-question" onmouseout="scomparsa(document.getElementById('FAQ-response-3'))"
+                       onmouseover="comparsa(document.getElementById('FAQ-response-3'))">
+                        Tum4World è davvero gratuito?&#10148;</p>
+                    <p class="FAQ-answer" id='FAQ-response-3'>SÌ. Ogni aspetto di Tum4World è gratuito al 100%. I corsi,
+                        i progetti e persino le consulenze private.</p>
 
-                    <p class="FAQ-question" onmouseout="scomparsa(document.getElementById('FAQ-response-4'))"  onmouseover="comparsa(document.getElementById('FAQ-response-4'))">Tum4World può aiutarmi a ottenere un lavoro come sviluppatore di software?</p>
-                    <p class="FAQ-answer" id='FAQ-response-4'>SÌ. Ogni anno, migliaia di persone che entrano a far parte della community di Tum4World ottengono il loro primo lavoro come sviluppatori di software.</p>
+                    <p class="FAQ-question" onmouseout="scomparsa(document.getElementById('FAQ-response-4'))"
+                       onmouseover="comparsa(document.getElementById('FAQ-response-4'))">
+                        Tum4World può aiutarmi a ottenere un lavoro come sviluppatore di software?  &#10148;</p>
+                    <p class="FAQ-answer" id='FAQ-response-4'>SÌ. Ogni anno, migliaia di persone che entrano a far
+                        parte della community di Tum4World ottengono il loro primo lavoro come sviluppatori di software.</p>
 
-                    <p class="FAQ-question" onmouseout="scomparsa(document.getElementById('FAQ-response-5'))"  onmouseover="comparsa(document.getElementById('FAQ-response-5'))">Quali abilità imparerò?</p>
-                    <p class="FAQ-answer" id='FAQ-response-5'>Imparerai le competenze che la maggior parte degli sviluppatori utilizza sul lavoro: HTML, CSS, JavaScript, Python, Linux, Git e SQL e altro ancora. Imparerai anche come utilizzare potenti librerie per lo sviluppo web, lo sviluppo di app mobili, la scienza dei dati e l'intelligenza artificiale.</p>
+                    <p class="FAQ-question" onmouseout="scomparsa(document.getElementById('FAQ-response-5'))"
+                       onmouseover="comparsa(document.getElementById('FAQ-response-5'))">Quali abilità imparerò?  &#10148;</p>
+                    <p class="FAQ-answer" id='FAQ-response-5'>Imparerai le competenze che la maggior parte degli
+                        sviluppatori utilizza sul lavoro: HTML, CSS, JavaScript, Python, Linux, Git e SQL e altro ancora.
+                        Imparerai anche come utilizzare potenti librerie per lo sviluppo web, lo sviluppo di app mobili,
+                        la scienza dei dati e l'intelligenza artificiale.</p>
 
-                    <p class="FAQ-question" onmouseout="scomparsa(document.getElementById('FAQ-response-6'))"  onmouseover="comparsa(document.getElementById('FAQ-response-6'))">Quanto tempo ci vuole per imparare tutto questo?</p>
-                    <p class="FAQ-answer" id='FAQ-response-6'>Tum4World è di autoapprendimento. Realisticamente, potrebbero essere necessari diversi anni di pratica della programmazione per apprendere queste abilità abbastanza bene da ottenere un lavoro come ingegnere del software. Non lasciare la scuola o il tuo lavoro quotidiano finché non ti senti pronto.</p>
+                    <p class="FAQ-question" onmouseout="scomparsa(document.getElementById('FAQ-response-6'))"
+                       onmouseover="comparsa(document.getElementById('FAQ-response-6'))">
+                        Quanto tempo ci vuole per imparare tutto questo?&#10148;</p>
+                    <p class="FAQ-answer" id='FAQ-response-6'>Tum4World è di autoapprendimento. Realisticamente,
+                        potrebbero essere necessari diversi anni di pratica della programmazione per apprendere queste
+                        abilità abbastanza bene da ottenere un lavoro come ingegnere del software. Non lasciare la
+                        scuola o il tuo lavoro quotidiano finché non ti senti pronto.</p>
 
-                    <p class="FAQ-question" onmouseout="scomparsa(document.getElementById('FAQ-response-7'))"  onmouseover="comparsa(document.getElementById('FAQ-response-7'))">Come posso iniziare?</p>
-                    <p class="FAQ-answer" id='FAQ-response-7'>Se fossi un principiante, dovresti iniziare dall'inizio del programma di base di Tum4World, altrimenti ti consigliamo comunque di iniziare dall'inizio, eventualmente saltando a qualsiasi area desideri.</p><br>
+                    <p class="FAQ-question" onmouseout="scomparsa(document.getElementById('FAQ-response-7'))"
+                       onmouseover="comparsa(document.getElementById('FAQ-response-7'))">Come posso iniziare?  &#10148;</p>
+                    <p class="FAQ-answer" id='FAQ-response-7'>Se fossi un principiante, dovresti iniziare dall'inizio
+                        del programma di base di Tum4World, altrimenti ti consigliamo comunque di iniziare dall'inizio,
+                        eventualmente saltando a qualsiasi area desideri.</p><br>
                 </p>
             </div>
         </div>

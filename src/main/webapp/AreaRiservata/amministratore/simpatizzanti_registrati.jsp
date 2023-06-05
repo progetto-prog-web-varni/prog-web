@@ -35,8 +35,8 @@
     <%@ include file="base.jsp"%>
     <div>
         <!-- Qui vanno tutti i dati dinamici in base a quello cliccato -->
-        <h1>Second</h1>
-        <button onclick="retrieveSimpatizzanti()">Visualizza Simpatizzanti</button>
+        <h1>Visualizza Simpatizzanti Riservati</h1>
+        <button onclick="retrieveSimpatizzanti()">Carica Dati</button>
         <div id="results2"></div>
     </div>
 </div>

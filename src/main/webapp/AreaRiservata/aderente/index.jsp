@@ -17,7 +17,7 @@
 
         <%@ include file="../../resources/css/area_riservata.css" %>
 
-        <%@ include file="../../resources/css/amministratore.css" %>
+        <%@ include file="../../resources/css/aderente.css" %>
     </style>
 
     <title>Tum4World | Area Riservata</title>
@@ -32,7 +32,7 @@
     <%@ include file="base.jsp"%>
     <div>
         <!-- Qui vanno tutti i dati dinamici in base a quello cliccato -->
-        <h3>Clicca a Lato per vedere qualcosa</h3>
+        <h3>Clicca una voce del menu per iniziare ad esplorare.</h3>
     </div>
 </div>
 

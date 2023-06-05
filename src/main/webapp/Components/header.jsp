@@ -32,7 +32,7 @@
     </div>
     <div class="navbar-flex-item">
       <!-- <span style="padding:4px; width:150px; text-align:center"> -->
-      <a href="${pageContext.request.contextPath}/sign-up.jsp">SIGNUP</a>
+      <a href="${pageContext.request.contextPath}/sign-up.jsp">SIGN-IN</a>
       <!-- </span> -->
     </div>
     <!-- to previus visualizzation
