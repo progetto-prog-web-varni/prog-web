@@ -56,7 +56,7 @@
 
           <!-- BIRTHDAY -->
           <label for="birthday" class="margin-bottom-5">Data di Nascita</label>
-          <input class="sign-up-form-input" type="date" id="birthday" name="birthday" placeholder="01/01/2000"
+          <input class="sign-up-form-input" type="date" id="birthday" name="birthday" placeholder="22/07/2000"
             pattern="[1-31]{2}/[1-12]{2}/[1900-2023]{4}">
           <small>Format: GG-MM-YYYY</small>
 
@@ -111,11 +111,6 @@ un carattere numerico, un carattere maiuscolo e un carattere tra $, ! e ?), -->
 </body>
 
 <script>
-
-  // reset-button for event listener
-  const resetbtn = document.getElementById("reset-button");
-  const submitbtn = document.getElementById("submit-button");
-
   // Form components
   const fname = document.getElementById("fname");
   const lname = document.getElementById("lname");
@@ -139,15 +134,10 @@ un carattere numerico, un carattere maiuscolo e un carattere tra $, ! e ?), -->
     confirm_password.value = "";
   };
 
-  resetbtn.addEventListener("click", resetFunc);
-
   const submitFunc = () => {
 
-    console.log(fname.value, " ", lname.value, " ",
-                birthday.value, " ", email.value, " ",
-                phone.value, " ", selection.selectIndex, " ",
-                username.value,  " ", password.value,  " ", confirm_password.value,  " ");
-
+    // get selection input
+    const option_text = selection.options[selection.selectIndex].value;
 
     if(confirm_password.value !== password.value) return validateNotSuccess("Le password non corrispondono.");
 
@@ -156,7 +146,8 @@ un carattere numerico, un carattere maiuscolo e un carattere tra $, ! e ?), -->
     if(birthday.value === "") return validateNotSuccess("Necessario inserire la propria data di nascita.");
     if(email.value === "") return validateNotSuccess("Necessario inserire la propria mail.");
     if(phone.value === "") return validateNotSuccess("Necessario inserire il proprio numero di telefono.");
-    if(selection.selectIndex === 0) return validateNotSuccess("Necessario selezionare il tipo di utente.");
+    if(option_text === "Simpatizzante" || option_text === "Aderente")
+      return validateNotSuccess("Necessario selezionare il tipo di utente.");
     if(username.value === "") return validateNotSuccess("Necessario selezionare l'utente.");
     if(password.value === "") return validateNotSuccess("Necessario selezionare una password.");
     if(confirm_password.value === "") return validateNotSuccess("Necessario confermare la passsword.");
@@ -164,7 +155,31 @@ un carattere numerico, un carattere maiuscolo e un carattere tra $, ! e ?), -->
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value))
       return validateNotSuccess("L'email inserita non e' valida.");
 
-    console.log(birthday.value);
+    const today = new Date();
+    const minDate = new Date();
+    const inputDate = new Date(birthday.value);
+    // getMonth return month, but ZERO BASED (gen = 0)!!
+    minDate.setFullYear(today.getFullYear()-18, today.getMonth(), today.getDate());
+    console.log(minDate.toISOString());
+
+    // check minori =>  getToday - 18 anni
+    // vuol dire che ha meno di 18 => il numero della data è maggiore
+    if(inputDate > minDate) return validateNotSuccess("Necessario essere maggiorenni per iscriversi a questo sito");
+
+    // validazione della password:
+    // - lunga 8 caratteri
+    if(password.value.length !== 8) return validateNotSuccess("La password deve essere lunga 8 caratteri");
+    // - prima lettera (E|G|A|e|g|a)
+    if(/^(A|E|G|a|e|g)/gm.test(password.value))
+      return validateNotSuccess("La password deve iniziare con 'A', 'E', 'G' oppure con 'a', 'e', 'g'");
+    // - almeno un carattere numerico
+    if(/[0-9]/.test(password.value)) return validateNotSuccess("La password deve contenere almeno un numero");
+    // - un carattere maiuscolo
+    if(/[A-Z]/.test(password.value))
+      return validateNotSuccess("La password deve contenere almeno un carattere maiuscolo");
+    // - un carattere tra $, !, ?
+    if(/(\?|!|\$)/.test(password.value))
+      return validateNotSuccess("La password deve contenere almeno uno tra '?', '!', '$'")
 
     return false;
   };
@@ -183,8 +198,7 @@ un carattere numerico, un carattere maiuscolo e un carattere tra $, ! e ?), -->
 
   const nascondiPopup = () => document.getElementById("popup-danger").style.display = "none";
 
-  submitbtn.addEventListener("click", submitFunc)
-
+  // Cookies
   document.addEventListener("DOMContentLoaded", function() {
     var acceptBtn = document.getElementById("accept-btn");
     var rejectBtn = document.getElementById("reject-btn");
