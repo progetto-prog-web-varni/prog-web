@@ -7,10 +7,7 @@ import Models.Payment;
 import Models.User;
 
 import java.io.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class Database {
@@ -205,7 +202,7 @@ public class Database {
         }
         // Default
         try {
-            PreparedStatement checkStmt = conn.prepareStatement("SELECT * FROM USERS WHERE NAME = ? AND SURNAME = ?");
+            PreparedStatement checkStmt = conn.prepareStatement("SELECT * FROM USERS WHERE USERNAME = ? AND PASSWORD = ?");
             checkStmt.setString(1, username);
             checkStmt.setString(2, password);
             boolean recordExists = checkStmt.executeQuery().next();
@@ -219,6 +216,30 @@ public class Database {
             return false;
         }
     }
+
+
+
+    public String getUserRole(Connection conn, String username) throws SQLException {
+        String role = "";
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT role FROM users WHERE USERNAME = ?");
+            stmt.setString(1, username);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                role = rs.getString("role");
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return role;
+    }
+
 
     public void createOrUpdateCounter(Connection conn, String pageName) throws SQLException{
         // Fake DB

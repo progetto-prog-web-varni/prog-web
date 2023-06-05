@@ -39,7 +39,7 @@
     <div>
         <!-- Qui vanno tutti i dati dinamici in base a quello cliccato -->
         <h1>Analytics sito</h1>
-        <button onclick="loadPageData()">Carica dati</button>
+        <button class="button" onclick="loadPageData()">Carica dati</button>
         <div id="pageChartContainer" style="display: none;"></div>
     </div>
 </div>

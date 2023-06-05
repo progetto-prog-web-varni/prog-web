@@ -38,6 +38,18 @@ public class LoginServlet extends HttpServlet{
         PrintWriter resp = response.getWriter();
         String username;
         String password;
+
+        //guardo se ha cookies
+        boolean hasCookie = false;
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("ciaone")) {
+                    hasCookie = true;
+                    break;
+                }
+            }
+        }
         // Prova a recuperare i parametri dalla richiesta
         try {
             username = request.getParameter("username");
@@ -52,17 +64,29 @@ public class LoginServlet extends HttpServlet{
         // Funzione che fa la query del login e torna un bool per indicare se si può fare il login
         try {
             if (loginQuery(this.db.getConn(), username, password)) {
-                response.setStatus(HttpServletResponse.SC_OK);
+                // Recupera il ruolo dell'utente dal database
+                String role = db.getUserRole(this.db.getConn(), username);
+
+
+                System.out.println("sessione creata");
                 HttpSession session = request.getSession();
                 session.setAttribute("username", username);
-                // Set Cookie and Session
+                session.setAttribute("role", role);
                 session.setMaxInactiveInterval(60);
-                Cookie userName = new Cookie("username", username);
-                userName.setMaxAge(60 * 60);
-                response.setContentType("text/html");
-                response.addCookie(userName);
-                // Redirect
-                response.sendRedirect("AreaRiservata/");
+
+
+                // Effettua il reindirizzamento in base al ruolo
+                if (role.equals("amministratore")) {
+                    response.sendRedirect("AreaRiservata/amministratore");
+                } else if (role.equals("semipatizzante")) {
+                    response.sendRedirect("AreaRiservata/simpatizzante");
+                } else if (role.equals("aderente")) {
+                    response.sendRedirect("AreaRiservata/aderente");
+                } else {
+                    response.setContentType("application/json;charset=UTF-8");
+                    response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                    resp.write(createResponse("false", "Ruolo non valido"));
+                }
             } else {
                 // Gestisci l'errore in caso non siano corrette le informazioni di login
                 response.setContentType("application/json;charset=UTF-8");

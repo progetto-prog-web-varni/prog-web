@@ -1,6 +1,16 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <%
+  if (session.getAttribute("username") != null && session.getAttribute("role") != null) {
+    String role = (String) session.getAttribute("role");
+    String redirectUrl = request.getContextPath() + "/AreaRiservata/" + role;
+    response.sendRedirect(redirectUrl);
+    return;
+  }
+%>
+
+
+<%
   String params = request.getParameter("error");
   %>
   <!DOCTYPE html>

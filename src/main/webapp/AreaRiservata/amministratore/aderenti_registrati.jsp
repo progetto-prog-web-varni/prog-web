@@ -36,7 +36,7 @@
     <div>
         <!-- Qui vanno tutti i dati dinamici in base a quello cliccato -->
         <h1>Second</h1>
-        <button onclick="retrieveAderenti()">Visualizza Aderenti</button>
+        <button class="button" onclick="retrieveAderenti()">Visualizza Aderenti</button>
         <div id="results1"></div>
 
     </div>

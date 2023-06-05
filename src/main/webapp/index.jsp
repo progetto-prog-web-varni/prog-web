@@ -55,7 +55,7 @@
 
 
                     <div>
-                        <button onclick="scaricaPDF()">Scarica il volantino</button>
+                        <button class="button" onclick="scaricaPDF()">Scarica il volantino</button>
                     </div>
                 </div>
             </div>
