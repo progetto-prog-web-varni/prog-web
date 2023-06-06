@@ -9,7 +9,7 @@
 
         <h4>Esegui Donazione</h4>
         <div class="ris-esegui-donazione">
-            <form action="">
+            <form action="DonationServlet">
                 <input type="number" name="donazione_value" id="donazione_value"
                        min="0,00" step="0,01"
                        placeholder="0,00 EUR" class="donazione-number-input" />
