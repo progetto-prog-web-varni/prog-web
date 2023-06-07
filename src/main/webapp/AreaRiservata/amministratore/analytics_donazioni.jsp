@@ -84,7 +84,7 @@
                 }
             },
             series: [{
-                name: 'Amount',
+                name: 'Mesi',
                 data: data
             }]
         });

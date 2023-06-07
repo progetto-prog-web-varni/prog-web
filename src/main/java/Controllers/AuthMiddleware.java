@@ -26,6 +26,7 @@ public class AuthMiddleware implements Filter {
         if (isProtectedPage(request)) {
             HttpSession session = request.getSession(false);
 
+
             // se utente ancora in sessione vai avanti
             if (session != null && session.getAttribute("username") != null && session.getAttribute("role") != null) {
 

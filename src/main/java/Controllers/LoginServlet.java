@@ -74,14 +74,15 @@ public class LoginServlet extends HttpServlet{
                 session.setAttribute("role", role);
                 session.setMaxInactiveInterval(60);
 
+                String sessionID = session.getId();
 
-                // Effettua il reindirizzamento in base al ruolo
+                // Effettua il reindirizzamento in base al ruolo, includendo l'identificatore di sessione nell'URL
                 if (role.equals("amministratore")) {
-                    response.sendRedirect("AreaRiservata/amministratore");
-                } else if (role.equals("semipatizzante")) {
-                    response.sendRedirect("AreaRiservata/simpatizzante");
+                    response.sendRedirect("AreaRiservata/amministratore?sessionID=" + sessionID);
+                } else if (role.equals("simpatizzante")) {
+                    response.sendRedirect("AreaRiservata/simpatizzante?sessionID=" + sessionID);
                 } else if (role.equals("aderente")) {
-                    response.sendRedirect("AreaRiservata/aderente");
+                    response.sendRedirect("AreaRiservata/aderente?sessionID=" + sessionID);
                 } else {
                     response.setContentType("application/json;charset=UTF-8");
                     response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);

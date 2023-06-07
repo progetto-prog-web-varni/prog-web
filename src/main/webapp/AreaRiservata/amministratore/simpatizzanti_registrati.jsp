@@ -75,6 +75,9 @@
             resultRow.textContent = name + ' ' + surname;
             resultsDiv.appendChild(resultRow);
         }
+
+        resultsDiv.style.overflow = 'auto';
+        resultsDiv.style.maxHeight = '150px';
     }
 </script>
 </html>

@@ -22,13 +22,12 @@
         if (message.equals("Donazione riuscita")) {
 %>
 <script>
-    // Funzione per mostrare il popup
+    //mostra poup
     function showPopup() {
         var popup = document.getElementById('custom-popup');
         popup.style.display = 'flex';
     }
 
-    // Mostra il popup al caricamento della pagina
     window.onload = function() {
         showPopup();
     };
@@ -37,13 +36,12 @@
 } else {
 %>
 <script>
-    // Funzione per mostrare il popup
+    //mostra poup
     function showPopup() {
         var popup = document.getElementById('custom-popup');
         popup.style.display = 'flex';
     }
 
-    // Mostra il popup al caricamento della pagina
     window.onload = function() {
         showPopup();
     };

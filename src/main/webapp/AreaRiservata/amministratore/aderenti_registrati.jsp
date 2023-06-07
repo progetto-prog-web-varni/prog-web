@@ -60,7 +60,12 @@
             resultRow.textContent = name + ' ' + surname;
             resultsDiv.appendChild(resultRow);
         }
+
+        // Aggiungi lo stile per lo scorrimento
+        resultsDiv.style.overflow = 'auto';
+        resultsDiv.style.maxHeight = '150px';
     }
+
 
     function retrieveAderenti() {
         var xhr = new XMLHttpRequest();
