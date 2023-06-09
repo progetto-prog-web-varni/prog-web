@@ -7,24 +7,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-      @import './resources/css/base.css';
-      @import './resources/css/header.css';
-      @import './resources/css/footer.css';
-      @import './resources/css/cookies.css';
-      @import './resources/css/attivita.css';
+      <%@ include file="resources/css/base.css" %>
+      <%@ include file="resources/css/footer.css" %>
+      <%@ include file="resources/css/header.css" %>
+      <%@ include file="resources/css/cookies.css" %>
+
+      <%@ include file="resources/css/attivita.css" %>
     </style>
 
-
     <title>Tum4World | Attività</title>
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/logo.png">
   </head>
 
   <body>
     <%@ include file="Components/header.jsp" %>
       <div class="container">
         <div class="attivita-title-container">
-          <h1 class="attivita-title">ATTIVITA'</h1>
+          <h1 class="attivita-title">Attivita'</h1>
           <h3>
-            Tum4World propone 3 attività, ognuna destinata ad un target diverso di età e con obiettivi
+            Tum4World propone 3 attività, ognuna destinata a un target diverso di età e con obiettivi
             differenti.<br><br>
           </h3>
         </div>
@@ -52,14 +53,13 @@
             Tutte le attività da noi presentate sono tenute in maniera lucida e appassionata da coach competenti e
             preparati che dedicano gran parte del loro tempo alla ricerca e allo sviluppo. <br><br>
           </p>
-          <div class="generic-text-center">
-            <button class="button" onclick="window.open('foto-attivita-little-coders.jsp')">VISUALIZZA IMMAGINI LITTLE CODERS</button>
-          </div>
           <br><br>
+          <img class="foto_activity" onclick="window.open('foto-attivita-little-coders.jsp')" src="${pageContext.request.contextPath}/resources/img/foto_attivita/bambini1.jpg" alt="foto robot con bambino">
         </div>
 
-        <div class="single-activity second-activity">
+        <br><br><br>
 
+        <div class="single-activity second-activity">
           <h3>Tum4World for professionals </h3>
           <p>
             Diventa un esperto informatico con questo corso di informatica!<br>
@@ -85,11 +85,11 @@
           <p>
             Dai uno slancio al tuo curriculum, apprendi nuovi linguaggi di programmazione con i nostri corsi!<br><br>
           </p>
-          <div class="generic-text-center">
-            <button class="button" onclick="window.open('foto-attivita-professionals.jsp')">VISUALIZZA IMMAGINI PROFESSIONALS</button>
-          </div>
           <br><br>
+          <img class="foto_activity" onclick="window.open('foto-attivita-professionals.jsp')" src="${pageContext.request.contextPath}/resources/img/foto_attivita/professional5.jpeg"  alt="foto programmatore">
         </div>
+
+        <br><br><br>
 
         <div class="single-activity third-activity">
 
@@ -119,11 +119,11 @@
             <li>Utilizzo di dispositivi mobile come smartphone e tablet
           </ul>
           </ul>
-          <div class="generic-text-center">
-            <button class="button" onclick="window.open('foto-attivita-seniors.jsp')">VISUALIZZA IMMAGINI SENIORS</button>
-          </div>
           <br><br>
+          <img class="foto_activity" onclick="window.open('foto-attivita-seniors.jsp')" src="${pageContext.request.contextPath}/resources/img/foto_attivita/anziani1.jpg" alt="foto anziani">
         </div>
+
+        <br><br><br>
       </div>
       <%@ include file="Components/footer.jsp" %>
   </body>

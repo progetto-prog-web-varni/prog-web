@@ -5,7 +5,7 @@
 		<h3>Associazione Tum4World</h3>
 		<h3>Sede Legale: Via Mazzini, 34 Napoli (NA), CAP 13000, Italia</h3>
 	</div>
-	</div>
+
 	<div class="text-center">
 		<h1>Frasi motivazionali</h1>
 		<h3 id="inject_frasi">
@@ -19,20 +19,14 @@
 	<div class="footer-copyright">
 		<div>
 			<h2 class="footer-text-center">SEGUICI</h2>
-			<a href="#!">
-				<img src="${pageContext.request.contextPath}/resources/img/facebook.png" alt="Facebook logo" class="footer-logo">
-			</a>
-			<a href="#!">
-				<img src="${pageContext.request.contextPath}/resources/img/whatsapp.png" alt="WhatsApp logo" class="footer-logo">
-			</a>
-			<a href="#!">
-				<img src="${pageContext.request.contextPath}/resources/img/instagram.png" alt="Instagram logo" class="footer-logo">
-			</a>
+			<img src="${pageContext.request.contextPath}/resources/img/facebook.png" alt="Facebook logo" class="footer-social">
+			<img src="${pageContext.request.contextPath}/resources/img/whatsapp.png" alt="WhatsApp logo" class="footer-social">
+			<img src="${pageContext.request.contextPath}/resources/img/instagram.png" alt="Instagram logo" class="footer-social">
 		</div>
 
 		<div>
 			<div>
-				<img src="${pageContext.request.contextPath}/resources/img/cancelletto.jpg" class="logo-footer">
+				<img src="${pageContext.request.contextPath}/resources/img/logo.png" alt="logo" class="footer-logo">
 			</div>
 			<div>
 				<bold>Tum4World</bold>
@@ -40,7 +34,7 @@
 		</div>
 		<div class="padd-5">
 			<p>Copyright © 2023 Tum4World Corporation<br>
-				<text class="text-firme-footer"> Eventuali firme qui </text>
+				<text class="text-firme-footer"> Joel, Leo, Anna, Andrea, Sara </text>
 			</p>
 		</div>
 	</div>

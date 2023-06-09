@@ -20,6 +20,7 @@
         </script>
 
         <title>Tum4World | Chi Siamo</title>
+        <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/logo.png">
     </head>
 
     <body>

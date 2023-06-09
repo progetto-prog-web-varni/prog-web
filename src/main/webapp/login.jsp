@@ -21,6 +21,7 @@
     </style>
 
     <title>Tum4World | Login</title>
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/logo.png">
   </head>
 
   <body>

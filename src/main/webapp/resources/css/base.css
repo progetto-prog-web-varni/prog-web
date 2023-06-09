@@ -66,3 +66,8 @@ option {
     cursor: pointer;
     border-radius: .7em;
 }
+
+.favicon_icon{
+    height: 16px;
+    width: 16px;
+}

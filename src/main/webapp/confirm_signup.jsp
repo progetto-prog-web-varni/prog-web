@@ -11,6 +11,7 @@
     <%@ include file="resources/css/confirm.css" %>
   </style>
   <title>Registrazione confermata</title>
+  <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/logo.png">
 </head>
 <body>
 <%@ include file="Components/header.jsp" %>

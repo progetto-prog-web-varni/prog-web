@@ -1,7 +1,7 @@
 .container {
     padding-left: 10%;
     padding-right: 10%;
-    padding-top: 25px;
+    padding-top: 30px;
 
     min-width: 60vh;
 
@@ -20,6 +20,7 @@ img {
 }
 
 .img-descrizione {
+    margin-top: 30px;
     align-self: center;
 }
 

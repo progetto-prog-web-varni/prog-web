@@ -5,7 +5,7 @@
   </div>
   <div class="navbar-image">
     <span>
-      <img src="${pageContext.request.contextPath}/resources/img/cancelletto.jpg" width="100" height="80">
+      <img src="${pageContext.request.contextPath}/resources/img/logo.png" alt="logo" width="120" height="120">
     </span>
   </div>
 

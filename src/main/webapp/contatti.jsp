@@ -17,6 +17,7 @@
     </style>
 
     <title>Tum4World | Contatti</title>
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/logo.png">
 </head>
 
 
