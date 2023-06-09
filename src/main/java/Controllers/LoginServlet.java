@@ -63,7 +63,7 @@ public class LoginServlet extends HttpServlet{
 
         // Funzione che fa la query del login e torna un bool per indicare se si può fare il login
         try {
-            if (loginQuery(this.db.getConn(), username, password)) {
+            if (loginQuery(this.db.getConn(), username, password) && hasCookie) {
                 // Recupera il ruolo dell'utente dal database
                 String role = db.getUserRole(this.db.getConn(), username);
 
@@ -78,11 +78,11 @@ public class LoginServlet extends HttpServlet{
 
                 // Effettua il reindirizzamento in base al ruolo, includendo l'identificatore di sessione nell'URL
                 if (role.equals("amministratore")) {
-                    response.sendRedirect("AreaRiservata/amministratore?sessionID=" + sessionID);
+                    response.sendRedirect("AreaRiservata/amministratore;jsessionid=" + sessionID);
                 } else if (role.equals("simpatizzante")) {
-                    response.sendRedirect("AreaRiservata/simpatizzante?sessionID=" + sessionID);
+                    response.sendRedirect("AreaRiservata/simpatizzante;jsessionid=" + sessionID);
                 } else if (role.equals("aderente")) {
-                    response.sendRedirect("AreaRiservata/aderente?sessionID=" + sessionID);
+                    response.sendRedirect("AreaRiservata/aderente;jsessionid=" + sessionID);
                 } else {
                     response.setContentType("application/json;charset=UTF-8");
                     response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);

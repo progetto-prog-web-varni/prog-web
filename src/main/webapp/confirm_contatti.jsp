@@ -9,25 +9,29 @@
     <%@ include file="resources/css/cookies.css" %>
 
     <%@ include file="resources/css/confirm.css" %>
+
+  </style>
   </style>
   <title>Invio confermato</title>
 </head>
 <body>
 <%@ include file="Components/header.jsp" %>
 
-
+<div class="box">
+  <h1 class="title">Contatto inviato</h1>
 <%
   String email = request.getParameter("email");
 
   if (email!=null ) {
 %>
-<p>Grazie per esserti registrato su Tum4World</p>
+
+<p>Grazie per aver inviato la tua mail, verrai ricontattato al più presto da Tum4World</p>
 <%
   } else {
     response.sendRedirect("contatti.jsp");
   }
 %>
-
+</div>
 <%@ include file="Components/footer.jsp" %>
 </body>
 
