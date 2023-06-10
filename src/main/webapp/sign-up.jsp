@@ -23,7 +23,11 @@
   <%@ include file="Components/header.jsp" %>
 
     <!-- do not add action here, resolved in the js -->
-    <form class="centra" >
+    <form class="centra"
+          onsubmit="return submitFunc()"
+          onreset="return resetFunc()"
+          method="POST"
+          action="SignupServlet">
 
       <div id="popup-danger" class="alert">
         <span class="close" onclick="return nascondiPopup()">&times;</span>
@@ -89,8 +93,8 @@
           <small>Formato: 8 caratteri</small>
 
           <div class="buttons">
-            <input value="Submit" class="button" id="reset-button" onclick="submitFunc()">
-            <input value="Reset" class="button" id="submit-button" onclick="resetFunc()">
+            <input type="submit" value="Submit" class="button" id="reset-button" onclick="submitFunc()">
+            <input type="reset" value="Reset" class="button" id="submit-button" onclick="resetFunc()">
           </div>
 
         </div>
@@ -111,11 +115,6 @@
   const password = document.getElementById("password");
   const confirm_password = document.getElementById("confirm_password");
 
-  selection.addEventListener("change", (e) => {
-    console.log("SELECTION change");
-    console.log("SELECTION: ", selection.options[selection.selectedIndex].value);
-  })
-
   const resetFunc = () => {
     fname.value = "";
     lname.value = "";
@@ -130,33 +129,37 @@
 
   const numberOfAttributes = 3;
   const submitFunc = () => {
-
     // get selection input
-    console.log(selection);
-    for(let i=0; i < numberOfAttributes; ++i) {
-      console.log(selection[i]);
+    const option_text = selection.options[selection.selectedIndex].value;
 
-      if(selection.options[i].attributes["selected"] !== undefined){
-        console.log(selection.options[i], "Questa valida");
-      }
+    // regex tests
+    const test_email = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    const test_first_letter = /^(A|E|G|a|e|g)/gm;
+    const test_number_presence = /[0-9]/;
+    const test_major_letter_presence = /[A-Z]/;
+    const test_simbols_presence = /(\?|!|\$)/;
+    const test_selection_options = /(Simpatizzante|Aderente)/gm;
 
-    }
-    // const option_text = selection.options[selection.selectIndex].value;
-
-    if(confirm_password.value !== password.value) return validateNotSuccess("Le password non corrispondono.");
-
+    // Requisiti obbligatori
     if(fname.value === "") return validateNotSuccess("Necessario inserire il proprio nome.");
     if(lname.value === "") return validateNotSuccess("Necessario inserire il proprio cognome.");
     if(birthday.value === "") return validateNotSuccess("Necessario inserire la propria data di nascita.");
     if(email.value === "") return validateNotSuccess("Necessario inserire la propria mail.");
     if(phone.value === "") return validateNotSuccess("Necessario inserire il proprio numero di telefono.");
-    if(option_text === "Simpatizzante" || option_text === "Aderente")
-      return validateNotSuccess("Necessario selezionare il tipo di utente.");
+    // check che sia SOLO 'Aderente' o solo 'Simpatizzante'
+    if(!test_selection_options.test(option_text)){
+      console.log("TIPO DI UTENTE", option_text);
+      return validateNotSuccess("Necessario selezionare il tipo di utente tra Aderente e Simpatizzante.");
+    }
     if(username.value === "") return validateNotSuccess("Necessario selezionare l'utente.");
     if(password.value === "") return validateNotSuccess("Necessario selezionare una password.");
     if(confirm_password.value === "") return validateNotSuccess("Necessario confermare la passsword.");
+    if(confirm_password.value !== password.value) {
+      console.log("PASSWORD: ", password, " \tCONFIRM: ", confirm_password);
+      return validateNotSuccess("Le password non corrispondono");
+    }
 
-    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value))
+    if(!test_email.test(email.value))
       return validateNotSuccess("L'email inserita non e' valida.");
 
     const today = new Date();
@@ -164,7 +167,7 @@
     const inputDate = new Date(birthday.value);
     // getMonth return month, but ZERO BASED (gen = 0)!!
     minDate.setFullYear(today.getFullYear()-18, today.getMonth(), today.getDate());
-    console.log(minDate.toISOString());
+    // console.log(minDate.toISOString());
 
     // check minori =>  getToday - 18 anni
     // vuol dire che ha meno di 18 => il numero della data è maggiore
@@ -174,23 +177,23 @@
     // - lunga 8 caratteri
     if(password.value.length !== 8) return validateNotSuccess("La password deve essere lunga 8 caratteri");
     // - prima lettera (E|G|A|e|g|a)
-    if(/^(A|E|G|a|e|g)/gm.test(password.value))
+    if(!test_first_letter.test(password.value))
       return validateNotSuccess("La password deve iniziare con 'A', 'E', 'G' oppure con 'a', 'e', 'g'");
     // - almeno un carattere numerico
-    if(/[0-9]/.test(password.value)) return validateNotSuccess("La password deve contenere almeno un numero");
+    if(!test_number_presence.test(password.value)) return validateNotSuccess("La password deve contenere almeno un numero");
     // - un carattere maiuscolo
-    if(/[A-Z]/.test(password.value))
+    if(!test_major_letter_presence.test(password.value))
       return validateNotSuccess("La password deve contenere almeno un carattere maiuscolo");
     // - un carattere tra $, !, ?
-    if(/(\?|!|\$)/.test(password.value))
+    if(!test_simbols_presence.test(password.value))
       return validateNotSuccess("La password deve contenere almeno uno tra '?', '!', '$'")
 
     console.log("OK");
-    return false;
-  };
+    return true;
+  }
 
   const validateNotSuccess = (errText) => {
-    document.getElementById("error-text").innerText = errText;
+    document.getElementById("error-text").innerText = "Err. 13000: " + errText;
     emitDanger();
     return false;
   }

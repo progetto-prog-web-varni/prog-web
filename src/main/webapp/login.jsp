@@ -65,7 +65,7 @@
       const username = document.getElementById("username");
       const password = document.getElementById("password");
 
-      if(!validateForm()) { return; }
+      if(!validateForm()) return;
 
       try {
 
