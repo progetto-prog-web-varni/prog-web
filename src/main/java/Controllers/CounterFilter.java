@@ -1,5 +1,6 @@
 package Controllers;
 
+import ConfImporter.DbConf;
 import Utils.Database;
 
 import javax.servlet.*;
@@ -10,7 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@WebFilter("/*")
+@WebFilter(urlPatterns = {"/index.jsp", "/chiSiamo.jsp","/contatti.jsp", "/login.jsp", "/signup.jsp", "/attivita.jsp"})
 public class CounterFilter implements Filter {
 
     private Database db = null;
@@ -19,36 +20,37 @@ public class CounterFilter implements Filter {
         this.db = new Database();
     }
 
-    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
+    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
+            throws ServletException, IOException {
         HttpServletRequest request = (HttpServletRequest) req;
         String pageNameUri = request.getRequestURI();
         String pageName=null;
         switch (pageNameUri){
-            case "/programmazioneWeb_war_exploded/index.jsp":
+            case DbConf.DefStartingPage + "index.jsp":
                 pageName = "Home";
                 break;
-            case "/programmazioneWeb_war_exploded/chiSiamo.jsp":
+            case DbConf.DefStartingPage + "chiSiamo.jsp":
                 pageName = "Chi_Siamo";
                 break;
-            case "/programmazioneWeb_war_exploded/attivita.jsp":
+            case DbConf.DefStartingPage + "attivita.jsp":
                 pageName = "Attivita";
                 break;
-            case "/programmazioneWeb_war_exploded/contatti.jsp":
+            case DbConf.DefStartingPage + "contatti.jsp":
                 pageName = "Contatti";
                 break;
-            case "/programmazioneWeb_war_exploded/sign-up.jsp":
+            case DbConf.DefStartingPage + "sign-up.jsp":
                 pageName = "Signup";
                 break;
-            case "/programmazioneWeb_war_exploded/login.jsp":
+            case DbConf.DefStartingPage + "login.jsp":
                 pageName = "Login";
                 break;
+            default:
+                System.out.println("Default: "  + pageNameUri);
         }
-
 
         if(pageName!=null){
             increaseCounter(pageName);
         }
-
 
         // Passa la richiesta al prossimo filtro o servlet
         chain.doFilter(req, resp);

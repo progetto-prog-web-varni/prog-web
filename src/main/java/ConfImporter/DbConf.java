@@ -8,6 +8,8 @@ public class DbConf {
     public String password = "pw";
 
     public boolean useRealDB = true;
+
+    public static final String DefStartingPage = "/prog_web_war/";
 }
 
 
