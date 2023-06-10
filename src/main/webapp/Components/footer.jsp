@@ -44,59 +44,59 @@
 	const frasi = [
 		{
 			"quote": "La vita non e' basata sul prendere e avere, e' dare e essere",
-			"author": "Kevin Kruse"
+			"author": "Joel"
 		},
 		{
 			"quote": "Sforzarsi non deve essere un successo, ma piuttosto un valore",
-			"author": "Albert Einstein"
+			"author": "Joel"
 		},
 		{
 			"quote": "Due strade che divergono in un bosco, e io prendo quella meno trafficata, e questo e' quello che ha fatto la differenza",
-			"author": "Robert Frost"
+			"author": "Leo"
 		},
 		{
 			"quote": "Devo attribuire il mio successo a questo: non mi sono mai nascosto dietro scuse",
-			"author": "Florence Nightingale"
+			"author": "Leo"
 		},
 		{
 			"quote": "Hai il 100% di possibilita' di mancare il bersaglio, se neanche spari",
-			"author": "Wayne Gretzky"
+			"author": "Anna"
 		},
 		{
 			"quote": "La decisione piu' difficile è di agire, il resto e' semplice tenacia.",
-			"author": "Amelia Earhart"
+			"author": "Anna"
 		},
 		{
 			"quote": "Ogni strike mi porta sempre piu' vicino al prossimo 'home run'",
-			"author": "Babe Ruth"
+			"author": "Andrea"
 		},
 		{
 			"quote": "La definizione di uno scopo è il punto di partenza per un risultato",
-			"author": "W. Clement Stone"
+			"author": "Andrea"
 		},
 		{
 			"quote": "La vita e' quella cosa che accade mentre sei troppo impegnato a fare dei piani.",
-			"author": "John Lennon"
+			"author": "Sara"
 		},
 		{
 			"quote":  "Diventiamo quello che pensiamo.",
-			"author": "Earl Nightingale"
+			"author": "Sara"
 		},
 		{
 			"quote":  "Fra vent'anni, sarai molto piu' deluso dalle cose che non hai fatto, piuttosto che da quelle che hai fatto, quindi apri le vele, viaggia lontano dai porti sicuri, prendi il buon vento. Esplora, Sogna e Scopri.",
-			"author": "Mark Twain"
+			"author": "Joel"
 		},
 		{
 			"quote": "La vita e' al 10% quello che mi succede e il 90% come reagisco.",
-			"author": "Charles Swindoll"
+			"author": "Leo"
 		},
 		{
 			"quote": "La cosa piu' comune per il quale le persone persono potere e' pensare di non averne.",
-			"author": "Alice Walker"
+			"author": "Anna"
 		},
 		{
 			"quote": "La mentalita' e' tutto. Quello a cui pensi, lo diventi.",
-			"author": "Buddha"
+			"author": "Andrea"
 		},
 	];
 	const element_to_inject = document.getElementById('inject_frasi');
@@ -109,7 +109,8 @@
 	window.setInterval(() => {
 		element_to_inject.innerText = frasi[counter]["quote"];
 		author_to_inject.innerText = frasi[counter]["author"];
-		counter++;
+		if(counter >= frasi.length) counter = 0;
+		else counter++;
 	}, interval);
 
 </script>

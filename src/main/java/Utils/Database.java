@@ -7,10 +7,7 @@ import Models.Payment;
 import Models.User;
 
 import java.io.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class Database {
@@ -28,7 +25,7 @@ public class Database {
     Connection conn = null;
 
     public Database() {
-        if(dbConf.useRealDB){
+        if(!dbConf.useRealDB){
             try {
                 Class.forName("org.apache.derby.jdbc.ClientDriver");
                 this.conn = DriverManager.getConnection(dbConf.dbURL, dbConf.user, dbConf.password);
@@ -175,7 +172,7 @@ public class Database {
         }
 
         return true;
-    };
+    }
 
     // To read files for fakedb.
     private InputStream getFileAsIOStream(final String fileName){
@@ -220,7 +217,8 @@ public class Database {
         }
     }
 
-    public void createOrUpdateCounter(Connection conn, String pageName) throws SQLException{
+    // Return true/false for state
+    public boolean createOrUpdateCounter(Connection conn, String pageName) throws SQLException{
         // Fake DB
         if(!dbConf.useRealDB) {
             synchronized (this) {
@@ -231,31 +229,37 @@ public class Database {
                 }
                 Counter nc = new Counter(pageName);
                 counterArray.add(nc);
+                return true;
             }
         }
         // Default
-        /*
-        TODO: add this
         try {
-            PreparedStatement checkStmt = conn.prepareStatement("SELECT * FROM COUNTERS WHERE PAGENAME = ?");
+            PreparedStatement checkStmt = conn.prepareStatement("SELECT * FROM COUNTERS WHERE PAGENAME = ?;");
             checkStmt.setString(1, pageName);
-            boolean recordExists = checkStmt.executeQuery().next();
+            ResultSet resultSet = checkStmt.executeQuery();
             checkStmt.close();
 
-            if(recordExists) {
+            if(resultSet.next()) {
                 // add 1 to the returned counter
-                PreparedStatement checkStmt = conn.prepareStatement("UPDATE * FROM COUNTERS WHERE PAGENAME = ?");
-                checkStmt.setString(1, pageName);
-                boolean recordExists = checkStmt.executeQuery().next();
-                checkStmt.close();
+                PreparedStatement ncheckStmt = conn.prepareStatement("UPDATE COUNTERS SET HITS = ? WHERE PAGENAME = ?;");
+                System.out.println("TO TEST: " + resultSet.getInt("hits")+1);
+                ncheckStmt.setInt(1, resultSet.getInt("hits")+1);
+                ncheckStmt.setString(2, pageName);
+                boolean recordAdded = ncheckStmt.executeQuery().next();
+                ncheckStmt.close();
+                return recordAdded;
+            } else {
+                PreparedStatement ncheckStmt = conn.prepareStatement("INSERT INTO COUNTERS (PAGENAME, HITS) VALUES (?, ?);");
+                ncheckStmt.setInt(2, 1);
+                ncheckStmt.setString(1, pageName);
+                boolean recordAdded = ncheckStmt.executeQuery().next();
+                ncheckStmt.close();
+                return recordAdded;
             }
-            // Return true/false
-            return recordExists;
-
         }catch (SQLException ex) {
             ex.printStackTrace();
             return false;
-        }*/
+        }
     }
 
     public String getAllCounter(Connection conn) {
@@ -282,23 +286,28 @@ public class Database {
             }
 
         }
-
-        return "";
-        /* Default
-        TODO: capire anche questa cosa
+        // Default
         try {
-            PreparedStatement checkStmt = conn.prepareStatement("SELECT * FROM USERS WHERE NAME = ? AND SURNAME = ?");
-            checkStmt.setString(1, username);
-            checkStmt.setString(2, password);
-            boolean recordExists = checkStmt.executeQuery().next();
+            PreparedStatement checkStmt = conn.prepareStatement("SELECT * FROM COUNTERS;");
+            ResultSet recordSet = checkStmt.executeQuery();
+
+            StringBuffer s = new StringBuffer();
+            while (recordSet.next()) {
+                s.append("[\"")
+                        .append(recordSet.getString("PAGENAME"))
+                        .append("\", ")
+                        .append(recordSet.getInt("HITS"))
+                        .append("],");
+            }
             checkStmt.close();
+            s.append("]");
 
             // Return true/false
-            return recordExists;
+            return s.toString();
 
         }catch (SQLException ex) {
             ex.printStackTrace();
-            return false;
-        }*/
+            return "[\"ERROR\", 1]";
+        }
     }
 }

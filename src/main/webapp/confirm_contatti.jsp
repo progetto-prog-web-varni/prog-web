@@ -22,7 +22,7 @@
 
   if (email!=null ) {
 %>
-<p>Grazie per esserti registrato su Tum4World</p>
+<h1 class="generic-text-center">Grazie per esserti registrato su Tum4World</h1>
 <%
   } else {
     response.sendRedirect("contatti.jsp");

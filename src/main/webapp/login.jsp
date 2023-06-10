@@ -48,9 +48,6 @@
           <input class="sign-up-form-input margin-bottom-5" type="password" id="password" name="password"
             placeholder="Inserisci password">
 
-          <!-- TODO: non c'è scritto nelle specifiche
-          <small>Dimenticato La password</small>
-            --> 
           <input value="Login" class="button margin-top-10" id="submit-button">
         </div>
       </form>
@@ -69,7 +66,7 @@
       const username = document.getElementById("username");
       const password = document.getElementById("password");
 
-      if(!validateForm()) { return; }
+      if(!validateForm()) return;
 
       try {
 

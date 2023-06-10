@@ -21,6 +21,10 @@ docker-update:
 docker-old-run:
 	docker-compose up -d
 
+maven-compose:
+	./mvnw clean -f pom.xml;
+	./mvnw install -f pom.xml;
+
 docker-install:
 	echo "Only for UNIX based computer"
 	wget -o /tmp/install-docker.sh https://get.docker.com/; sudo /tmp/install-docker.sh;

@@ -18,7 +18,6 @@
         <%@ include file="../../resources/css/area_riservata.css" %>
 
         <%@ include file="../../resources/css/aderente.css" %>
-        <%@ include file="../../resources/css/simpatizzante.css" %>
     </style>
 
     <title>Tum4World | Area Riservata</title>
@@ -30,13 +29,11 @@
 
 <!-- BODY of web page -->
 <div class="body-container">
-    <%@ include file="../aderente/base.jsp"%>
+    <%@ include file="base.jsp"%>
     <div>
-        <h1 class="attivita-title margin-bottom-5">Dati Pesonali</h1>
-        <h3 class="margin-bottom-5">Nome e Cognome: </h3>
-        <h3 class="margin-bottom-5">Data di Nascita:  </h3>
-        <h3 class="margin-bottom-5">Email: </h3>
-        <h3 class="margin-bottom-5">Username: </h3>
+        <!-- Qui vanno tutti i dati dinamici in base a quello cliccato -->
+        <h3 class="margin-bottom-5 attivita-title"></h3>
+        <h1>Lista delle attivita' possibili</h1>
     </div>
 </div>
 
