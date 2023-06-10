@@ -23,14 +23,7 @@
   <%@ include file="Components/header.jsp" %>
 
     <!-- do not add action here, resolved in the js -->
-    <form
-            class="centra"
-            name="signup-form"
-            onreset="return resetFunc()"
-            onsubmit="return submitFunc()"
-            action="SignupServlet"
-            method="POST"
-    >
+    <form class="centra" >
 
       <div id="popup-danger" class="alert">
         <span class="close" onclick="return nascondiPopup()">&times;</span>
@@ -74,9 +67,9 @@
           <h3>Preferenza iscrizione</h3>
           <fieldset class="border-0 sign-up-form-selection" >
             <select name="membershipType" id="selection-input">
+              <option value="Nessuno">Nessuno</option>
               <option value="Simpatizzante">Simpatizzante</option>
               <option value="Aderente">Aderente</option>
-              <option value="Nessuno" selected="selected">Nessuno</option>
             </select>
           </fieldset>
 
@@ -95,13 +88,9 @@
             placeholder="Conferma password">
           <small>Formato: 8 caratteri</small>
 
-          <!-- (la password deve essere
-lunga 8 caratteri, deve contenere la prima lettera dei nomi propri di ciascuno di voi, almeno
-un carattere numerico, un carattere maiuscolo e un carattere tra $, ! e ?), -->
-
           <div class="buttons">
-            <input type="submit" value="Submit" class="button" id="reset-button">
-            <input type="reset" value="Reset" class="button" id="submit-button">
+            <input value="Submit" class="button" id="reset-button" onclick="submitFunc()">
+            <input value="Reset" class="button" id="submit-button" onclick="resetFunc()">
           </div>
 
         </div>
@@ -122,6 +111,11 @@ un carattere numerico, un carattere maiuscolo e un carattere tra $, ! e ?), -->
   const password = document.getElementById("password");
   const confirm_password = document.getElementById("confirm_password");
 
+  selection.addEventListener("change", (e) => {
+    console.log("SELECTION change");
+    console.log("SELECTION: ", selection.options[selection.selectedIndex].value);
+  })
+
   const resetFunc = () => {
     fname.value = "";
     lname.value = "";
@@ -134,10 +128,20 @@ un carattere numerico, un carattere maiuscolo e un carattere tra $, ! e ?), -->
     confirm_password.value = "";
   };
 
+  const numberOfAttributes = 3;
   const submitFunc = () => {
 
     // get selection input
-    const option_text = selection.options[selection.selectIndex].value;
+    console.log(selection);
+    for(let i=0; i < numberOfAttributes; ++i) {
+      console.log(selection[i]);
+
+      if(selection.options[i].attributes["selected"] !== undefined){
+        console.log(selection.options[i], "Questa valida");
+      }
+
+    }
+    // const option_text = selection.options[selection.selectIndex].value;
 
     if(confirm_password.value !== password.value) return validateNotSuccess("Le password non corrispondono.");
 
@@ -181,12 +185,9 @@ un carattere numerico, un carattere maiuscolo e un carattere tra $, ! e ?), -->
     if(/(\?|!|\$)/.test(password.value))
       return validateNotSuccess("La password deve contenere almeno uno tra '?', '!', '$'")
 
+    console.log("OK");
     return false;
   };
-
-  const validateSuccess = () => {
-    return true;
-  }
 
   const validateNotSuccess = (errText) => {
     document.getElementById("error-text").innerText = errText;
@@ -198,7 +199,10 @@ un carattere numerico, un carattere maiuscolo e un carattere tra $, ! e ?), -->
 
   const nascondiPopup = () => document.getElementById("popup-danger").style.display = "none";
 
+  // -----
   // Cookies
+  // -----
+
   document.addEventListener("DOMContentLoaded", function() {
     var acceptBtn = document.getElementById("accept-btn");
     var rejectBtn = document.getElementById("reject-btn");

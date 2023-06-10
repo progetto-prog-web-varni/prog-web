@@ -115,7 +115,8 @@
 	window.setInterval(() => {
 		element_to_inject.innerText = frasi[counter]["quote"];
 		author_to_inject.innerText = frasi[counter]["author"];
-		counter++;
+		if(counter >= frasi.length) counter = 0;
+		else counter++;
 	}, interval);
 
 </script>
