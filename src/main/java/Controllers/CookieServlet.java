@@ -15,7 +15,7 @@ public class CookieServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         Cookie cookie = new Cookie(CookieConf.CookieName, "");
-        cookie.setMaxAge(60);
+        cookie.setMaxAge(300);
         cookie.setPath("/");
         response.addCookie(cookie);
     }

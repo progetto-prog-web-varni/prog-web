@@ -34,7 +34,7 @@ public class UnsubscribeServlet extends HttpServlet {
             if (affectedRows > 0) {
                 //vai al login se ti ho tolto
                 session.invalidate();
-                response.sendRedirect(request.getContextPath() + "/login.jsp");
+                response.sendRedirect("login.jsp");
                 return;
             } else {
                 //errore

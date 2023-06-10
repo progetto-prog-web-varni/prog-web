@@ -1,6 +1,6 @@
 #cookie-banner {
     position: fixed;
-    left: 0;
+    right: 0;
     top: calc(100vh - 100px);
     transform: translateY(-50%);
     width: 300px;

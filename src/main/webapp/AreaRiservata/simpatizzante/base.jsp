@@ -5,4 +5,11 @@
         <h4><a href="${pageContext.request.contextPath}/AreaRiservata/comune/iscrizione_attivita.jsp">Iscrizione Attivita' dell'associazione</a></h4>
         <h4><a href="${pageContext.request.contextPath}/AreaRiservata/comune/cancella_iscrizione.jsp">Cancella Iscrizione Al sito</a></h4>
     </div>
+
+    <!--pulsante logout-->
+    <div class="logout">
+        <form action="../../LogoutServlet" method="get">
+            <button class="button "type="submit"> Logout </button>
+        </form>
+    </div>
 </div>

@@ -7,12 +7,21 @@
         <h4><a href="${pageContext.request.contextPath}/AreaRiservata/comune/cancella_iscrizione.jsp;jsessionid=<%= session.getId() %>">Cancella Iscrizione Al sito</a></h4>
 
         <h4>Esegui Donazione</h4>
-        <div class="ris-esegui-donazione">
+        <div class="esegui-donazione">
             <form action="../../DonationServlet" method="post">
                 <input type="number" name="amount" id="amount" min="0.00" step="0.01" placeholder="0.00 EUR" class="donazione-number-input" />
                 <input type="submit" value="Manda" class="button" />
             </form>
         </div>
+
+        <!--pulsante logout-->
+        <div class="logout">
+            <form action="../../LogoutServlet" method="get">
+                <button class="button "type="submit"> Logout </button>
+            </form>
+        </div>
+
+
     </div>
 </div>
 
