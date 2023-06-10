@@ -10,20 +10,69 @@ import javax.servlet.http.*;
 import java.awt.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.*;
 
 import static Utils.Database.loginQuery;
 
 @WebServlet(name = "SignupServlet", value = "/SignupServlet")
 public class SignupServlet extends HttpServlet{
 
-    Database db;
-
-    public SignupServlet() { super(); }
-
-    @Override
-    public void init() throws ServletException {
-        super.init();
+    Database db=null;
+    public void init() {
         this.db = new Database();
+    }
+
+
+    protected boolean check_username(HttpServletResponse response, String username) throws IOException{
+        try{
+
+            PreparedStatement checkStmt = db.getConn().prepareStatement("SELECT USERNAME FROM USERS WHERE USERNAME=?");
+            checkStmt.setString(1, username);
+
+            boolean query_result = checkStmt.executeQuery().next();
+
+            if(query_result){
+                System.out.println("username occupato");
+                checkStmt.close();
+                return true;                                    // trovata una corrispondenza.
+            }else{
+                System.out.println("prosegui");
+                checkStmt.close();
+                return false;                       // non è stata trovata nessuna corrispondenza.
+            }
+        }catch(SQLException | NullPointerException ex){
+            System.out.println("check user wrong");
+            System.out.println(ex);
+            return false;
+        }
+    }
+
+    protected void new_entry_db(HttpServletResponse response, String fname, String lname, String birthday, String email, String membershipType, String username, String password){
+        try{
+
+            PreparedStatement checkStmt = db.getConn().prepareStatement("INSERT INTO USERS (NAME, SURNAME, BIRTHDATE, EMAIL, USERNAME, PASSWORD, ROLE) VALUES (?,?,?,?,?,?,?)");
+            checkStmt.setString(1, fname);
+            checkStmt.setString(2, lname);
+            checkStmt.setString(3, birthday);
+            checkStmt.setString(4, email);
+            checkStmt.setString(5, username);
+            checkStmt.setString(6, password);
+            checkStmt.setString(7, membershipType);
+
+
+            int risultato=checkStmt.executeUpdate();
+            //stmt.executeQuery(entry_db);
+            System.out.println("sei nell'inserimento");
+            System.out.println(risultato);
+            System.out.println(checkStmt);
+
+            checkStmt.close();
+        }catch(SQLException | NullPointerException ex){
+            System.out.println("sbagliato");
+            System.out.println(ex);
+
+            // response.setStatus(__immetere pagina di errore_);
+        }
     }
 
     private String createResponse(String success, String message){
@@ -74,7 +123,13 @@ public class SignupServlet extends HttpServlet{
                         " Password: " + password +
                         " Conferma Password: " + confirm_password);
 
-        // SE tutto ok, si può fare:
-        response.sendRedirect("login.jsp");
+        boolean OK=check_username(response, username);
+        System.out.println(OK);
+        if(OK){
+             response.sendRedirect("index.jsp");
+        }else{
+            new_entry_db(response, fname, lname, birthday, email, membershipType, username, password);
+            response.sendRedirect("confirm_signup.jsp");       //NON SO IL NOME VERO! (EDDIE PAGE NAME)
+        }
     }
 }
