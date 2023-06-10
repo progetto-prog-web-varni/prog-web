@@ -18,19 +18,10 @@
 <div class="box">
   <h1 class="title">Registrazione confermata</h1>
   <%-- chcek data --%>
-  <%
-    String name = request.getParameter("fname");
-    String surname = request.getParameter("lname");
 
-    if (name != null && surname != null) {
-  %>
-  <p>Grazie <%= name %> <%= surname %> per esserti registrato su Tum4World</p>
+  <p>Grazie per esserti registrato su Tum4World</p>
   <p>Prosegui nella tua area riservata tramite la sezione <a href="login.jsp">Login</a></p>
-  <%
-    } else {
-      response.sendRedirect("sign-up.jsp");
-    }
-  %>
+
 </div>
 
 <%@ include file="Components/footer.jsp" %>
