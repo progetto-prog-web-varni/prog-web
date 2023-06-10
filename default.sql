@@ -11,7 +11,7 @@ CREATE TABLE USERS (
 
 INSERT INTO USERS (NAME, SURNAME, BIRTHDATE, EMAIL, USERNAME, PASSWORD, ROLE)
 VALUES
-    ('Sara', 'Barbi', '1990-01-01', 'sara.barbi@example.com', 'sarabarbi', '13Admin!', 'amministratore'),
+    ('Sara', 'Barbi', '1990-01-01', 'sara.barbi@example.com', 'admin', '13Admin!', 'amministratore'),
     ('Emma', 'Rossi', '1992-05-15', 'emma.rossi@example.com', 'emmarossi', 'Age0002!', 'simpatizzante'),
     ('Giulia', 'Bianchi', '1985-09-20', 'giulia.bianchi@example.com', 'giuliabianchi', 'Age0003!', 'simpatizzante'),
     ('Gaia', 'Olivieri', '1998-03-10', 'gaia.olivieri@example.com', 'gaiaolivieri', 'Age0004!', 'simpatizzante'),
