@@ -11,6 +11,7 @@
     <%@ include file="resources/css/confirm.css" %>
   </style>
   <title>Registrazione confermata</title>
+  <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/logo.png">
 </head>
 <body>
 <%@ include file="Components/header.jsp" %>
@@ -24,8 +25,8 @@
 
     if (name != null && surname != null) {
   %>
-  <p>Grazie <%= name %> <%= surname %> per esserti registrato su Tum4World</p>
-  <p>Prosegui nella tua area riservata tramite la sezione <a href="login.jsp">Login</a></p>
+  <h1 class="generic-text-center">Grazie <%= name %> <%= surname %> per esserti registrato su Tum4World</h1>
+  <p class="generic-text-center">Prosegui nella tua area riservata tramite la sezione <a href="login.jsp">Login</a></p>
   <%
     } else {
       response.sendRedirect("sign-up.jsp");

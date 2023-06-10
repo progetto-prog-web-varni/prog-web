@@ -19,6 +19,7 @@
 
 
         <title>Tum4World | HomePage</title>
+        <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/logo.png">
     </head>
 
 
@@ -27,8 +28,7 @@
             <div class="container">
                 <div class="body-item">
                     <figure>
-                        <img class="img-descrizione"
-                            src="https://wips.plug.it/cips/tecnologia/cms/2017/11/sicurezza-informatica-2018.jpg" />
+                        <img class="img-descrizione" src="https://wips.plug.it/cips/tecnologia/cms/2017/11/sicurezza-informatica-2018.jpg" />
                         <figcaption>
                             <p>Innovation to improve your life</p>
                         </figcaption>

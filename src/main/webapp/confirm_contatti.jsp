@@ -13,6 +13,7 @@
   </style>
   </style>
   <title>Invio confermato</title>
+  <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/logo.png">
 </head>
 <body>
 <%@ include file="Components/header.jsp" %>
@@ -26,6 +27,7 @@
 %>
 
 <p>Grazie per aver inviato la tua mail, verrai ricontattato al più presto da Tum4World</p>
+
 <%
   } else {
     response.sendRedirect("contatti.jsp");

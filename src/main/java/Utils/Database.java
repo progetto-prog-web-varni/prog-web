@@ -25,7 +25,7 @@ public class Database {
     Connection conn = null;
 
     public Database() {
-        if(dbConf.useRealDB){
+        if(!dbConf.useRealDB){
             try {
                 Class.forName("org.apache.derby.jdbc.ClientDriver");
                 this.conn = DriverManager.getConnection(dbConf.dbURL, dbConf.user, dbConf.password);
@@ -172,7 +172,7 @@ public class Database {
         }
 
         return true;
-    };
+    }
 
     // To read files for fakedb.
     private InputStream getFileAsIOStream(final String fileName){
@@ -309,7 +309,6 @@ public class Database {
             }
 
         }
-
         try {
             PreparedStatement checkStmt = conn.prepareStatement("SELECT * FROM COUNTERS;");
             ResultSet recordSet = checkStmt.executeQuery();
@@ -323,12 +322,10 @@ public class Database {
                         .append("],");
             }
             checkStmt.close();
+            s.append("]");
 
-            // Remove the trailing comma if it exists
-            if (s.length() > 0) {
-                s.deleteCharAt(s.length() - 1);
-            }
-            return "[" + s.toString() + "]";
+            // Return true/false
+            return s.toString();
 
         }catch (SQLException ex) {
             ex.printStackTrace();

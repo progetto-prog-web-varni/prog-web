@@ -15,6 +15,7 @@
     </style>
 
     <title>Tum4World | Foto attività professionals </title>
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/logo.png">
 </head>
 
 <body>
@@ -24,20 +25,25 @@
         <div class="title">
             <br>
             <h2 class="attivita-title">Immagini Attività Tum4World for Professionals</h2>
-            <br>
         </div>
 
-        <div class="centered img1">
-            <img src="${pageContext.request.contextPath}/resources/img/foto_attivita/professional1.jpeg"  alt="foto programmatore">
-        </div>
+        <p class="description">
+            Questa attività consiste in una serie di 15 lezioni incentrate sull'informatica applicata alla programmazione web e allo sviluppo di app mobile.<br>
+            L'obiettivo del corso è la comprensione degli elementi di base della programmazione web con un focus iniziale sul front-end,
+            quindi tutta la parte visibile all'utente di un programma e con cui egli può interagire, tipicamente un'interfaccia utente;
+            e poi tutta la parte "invisibile" al visitatore: il back-end.<br>
+            Con questo si intende, invece, tutta quella parte dietro le quinte del sito che permette l'effettivo funzionamento di queste interazioni.
+            Si tratta quindi d'interagire con database, Servlet, gestione dei dati, sicurezza, ...<br>
+            I linguaggi di programmazione affrontati saranno quindi html, css, javascript e java.<br>
+            La programmazione web è, oggigiorno, molto importante e richiesta in ogni realtà lavorativa. <br>
+            Quale azienda, grande o piccola che sia, non ha un sito web per farsi pubblicità o per vendere i propri prodotti online!<br>
+            Se sei interessato a questi temi, questo è il corso giusto per te!<br><br>
+            Qui sotto sono riportate altre immagini relative a questa attività:
+        </p>
 
-        <div class="centered img2" >
-            <img src="${pageContext.request.contextPath}/resources/img/foto_attivita/professional2.jpeg"  alt="foto programmatore">
-        </div>
-
-        <div class="centered img3" >
-            <img src="${pageContext.request.contextPath}/resources/img/foto_attivita/professional3.jpeg"  alt="foto programmatore">
-        </div>
+        <img class="img img1" src="${pageContext.request.contextPath}/resources/img/foto_attivita/professional5.jpeg"  alt="foto programmatore">
+        <img class="img img2" src="${pageContext.request.contextPath}/resources/img/foto_attivita/professional2.jpeg"  alt="foto programmatore">
+        <img class="img img3" src="${pageContext.request.contextPath}/resources/img/foto_attivita/professional6.jpeg"  alt="foto programmatore">
     </div>
 
     <%@ include file="Components/footer.jsp" %>

@@ -15,7 +15,6 @@
 
         <%@ include file="../../resources/css/area_riservata.css" %>
 
-        <%@ include file="../../resources/css/aderente.css" %>
         <%@ include file="../../resources/css/simpatizzante.css" %>
     </style>
 
@@ -28,7 +27,7 @@
 
 <!-- BODY of web page -->
 <div class="body-container">
-    <%@ include file="../aderente/base.jsp"%>
+    <%@ include file="base.jsp"%>
     <div>
         <!-- Qui vanno tutti i dati dinamici in base a quello cliccato -->
         <button class="button" onclick="toggleInfo()">Visualizza Informazioni</button>

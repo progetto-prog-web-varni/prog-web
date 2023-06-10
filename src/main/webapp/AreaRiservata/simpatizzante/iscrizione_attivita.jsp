@@ -17,7 +17,7 @@
 
         <%@ include file="../../resources/css/area_riservata.css" %>
 
-        <%@ include file="../../resources/css/amministratore.css" %>
+        <%@ include file="../../resources/css/simpatizzante.css" %>
     </style>
 
     <title>Tum4World | Area Riservata</title>
@@ -29,7 +29,7 @@
 
 <!-- BODY of web page -->
 <div class="body-container">
-    <%@ include file="../aderente/base.jsp"%>
+    <%@ include file="base.jsp"%>
     <div>
         <!-- Qui vanno tutti i dati dinamici in base a quello cliccato -->
         <h3 class="margin-bottom-5 attivita-title"></h3>

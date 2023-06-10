@@ -37,9 +37,9 @@
     <%@ include file="base.jsp"%>
     <div>
         <!-- Qui vanno tutti i dati dinamici in base a quello cliccato -->
-        <h1>Second</h1>
-        <button class="button" onclick="loadPaymentData()">Carica dati</button>
-        <div id="chartContainer" style="display: none;"></div>
+        <h1>Visualizza Donazioni</h1>
+        <button onclick="loadPaymentData()" class="">Carica dati</button>
+        <div id="chartContainer" style="display: none;" ></div>
     </div>
 </div>
 

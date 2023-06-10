@@ -40,7 +40,7 @@
         <!-- Qui vanno tutti i dati dinamici in base a quello cliccato -->
         <h1>Analytics sito</h1>
         <button class="button" onclick="loadPagesData()">Carica dati</button>
-        <div id="chartContainer" style="display: none;"></div>
+        <div id="pageChartContainer" style="display: none;"></div>
     </div>
 </div>
 
@@ -71,8 +71,6 @@
             }]
         });
     }
-
-
 
     function loadPagesData() {
         var xhr = new XMLHttpRequest();
