@@ -28,10 +28,20 @@
           method="POST"
           action="SignupServlet">
 
-      <div id="popup-danger" class="alert">
+      <%
+        String err = request.getParameter("error");
+        if(err == null) {
+      %>
+      <div id="popup-danger" class="alert" hidden>
         <span class="close" onclick="return nascondiPopup()">&times;</span>
         <span id="error-text"><strong>Danger!</strong> Enter a valid mail!</span>
       </div>
+      <% } else { %>
+      <div class="alert-get-error">
+        <span class="close" onclick="return nascondiPopup()">&times;</span>
+        <span><strong>Danger!</strong><% out.print(err); %></span>
+      </div>
+      <% } %>
 
       <h2>Aderisci come <i>Simpatizzante</i> o <i>Aderente</i></h2>
 

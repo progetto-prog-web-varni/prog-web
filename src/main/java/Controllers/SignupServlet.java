@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.sql.*;
 
 @WebServlet(name = "SignupServlet", value = "/SignupServlet")
@@ -115,9 +116,10 @@ public class SignupServlet extends HttpServlet{
                         " Password: " + password +
                         " Conferma Password: " + confirm_password);
 
+        // true => username già presente
         boolean OK=check_username(response, username);
         if(OK){
-             response.sendRedirect("index.jsp");
+            response.sendRedirect("sign-up.jsp?error=" + URLEncoder.encode("Err 13: Username già presente!", "UTF-8"));
         }else{
             new_entry_db(fname, lname, birthday, email, membershipType, username, password);
             response.sendRedirect("confirm_signup.jsp");

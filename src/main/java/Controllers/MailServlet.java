@@ -44,7 +44,7 @@ public class MailServlet extends HttpServlet {
             feedback = request.getParameter("feedback");
         } catch (NullPointerException ex) {
             Log.PrintLog(new Log("Parametri della richiesta no validi.", "MailServlet"));
-            response.sendRedirect("confirm_contatti.jsp?error=" + URLEncoder.encode("Parametri non inseriti correttamente"));
+            response.sendRedirect("confirm_contatti.jsp?error=" + URLEncoder.encode("Parametri non inseriti correttamente", "UTF-8"));
             return;
         }
 
