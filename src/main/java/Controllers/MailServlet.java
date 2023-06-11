@@ -71,7 +71,7 @@ public class MailServlet extends HttpServlet {
 
     public void sendHtmlEmail(String host, String port, final String userName, final String password,
                               String toAddress, String subject, String message)
-            throws AddressException, MessagingException {
+            throws MessagingException {
 
         // setto le proprietà del server SMTP
         Properties properties = new Properties();

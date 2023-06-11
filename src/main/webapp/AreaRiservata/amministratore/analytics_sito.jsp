@@ -1,5 +1,5 @@
 <%@ page import="Utils.Database" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 
 <%-- Check if login, se no redirect --%>
 <%-- Check che tipo di utente è --%>
@@ -75,13 +75,13 @@
 
 
     function loadPagesData() {
-        var xhr = new XMLHttpRequest();
+        let xhr = new XMLHttpRequest();
         xhr.open("GET", "../../PagesServlet", true);
         xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
         xhr.onreadystatechange = function() {
             if (xhr.readyState === 4 && xhr.status === 200) {
-                var data = JSON.parse(xhr.responseText);
+                let data = JSON.parse(xhr.responseText);
                 console.log(data);
                 createPageChart2(data);
                 document.getElementById('chartContainer').style.display = 'block';

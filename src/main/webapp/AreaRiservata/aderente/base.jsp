@@ -3,9 +3,10 @@
 <div class="simp-container-item">
     <h1 class="ris-menu-title">Menu Aderente</h1>
     <div>
-        <h4><a href="${pageContext.request.contextPath}/AreaRiservata/aderente/dati_personali.jsp;jsessionid=<%= session.getId() %>">Visualizza Dati Personali</a></h4>
-        <h4><a href="${pageContext.request.contextPath}/AreaRiservata/aderente/iscrizione_attivita.jsp;jsessionid=<%= session.getId() %>">Iscrizione Attivita' dell'associazione</a></h4>
-        <h4><a href="${pageContext.request.contextPath}/AreaRiservata/aderente/cancella_iscrizione.jsp;jsessionid=<%= session.getId() %>">Cancella Iscrizione Al sito</a></h4>
+
+        <h4><a href="<% response.encodeURL(request.getContextPath() + "/AreaRiservata/aderente/dati_personali.jsp"); %>">Visualizza Dati Personali</a></h4>
+        <h4><a href="<% response.encodeURL(request.getContextPath() + "/AreaRiservata/aderente/iscrizione_attivita.jsp"); %>">Visualizza Dati Personali</a></h4>
+        <h4><a href="<% response.encodeURL(request.getContextPath() + "/AreaRiservata/aderente/cancella_iscrizione.jsp"); %>">Visualizza Dati Personali</a></h4>
 
         <h4>Esegui Donazione</h4>
         <div class="esegui-donazione">
@@ -26,7 +27,7 @@
 </div>
 
 <%
-    String message = (String) request.getParameter("message");
+    String message = request.getParameter("message");
     if (message != null && !message.isEmpty()) {
         if (message.equals("Donazione riuscita")) {
 %>
@@ -67,33 +68,6 @@
         <button onclick="closePopup()">Chiudi</button>
     </div>
 </div>
-
-<style>
-    /* Stile per il popup */
-    #custom-popup {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        display: none;
-        align-items: center;
-        justify-content: center;
-        background-color: rgba(0, 0, 0, 0.5);
-    }
-
-    .popup-content {
-        background-color: #c3e6c9;
-        padding: 20px;
-        border-radius: 10px;
-        text-align: center;
-    }
-
-    #popup-message {
-        font-size: 18px;
-        color: #145214;
-    }
-</style>
 
 <script>
     // Funzione per chiudere il popup

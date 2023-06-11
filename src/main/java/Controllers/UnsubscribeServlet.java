@@ -1,6 +1,7 @@
 package Controllers;
 
 import Utils.Database;
+import Utils.Log;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -35,13 +36,12 @@ public class UnsubscribeServlet extends HttpServlet {
                 //vai al login se ti ho tolto
                 session.invalidate();
                 response.sendRedirect("login.jsp");
-                return;
             } else {
                 //errore
                 response.sendRedirect(request.getContextPath() + "/error.jsp");
             }
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            Log.PrintLog(new Log("SQLException: \n" + ex, "UnsibscribeServlet"));
             response.sendRedirect(request.getContextPath() + "/error.jsp");
         }
     }

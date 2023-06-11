@@ -1,8 +1,8 @@
 package Utils;
 
 public class ResponseObj {
-    public String success;
-    public String message;
+    public final String success;
+    public final String message;
     public String content = "";
 
     public ResponseObj(String success, String message, String content) {

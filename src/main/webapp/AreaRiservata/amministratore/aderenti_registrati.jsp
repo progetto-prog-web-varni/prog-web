@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 
 <%-- Check if login, se no redirect --%>
 <%-- Check che tipo di utente è --%>
@@ -35,7 +35,7 @@
     <%@ include file="base.jsp"%>
     <div>
         <!-- Qui vanno tutti i dati dinamici in base a quello cliccato -->
-        <h1>Visualizza Aderenti</h1>
+        <h3>Visualizza Aderenti</h3>
         <button class="button" onclick="retrieveAderenti()">Visualizza Aderenti</button>
         <div id="results1"></div>
 
@@ -48,26 +48,26 @@
 <script>
 
     function displayDataAderenti(data) {
-        var resultsDiv = document.getElementById('results1');
+        const resultsDiv = document.getElementById('results1');
         resultsDiv.innerHTML = '';
 
-        for (var i = 0; i < data.length; i++) {
-            var entry = data[i];
-            var name = entry[0];
-            var surname = entry[1];
+        for (let i = 0; i < data.length; i++) {
+            let entry = data[i];
+            let name = entry[0];
+            let surname = entry[1];
 
-            var resultRow = document.createElement('div');
+            let resultRow = document.createElement('div');
             resultRow.textContent = name + ' ' + surname;
             resultsDiv.appendChild(resultRow);
         }
     }
 
     function retrieveAderenti() {
-        var xhr = new XMLHttpRequest();
+        let xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 if (xhr.status === 200) {
-                    var data = JSON.parse(xhr.responseText);
+                    let data = JSON.parse(xhr.responseText);
                     displayDataAderenti(data);
                 } else {
                     console.error('Errore durante la richiesta AJAX');

@@ -7,7 +7,6 @@ import Models.Payment;
 import Models.User;
 import com.google.gson.Gson;
 
-import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
@@ -23,7 +22,7 @@ public class Database {
 
     private static boolean fakeDbIsSet = false;
 
-    static DbConf dbConf = new DbConf();
+    public static final DbConf dbConf = new DbConf();
 
     Connection conn = null;
 
@@ -32,7 +31,7 @@ public class Database {
             try {
                 Class.forName("org.apache.derby.jdbc.ClientDriver");
                 this.conn = DriverManager.getConnection(dbConf.dbURL, dbConf.user, dbConf.password);
-                Log.PrintLog(new Log("Got Connected", "Database"));
+                Log.PrintLog(new Log("Connesso al database correttamente.", "Database"));
             } catch (ClassNotFoundException | SQLException e) {
                 createFakeDB();
             }
@@ -249,7 +248,7 @@ public class Database {
         return role;
     }
 
-    public void ExecuteRetrieveQuery(HttpServletResponse response, Statement stmt, String sql)
+    public String ExecuteRetrieveQuery(Statement stmt, String sql)
             throws SQLException, IOException {
 
         ResultSet results = stmt.executeQuery(sql);
@@ -273,7 +272,7 @@ public class Database {
         Gson gson = new Gson();
         String json = gson.toJson(data);
 
-        response.getWriter().write(json);
+        return json;
     }
 }
 

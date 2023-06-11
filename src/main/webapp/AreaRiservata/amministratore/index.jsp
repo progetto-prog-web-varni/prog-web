@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 
 <%-- Check if login, se no redirect --%>
 <%-- Check che tipo di utente è --%>

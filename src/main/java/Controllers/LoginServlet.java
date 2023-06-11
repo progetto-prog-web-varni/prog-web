@@ -28,8 +28,8 @@ public class LoginServlet extends HttpServlet{
         this.db = new Database();
     }
 
-    private String createResponse(String success, String message){
-        ResponseObj resp = new ResponseObj(success, message, "");
+    private String createErrorResponse(String message){
+        ResponseObj resp = new ResponseObj("false", message, "");
         Gson gson = new Gson();
         return gson.toJson(resp);
     }
@@ -66,7 +66,7 @@ public class LoginServlet extends HttpServlet{
             Log.PrintLog(new Log("Username o Password non inseriti. \n " + e, "LoginServlet"));
             response.setContentType("application/json;charset=UTF-8");
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            resp.write(createResponse("false", "Richiesto l'inserimento di password e username"));
+            resp.write(createErrorResponse("Richiesto l'inserimento di password e username"));
             return;
         }
 
@@ -109,7 +109,7 @@ public class LoginServlet extends HttpServlet{
                     default:
                         response.setContentType("application/json;charset=UTF-8");
                         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-                        resp.write(createResponse("false", "Ruolo non valido"));
+                        resp.write(createErrorResponse("Ruolo non valido"));
                         break;
                 }
 
@@ -117,13 +117,13 @@ public class LoginServlet extends HttpServlet{
                 // Gestisci l'errore in caso non siano corrette le informazioni di login
                 response.setContentType("application/json;charset=UTF-8");
                 response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-                resp.write(createResponse("false", "User o password non corrispondono o l'utente non esiste"));
+                resp.write(createErrorResponse("User o password non corrispondono o l'utente non esiste"));
             }
         } catch (SQLException e) {
             Log.PrintLog(new Log("SQLException: " + e, "LoginServlet"));
             response.setContentType("application/json;charset=UTF-8");
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            resp.write(createResponse("false", "Avvenuto errore nella comunicazione con il database."));
+            resp.write(createErrorResponse("Avvenuto errore nella comunicazione con il database."));
         };
     }
 }
