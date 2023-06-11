@@ -25,7 +25,7 @@ public class Database {
     Connection conn = null;
 
     public Database() {
-        if(!dbConf.useRealDB){
+        if(dbConf.useRealDB){
             try {
                 Class.forName("org.apache.derby.jdbc.ClientDriver");
                 this.conn = DriverManager.getConnection(dbConf.dbURL, dbConf.user, dbConf.password);

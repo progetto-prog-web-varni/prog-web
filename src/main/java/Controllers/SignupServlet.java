@@ -26,7 +26,7 @@ public class SignupServlet extends HttpServlet{
     protected boolean check_username(HttpServletResponse response, String username) throws IOException{
         try{
 
-            PreparedStatement checkStmt = db.getConn().prepareStatement("SELECT USERNAME FROM USERS WHERE USERNAME=?");
+            PreparedStatement checkStmt = this.db.getConn().prepareStatement("SELECT USERNAME FROM USERS WHERE USERNAME=?");
             checkStmt.setString(1, username);
 
             boolean query_result = checkStmt.executeQuery().next();
@@ -50,7 +50,7 @@ public class SignupServlet extends HttpServlet{
     protected void new_entry_db(HttpServletResponse response, String fname, String lname, String birthday, String email, String membershipType, String username, String password){
         try{
 
-            PreparedStatement checkStmt = db.getConn().prepareStatement("INSERT INTO USERS (NAME, SURNAME, BIRTHDATE, EMAIL, USERNAME, PASSWORD, ROLE) VALUES (?,?,?,?,?,?,?)");
+            PreparedStatement checkStmt = this.db.getConn().prepareStatement("INSERT INTO USERS (NAME, SURNAME, BIRTHDATE, EMAIL, USERNAME, PASSWORD, ROLE) VALUES (?,?,?,?,?,?,?)");
             checkStmt.setString(1, fname);
             checkStmt.setString(2, lname);
             checkStmt.setString(3, birthday);

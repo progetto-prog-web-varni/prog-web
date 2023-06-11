@@ -9,7 +9,7 @@ public class DbConf {
 
     public boolean useRealDB = true;
 
-    public static final String DefStartingPage = "/programmazioneWeb_war_exploded/";
+
 }
 
 

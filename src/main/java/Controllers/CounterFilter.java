@@ -1,6 +1,7 @@
 package Controllers;
 
 import ConfImporter.DbConf;
+import ConfImporter.Generics;
 import Utils.Database;
 
 import javax.servlet.*;
@@ -26,22 +27,22 @@ public class CounterFilter implements Filter {
         String pageNameUri = request.getRequestURI();
         String pageName=null;
         switch (pageNameUri){
-            case DbConf.DefStartingPage + "index.jsp":
+            case Generics.DefStartingPage + "index.jsp":
                 pageName = "Home";
                 break;
-            case DbConf.DefStartingPage + "chiSiamo.jsp":
+            case Generics.DefStartingPage + "chiSiamo.jsp":
                 pageName = "Chi_Siamo";
                 break;
-            case DbConf.DefStartingPage + "attivita.jsp":
+            case Generics.DefStartingPage + "attivita.jsp":
                 pageName = "Attivita";
                 break;
-            case DbConf.DefStartingPage + "contatti.jsp":
+            case Generics.DefStartingPage + "contatti.jsp":
                 pageName = "Contatti";
                 break;
-            case DbConf.DefStartingPage + "sign-up.jsp":
+            case Generics.DefStartingPage + "sign-up.jsp":
                 pageName = "Signup";
                 break;
-            case DbConf.DefStartingPage + "login.jsp":
+            case Generics.DefStartingPage + "login.jsp":
                 pageName = "Login";
                 break;
             default:
