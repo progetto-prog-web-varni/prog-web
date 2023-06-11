@@ -36,6 +36,11 @@
         <!-- Qui vanno tutti i dati dinamici in base a quello cliccato -->
         <h3 class="margin-bottom-5 attivita-title"></h3>
         <h1>Lista delle attivita' possibili</h1>
+
+        <form action="ServletAttivita">
+
+        </form>
+
     </div>
 </div>
 

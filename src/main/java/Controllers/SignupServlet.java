@@ -23,6 +23,7 @@ public class SignupServlet extends HttpServlet{
 
 
     protected boolean check_username(HttpServletResponse response, String username) throws IOException{
+        /*
         try{
 
             PreparedStatement checkStmt = this.db.getConn()
@@ -44,11 +45,14 @@ public class SignupServlet extends HttpServlet{
             Log.PrintLog(new Log("Username Check andato male: \n" + ex, "SignupServlet"));
             return false;
         }
+
+         */
+        return false;
     }
 
     protected void new_entry_db(String fname, String lname, String birthday, String email, String membershipType,
                                 String username, String password){
-        try{
+     /*   try{
 
             PreparedStatement checkStmt = this.db.getConn()
                     .prepareStatement("INSERT INTO USERS (NAME, SURNAME, BIRTHDATE, EMAIL, USERNAME, PASSWORD, ROLE) VALUES (?,?,?,?,?,?,?)");
@@ -70,6 +74,8 @@ public class SignupServlet extends HttpServlet{
 
             // response.setStatus(__immetere pagina di errore_);
         }
+
+      */
     }
 
     @Override
