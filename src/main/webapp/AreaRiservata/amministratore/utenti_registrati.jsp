@@ -36,7 +36,7 @@
     <div>
         <!-- Qui vanno tutti i dati dinamici in base a quello cliccato -->
         <h1>Visualizza Utenti Registrati</h1>
-        <button onclick="retrieveRegistrati()" class="generic-text-center">Carica Dati</button>
+        <button class="button" onclick="retrieveRegistrati()">Visualizza Registrati</button>
         <div id="results3"></div>
     </div>
 </div>
@@ -74,6 +74,9 @@
             resultRow.textContent = name + ' ' + surname;
             resultsDiv.appendChild(resultRow);
         }
+
+        resultsDiv.style.overflow = 'auto';
+        resultsDiv.style.maxHeight = '150px';
     }
 </script>
 </html>

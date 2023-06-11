@@ -10,25 +10,28 @@
 
     <%@ include file="resources/css/confirm.css" %>
   </style>
+  </style>
   <title>Invio confermato</title>
   <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/logo.png">
 </head>
 <body>
 <%@ include file="Components/header.jsp" %>
 
-
+<div class="box">
+  <h1 class="title">Contatto inviato</h1>
 <%
   String email = request.getParameter("email");
 
   if (email!=null ) {
 %>
-<h1 class="generic-text-center">Grazie per esserti registrato su Tum4World</h1>
+
+<p>Grazie per aver inviato la tua mail, verrai ricontattato al più presto da Tum4World</p>
 <%
   } else {
     response.sendRedirect("contatti.jsp");
   }
 %>
-
+</div>
 <%@ include file="Components/footer.jsp" %>
 </body>
 

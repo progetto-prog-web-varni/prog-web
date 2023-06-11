@@ -1,40 +1,95 @@
 package Controllers;
 
+import ConfImporter.DbConf;
 import Utils.Database;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@WebFilter("/*")
+@WebFilter(urlPatterns = {"/index.jsp", "/chiSiamo.jsp","/contatti.jsp", "/login.jsp", "/signup.jsp", "/attivita.jsp"})
 public class CounterFilter implements Filter {
 
-    @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        HttpServletRequest httpRequest = (HttpServletRequest) request;
-        HttpServletResponse httpResponse = (HttpServletResponse) response;
-        Database db = new Database() ;
+    private Database db = null;
 
-        try {
-            db.createOrUpdateCounter(db.getConn(), ((HttpServletRequest) request).getRequestURI());
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("Error while counting");
+    public void init(FilterConfig config) throws ServletException {
+        this.db = new Database();
+    }
+
+    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
+            throws ServletException, IOException {
+        HttpServletRequest request = (HttpServletRequest) req;
+        String pageNameUri = request.getRequestURI();
+        String pageName=null;
+        switch (pageNameUri){
+            case DbConf.DefStartingPage + "index.jsp":
+                pageName = "Home";
+                break;
+            case DbConf.DefStartingPage + "chiSiamo.jsp":
+                pageName = "Chi_Siamo";
+                break;
+            case DbConf.DefStartingPage + "attivita.jsp":
+                pageName = "Attivita";
+                break;
+            case DbConf.DefStartingPage + "contatti.jsp":
+                pageName = "Contatti";
+                break;
+            case DbConf.DefStartingPage + "sign-up.jsp":
+                pageName = "Signup";
+                break;
+            case DbConf.DefStartingPage + "login.jsp":
+                pageName = "Login";
+                break;
+            default:
+                System.out.println("Default: "  + pageNameUri);
         }
 
-        chain.doFilter(request, response);
+        if(pageName!=null){
+            increaseCounter(pageName);
+        }
+
+        // Passa la richiesta al prossimo filtro o servlet
+        chain.doFilter(req, resp);
     }
 
-    @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-        // this.db = new Database();
-    }
-
-    @Override
     public void destroy() {
-        // non mi serve
+        try {
+            this.db.getConn().close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private void increaseCounter(String pageName) {
+        try {
+            PreparedStatement checkStmt = this.db.getConn().prepareStatement("SELECT * FROM COUNTERS WHERE PAGENAME = ?");
+            checkStmt.setString(1, pageName);
+            ResultSet resultSet = checkStmt.executeQuery();
+
+            if (resultSet.next()) {
+                int currentHits = resultSet.getInt("HITS");
+                int newHits = currentHits + 1;
+
+                PreparedStatement updateStmt = this.db.getConn().prepareStatement("UPDATE COUNTERS SET HITS = ? WHERE PAGENAME = ?");
+                updateStmt.setInt(1, newHits);
+                updateStmt.setString(2, pageName);
+                updateStmt.executeUpdate();
+                updateStmt.close();
+            } else {
+                PreparedStatement insertStmt = this.db.getConn().prepareStatement("INSERT INTO COUNTERS (PAGENAME, HITS) VALUES (?, 1)");
+                insertStmt.setString(1, pageName);
+                insertStmt.executeUpdate();
+                insertStmt.close();
+            }
+
+            resultSet.close();
+            checkStmt.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 }

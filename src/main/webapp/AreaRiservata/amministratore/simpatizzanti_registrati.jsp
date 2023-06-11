@@ -36,7 +36,7 @@
     <div>
         <!-- Qui vanno tutti i dati dinamici in base a quello cliccato -->
         <h1>Visualizza Simpatizzanti Riservati</h1>
-        <button onclick="retrieveSimpatizzanti()">Carica Dati</button>
+        <button class="button" onclick="retrieveSimpatizzanti()">Carica Dati</button>
         <div id="results2"></div>
     </div>
 </div>
@@ -75,6 +75,9 @@
             resultRow.textContent = name + ' ' + surname;
             resultsDiv.appendChild(resultRow);
         }
+
+        resultsDiv.style.overflow = 'auto';
+        resultsDiv.style.maxHeight = '150px';
     }
 </script>
 </html>

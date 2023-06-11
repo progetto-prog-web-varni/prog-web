@@ -21,7 +21,7 @@
 </head>
 
 <body>
-  <%@ include file="Components/header.jsp" %>
+<%@ include file="Components/header.jsp" %>
 
     <!-- do not add action here, resolved in the js -->
     <form class="centra"
@@ -101,7 +101,7 @@
         </div>
       </div>
     </form>
-    <%@ include file="Components/footer.jsp" %>
+<%@ include file="Components/footer.jsp" %>
 </body>
 
 <script>

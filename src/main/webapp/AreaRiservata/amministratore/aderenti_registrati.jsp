@@ -36,7 +36,7 @@
     <div>
         <!-- Qui vanno tutti i dati dinamici in base a quello cliccato -->
         <h1>Visualizza Aderenti</h1>
-        <button onclick="retrieveAderenti()">Carica Dati</button>
+        <button class="button" onclick="retrieveAderenti()">Visualizza Aderenti</button>
         <div id="results1"></div>
 
     </div>
@@ -77,6 +77,8 @@
         xhr.open('GET', '../../RetrieveAderentiServlet', true);
         xhr.send();
     }
+
+
 
 </script>
 

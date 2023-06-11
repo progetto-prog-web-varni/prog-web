@@ -36,11 +36,8 @@ public class DonationServlet extends HttpServlet {
             message = "Error processing donation";
         }
 
-        request.setAttribute("message", message);
-
         // Dispatch della richiesta al JSP per la visualizzazione del messaggio
-        RequestDispatcher dispatcher = request.getRequestDispatcher("chiSiamo.jsp");
-        dispatcher.forward(request, response);
+        response.sendRedirect(request.getHeader("Referer") + "?message=" + message);
     }
 
     private boolean processDonation(int amount) {

@@ -7,7 +7,9 @@ public class DbConf {
     public String user = "App";
     public String password = "pw";
 
-    public boolean useRealDB = false;
+    public boolean useRealDB = true;
+
+    public static final String DefStartingPage = "/programmazioneWeb_war_exploded/";
 }
 
 
