@@ -1,15 +1,13 @@
 package Controllers;
 
 import Utils.Database;
-import com.google.gson.Gson;
+import Utils.Log;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @WebServlet(name = "RetrieveSimpatizzantiServlet", value = "/RetrieveSimpatizzantiServlet")
 public class RetrieveSimpatizzantiServlet extends HttpServlet {
@@ -25,30 +23,11 @@ public class RetrieveSimpatizzantiServlet extends HttpServlet {
         try {
             Statement stmt = this.db.getConn().createStatement();
             String sql = "SELECT * FROM USERS WHERE ROLE='simpatizzante'";
-            ResultSet results = stmt.executeQuery(sql);
+            String resp = this.db.ExecuteRetrieveQuery(stmt, sql);
 
-            List<List<Object>> data = new ArrayList<>();
-
-            while (results.next()) {
-                String name = results.getString(2);
-                String surname = results.getString(3);
-
-                List<Object> entry = new ArrayList<>();
-                entry.add(name);
-                entry.add(surname);
-
-                data.add(entry);
-            }
-
-            results.close();
-            stmt.close();
-
-            Gson gson = new Gson();
-            String json = gson.toJson(data);
-
-            response.getWriter().write(json);
+            response.getWriter().write(resp);
         } catch (SQLException | NullPointerException ex) {
-            ex.printStackTrace();
+            Log.PrintLog(new Log("SQLException: \n"+ ex, "RetrieveSimpatizzanteServlet"));
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             response.getWriter().write("Error retrieving data from the database.");
         }
@@ -65,10 +44,6 @@ public class RetrieveSimpatizzantiServlet extends HttpServlet {
     }
 
     public void destroy(){
-        try {
-            this.db.getConn().close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
+        this.db.Close();
     }
 }

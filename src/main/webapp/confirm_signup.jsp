@@ -1,7 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%@ include file="Components/favicon_setting.jsp" %>
+
   <style>
     <%@ include file="resources/css/base.css" %>
     <%@ include file="resources/css/footer.css" %>
@@ -11,7 +16,6 @@
     <%@ include file="resources/css/confirm.css" %>
   </style>
   <title>Registrazione confermata</title>
-  <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/logo.png">
 </head>
 <body>
 <%@ include file="Components/header.jsp" %>
@@ -19,19 +23,10 @@
 <div class="box">
   <h1 class="title">Registrazione confermata</h1>
   <%-- chcek data --%>
-  <%
-    String name = request.getParameter("fname");
-    String surname = request.getParameter("lname");
 
-    if (name != null && surname != null) {
-  %>
-  <h1 class="generic-text-center">Grazie <%= name %> <%= surname %> per esserti registrato su Tum4World</h1>
-  <p class="generic-text-center">Prosegui nella tua area riservata tramite la sezione <a href="login.jsp">Login</a></p>
-  <%
-    } else {
-      response.sendRedirect("sign-up.jsp");
-    }
-  %>
+  <p>Grazie per esserti registrato su Tum4World</p>
+  <p>Prosegui nella tua area riservata tramite la sezione <a href="login.jsp">Login</a></p>
+
 </div>
 
 <%@ include file="Components/footer.jsp" %>

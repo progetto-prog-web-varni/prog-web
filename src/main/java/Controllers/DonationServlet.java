@@ -1,13 +1,12 @@
 package Controllers;
 
 import Utils.Database;
-import com.google.gson.Gson;
+import Utils.Log;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Calendar;
@@ -36,11 +35,8 @@ public class DonationServlet extends HttpServlet {
             message = "Error processing donation";
         }
 
-        request.setAttribute("message", message);
-
         // Dispatch della richiesta al JSP per la visualizzazione del messaggio
-        RequestDispatcher dispatcher = request.getRequestDispatcher("chiSiamo.jsp");
-        dispatcher.forward(request, response);
+        response.sendRedirect(request.getHeader("Referer") + "?message=" + message);
     }
 
     private boolean processDonation(int amount) {
@@ -71,16 +67,12 @@ public class DonationServlet extends HttpServlet {
                 return rowsAffected > 0;
             }
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            Log.PrintLog(new Log("SQLException: " + ex, "DonationServlet"));
             return false;
         }
     }
 
     public void destroy() {
-        try {
-            this.db.getConn().close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
+        this.db.Close();
     }
 }

@@ -5,13 +5,15 @@ import Models.Activity;
 import Models.Counter;
 import Models.Payment;
 import Models.User;
+import com.google.gson.Gson;
 
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Database {
-    private static final ArrayList<Activity>  activityArray = new ArrayList<>();
+    private static final ArrayList<Activity> activityArray = new ArrayList<>();
     private static final ArrayList<User> userArray = new ArrayList<>();
 
     private static final ArrayList<Payment> paymentArray = new ArrayList<>();
@@ -20,16 +22,16 @@ public class Database {
 
     private static boolean fakeDbIsSet = false;
 
-    static DbConf dbConf = new DbConf();
+    public static final DbConf dbConf = new DbConf();
 
     Connection conn = null;
 
     public Database() {
-        if(!dbConf.useRealDB){
+        if (dbConf.useRealDB) {
             try {
                 Class.forName("org.apache.derby.jdbc.ClientDriver");
                 this.conn = DriverManager.getConnection(dbConf.dbURL, dbConf.user, dbConf.password);
-                System.out.println("Got Connected");
+                Log.PrintLog(new Log("Connesso al database correttamente.", "Database"));
             } catch (ClassNotFoundException | SQLException e) {
                 createFakeDB();
             }
@@ -43,9 +45,17 @@ public class Database {
         return conn;
     }
 
+    public void Close() {
+        try {
+            this.conn.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
     // Check se i database sono già stati letti per la prima volta, se no li esegue.
-    private void createFakeDB(){
-        if(!fakeDbIsSet) {
+    private void createFakeDB() {
+        if (!fakeDbIsSet) {
             boolean paymentStatus = recoverPaymentFromFile();
             boolean activityStatus = recoverActvitiesFromFile();
             boolean userStatus = recoverUserFromFile();
@@ -138,7 +148,7 @@ public class Database {
     }
 
     // Read the file users.txt, parse it, and load in the array.
-    private boolean recoverUserFromFile(){
+    private boolean recoverUserFromFile() {
         BufferedReader reader;
         try {
             InputStream is = getFileAsIOStream("users.txt");
@@ -175,7 +185,7 @@ public class Database {
     }
 
     // To read files for fakedb.
-    private InputStream getFileAsIOStream(final String fileName){
+    private InputStream getFileAsIOStream(final String fileName) {
         try {
             InputStream ioStream = this.getClass()
                     .getClassLoader()
@@ -192,7 +202,7 @@ public class Database {
 
     public static boolean loginQuery(Connection conn, String username, String password) throws SQLException {
         // Fake DB
-        if(!dbConf.useRealDB) {
+        if (!dbConf.useRealDB) {
             for (User u : userArray) {
                 if (username.equals(u.getUsername()) && password.equals(u.getPassword())) {
                     return true;
@@ -202,7 +212,7 @@ public class Database {
         }
         // Default
         try {
-            PreparedStatement checkStmt = conn.prepareStatement("SELECT * FROM USERS WHERE NAME = ? AND SURNAME = ?");
+            PreparedStatement checkStmt = conn.prepareStatement("SELECT * FROM USERS WHERE USERNAME = ? AND PASSWORD = ?");
             checkStmt.setString(1, username);
             checkStmt.setString(2, password);
             boolean recordExists = checkStmt.executeQuery().next();
@@ -211,103 +221,58 @@ public class Database {
             // Return true/false
             return recordExists;
 
-        }catch (SQLException ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
             return false;
         }
     }
 
-    // Return true/false for state
-    public boolean createOrUpdateCounter(Connection conn, String pageName) throws SQLException{
-        // Fake DB
-        if(!dbConf.useRealDB) {
-            synchronized (this) {
-                for (Counter c : counterArray) {
-                    if (c.pageName.equals(pageName)) {
-                        c.hits++;
-                    }
-                }
-                Counter nc = new Counter(pageName);
-                counterArray.add(nc);
-                return true;
-            }
-        }
-        // Default
-        try {
-            PreparedStatement checkStmt = conn.prepareStatement("SELECT * FROM COUNTERS WHERE PAGENAME = ?;");
-            checkStmt.setString(1, pageName);
-            ResultSet resultSet = checkStmt.executeQuery();
-            checkStmt.close();
+    public String getUserRole(Connection conn, String username) throws SQLException {
+        String role = "";
 
-            if(resultSet.next()) {
-                // add 1 to the returned counter
-                PreparedStatement ncheckStmt = conn.prepareStatement("UPDATE COUNTERS SET HITS = ? WHERE PAGENAME = ?;");
-                System.out.println("TO TEST: " + resultSet.getInt("hits")+1);
-                ncheckStmt.setInt(1, resultSet.getInt("hits")+1);
-                ncheckStmt.setString(2, pageName);
-                boolean recordAdded = ncheckStmt.executeQuery().next();
-                ncheckStmt.close();
-                return recordAdded;
-            } else {
-                PreparedStatement ncheckStmt = conn.prepareStatement("INSERT INTO COUNTERS (PAGENAME, HITS) VALUES (?, ?);");
-                ncheckStmt.setInt(2, 1);
-                ncheckStmt.setString(1, pageName);
-                boolean recordAdded = ncheckStmt.executeQuery().next();
-                ncheckStmt.close();
-                return recordAdded;
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT role FROM users WHERE USERNAME = ?");
+            stmt.setString(1, username);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                role = rs.getString("role");
             }
-        }catch (SQLException ex) {
+
+            rs.close();
+            stmt.close();
+        } catch (SQLException ex) {
             ex.printStackTrace();
-            return false;
         }
+
+        return role;
     }
 
-    public String getAllCounter(Connection conn) {
-        // Fake DB
-        if (!dbConf.useRealDB) {
-            synchronized (this) {
-                StringBuffer s = new StringBuffer();
+    public String ExecuteRetrieveQuery(Statement stmt, String sql)
+            throws SQLException, IOException {
 
-                if (counterArray.isEmpty()) {
-                    s.append("[]");
-                    return s.toString();
-                }
+        ResultSet results = stmt.executeQuery(sql);
 
-                s.append("[");
-                for (Counter c : counterArray) {
-                    s.append("[\"")
-                            .append(c.getPageName().trim())
-                            .append("\", ")
-                            .append(c.getHits())
-                            .append("],");
-                }
-                s.append("]");
-                return s.toString();
-            }
+        List<List<Object>> data = new ArrayList<>();
 
+        while (results.next()) {
+            String name = results.getString(2);
+            String surname = results.getString(3);
+
+            List<Object> entry = new ArrayList<>();
+            entry.add(name);
+            entry.add(surname);
+
+            data.add(entry);
         }
-        // Default
-        try {
-            PreparedStatement checkStmt = conn.prepareStatement("SELECT * FROM COUNTERS;");
-            ResultSet recordSet = checkStmt.executeQuery();
 
-            StringBuffer s = new StringBuffer();
-            while (recordSet.next()) {
-                s.append("[\"")
-                        .append(recordSet.getString("PAGENAME"))
-                        .append("\", ")
-                        .append(recordSet.getInt("HITS"))
-                        .append("],");
-            }
-            checkStmt.close();
-            s.append("]");
+        results.close();
+        stmt.close();
 
-            // Return true/false
-            return s.toString();
+        Gson gson = new Gson();
+        String json = gson.toJson(data);
 
-        }catch (SQLException ex) {
-            ex.printStackTrace();
-            return "[\"ERROR\", 1]";
-        }
+        return json;
     }
 }
+

@@ -1,52 +1,68 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <%
+  if (session.getAttribute("username") != null && session.getAttribute("role") != null) {
+    String role = (String) session.getAttribute("role");
+    String redirectUrl = request.getContextPath() + "/AreaRiservata/" + role;
+    response.sendRedirect(redirectUrl);
+    return;
+  }
   String params = request.getParameter("error");
-  %>
-  <!DOCTYPE html>
-  <html>
-  <!-- HOME PAGE -->
 
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-      <%@ include file="resources/css/base.css" %>
-      <%@ include file="resources/css/footer.css" %>
-      <%@ include file="resources/css/header.css" %>
-      <%@ include file="resources/css/cookies.css" %>
-      
-      <%@ include file="resources/css/login.css" %>
-    </style>
+  String usernameCookie = null;
+  Cookie[] cookies = request.getCookies();
+  if (cookies != null) {
+    for (Cookie cookie : cookies) {
+      if (cookie.getName().equals("ciaone")) {
+        usernameCookie = cookie.getValue();
+        break;
+      }
+    }
+  }
+%>
+<!DOCTYPE html>
+<html>
+<!-- HOME PAGE -->
 
-    <title>Tum4World | Login</title>
-    <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/logo.png">
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%@ include file="Components/favicon_setting.jsp" %>
+  <style>
+    <%@ include file="resources/css/base.css" %>
+    <%@ include file="resources/css/footer.css" %>
+    <%@ include file="resources/css/header.css" %>
+    <%@ include file="resources/css/cookies.css" %>
+    <%@ include file="resources/css/login.css" %>
+  </style>
 
-  <body>
-    <%@ include file="Components/header.jsp" %>
-    <!-- action="LoginServlet" method="POST" -->
-      <form class="sign-in-grid" >
-        <div class="inner-grid-signin">
+  <title>Tum4World | Login</title>
+</head>
 
-          <% if (params != "") { %>
-          <div class="alert" hidden>
-            <span class="close" onclick="return hidePopup()">&times;</span>
-            <span><strong>Errore!</strong><% out.print(params); %> </span>
-          </div>
-          <% } %>
-          <div id="popup-danger" class="alert" hidden>
-            <span class="close" onclick="return hidePopup()">&times;</span>
-            <span id="danger-text"><strong>Errore!</strong> Errore Generico </span>
-          </div>
-          <h3>Login Sezione Privata</h3>
-          <label for="username" class="margin-bottom-5">Username</label>
-          <input class="sign-up-form-input margin-bottom-5" type="username" id="username" name="username"
-            placeholder="Inserisci username">
-          <label for="password" class="margin-bottom-5">Password</label>
-          <input class="sign-up-form-input margin-bottom-5" type="password" id="password" name="password"
-            placeholder="Inserisci password">
+<body>
+<%@ include file="Components/header.jsp" %>
+<!-- action="LoginServlet" method="POST" -->
+<form class="sign-in-grid" >
+  <div class="inner-grid-signin">
+
+    <% if (params != null && !params.isEmpty()) { %>
+    <div class="alert" hidden>
+      <span class="close" onclick="return hidePopup()">&times;</span>
+      <span><strong>Errore!</strong><% out.print(params); %> </span>
+    </div>
+    <% } %>
+    <div id="popup-danger" class="alert" hidden>
+      <span class="close" onclick="return hidePopup()">&times;</span>
+      <span id="danger-text"><strong>Errore!</strong> Errore Generico </span>
+    </div>
+    <h3>Login Sezione Privata</h3>
+    <label for="username" class="margin-bottom-5">Username</label>
+    <input class="sign-up-form-input margin-bottom-5" type="username" id="username" name="username"
+           placeholder="Inserisci username" value="<%= (usernameCookie != null) ? usernameCookie : "" %>">
+    <label for="password" class="margin-bottom-5">Password</label>
+    <input class="sign-up-form-input margin-bottom-5" type="password" id="password" name="password"
+           placeholder="Inserisci password">
 
           <input value="Login" class="button margin-top-10" id="submit-button">
         </div>
@@ -54,7 +70,7 @@
       <%@ include file="Components/footer.jsp" %>
   </body>
 
-  <script>
+<script>
     const submitBtn = document.getElementById("submit-button");
     const username = document.getElementById("username");
     const password = document.getElementById("password");
@@ -114,6 +130,11 @@
     const activeErrorBanner = () => errorBox.style.display = "block";
 
     const hidePopup = () => errorBox.style.display = "none";
+
+    //
+    // Cookies
+    //
+
     document.addEventListener("DOMContentLoaded", function() {
       var acceptBtn = document.getElementById("accept-btn");
       var rejectBtn = document.getElementById("reject-btn");

@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 
 <%-- Check if login, se no redirect --%>
 <%-- Check che tipo di utente è --%>
@@ -12,6 +12,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%@ include file="../../Components/favicon_setting.jsp" %>
+
     <style>
         <%@ include file="../../resources/css/base.css" %>
         <%@ include file="../../resources/css/footer.css" %>
@@ -37,8 +39,8 @@
     <%@ include file="base.jsp"%>
     <div>
         <!-- Qui vanno tutti i dati dinamici in base a quello cliccato -->
-        <h1>Visualizza Donazioni</h1>
-        <button onclick="loadPaymentData()" class="">Carica dati</button>
+        <h3>Visualizza Donazioni</h3>
+        <button class="button" onclick="loadPaymentData()">Carica dati</button>
         <div id="chartContainer" style="display: none;"></div>
     </div>
 </div>
@@ -49,13 +51,13 @@
 
 <script>
     function loadPaymentData() {
-        var xhr = new XMLHttpRequest();
+        let xhr = new XMLHttpRequest();
         xhr.open("GET", "../../PaymentServlet", true);
         xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
         xhr.onreadystatechange = function() {
             if (xhr.readyState === 4 && xhr.status === 200) {
-                var data = JSON.parse(xhr.responseText);
+                let data = JSON.parse(xhr.responseText);
                 console.log(data);
                 createChart1(data);
                 document.getElementById('chartContainer').style.display = 'block';
@@ -84,7 +86,7 @@
                 }
             },
             series: [{
-                name: 'Amount',
+                name: 'Mesi',
                 data: data
             }]
         });

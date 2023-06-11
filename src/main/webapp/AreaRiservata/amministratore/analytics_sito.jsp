@@ -1,5 +1,5 @@
 <%@ page import="Utils.Database" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 
 <%-- Check if login, se no redirect --%>
 <%-- Check che tipo di utente è --%>
@@ -13,6 +13,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%@ include file="../../Components/favicon_setting.jsp" %>
+
     <style>
         <%@ include file="../../resources/css/base.css" %>
         <%@ include file="../../resources/css/footer.css" %>
@@ -39,22 +41,18 @@
     <div>
         <!-- Qui vanno tutti i dati dinamici in base a quello cliccato -->
         <h1>Analytics Sito</h1>
-        <button onclick="loadPageData()">Carica dati</button>
-        <div id="pageChartContainer" style="display: none;"></div>
+        <button class="button" onclick="loadPagesData()">Carica dati</button>
+        <div id="chartContainer" style="display: none;"></div>
     </div>
 </div>
 
 <%@ include file="../../Components/footer.jsp" %>
 
-<%
-    Database db = new Database();
-    String testData = db.getAllCounter(null);
-%>
 </body>
 
 <script>
     function createPageChart2(data){
-        Highcharts.chart('pageChartContainer', {
+        Highcharts.chart('chartContainer', {
             chart: {
                 type: 'column'
             },
@@ -78,11 +76,23 @@
 
 
 
-    function loadPageData(){
-        var data = <%= testData %>;
-        console.log(data)
-        createPageChart2(data);
-        document.getElementById('pageChartContainer').style.display = 'block';
+    function loadPagesData() {
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET", "../../PagesServlet", true);
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                let data = JSON.parse(xhr.responseText);
+                console.log(data);
+                createPageChart2(data);
+                document.getElementById('chartContainer').style.display = 'block';
+            } else if (xhr.readyState === 4) {
+                alert("Errore durante la richiesta dei dati del database.");
+            }
+        };
+
+        xhr.send();
     }
 </script>
 

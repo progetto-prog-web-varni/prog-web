@@ -1,11 +1,13 @@
 package Controllers;
 
 import ConfImporter.SMTPConf;
+import Utils.Log;
 
 import javax.servlet.ServletException;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.net.URLEncoder;
 import java.util.Date;
 import java.util.Properties;
 import javax.mail.Authenticator;
@@ -23,56 +25,72 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "MailServlet", value = "/MailServlet")
 public class MailServlet extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;         //boh?
+    private static final long serialVersionUID = 1L;
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String nome = request.getParameter("fname");
-        String cognome = request.getParameter("lname");
-        String email = request.getParameter("email");
-        String contact_reason = request.getParameter("contact_reason");
-        String feedback = request.getParameter("feedback");
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        String nome;
+        String cognome;
+        String email;
+        String contact_reason;
+        String feedback;
+
+        try {
+            nome = request.getParameter("fname");
+            cognome = request.getParameter("lname");
+            email = request.getParameter("email");
+            contact_reason = request.getParameter("contact_reason");
+            feedback = request.getParameter("feedback");
+        } catch (NullPointerException ex) {
+            Log.PrintLog(new Log("Parametri della richiesta no validi.", "MailServlet"));
+            response.sendRedirect("confirm_contatti.jsp?error=" + URLEncoder.encode("Parametri non inseriti correttamente", "UTF-8"));
+            return;
+        }
 
         // manda la mail
-        inviaEmail(nome, cognome, email, contact_reason, feedback);
-
-        // reindirizza alla pagina di conferma
-        response.sendRedirect("confirm_contatti.jsp?email=" + email);
+        boolean isSent = inviaEmail(nome, cognome, email, contact_reason, feedback);
+        if(isSent){
+            // reindirizza alla pagina di conferma
+            response.sendRedirect("confirm_contatti.jsp?email=" + email);
+        } else {
+            response.sendRedirect("confirm_contatti.jsp?error=" + email);
+        }
     }
 
-    private void inviaEmail(String nome, String cognome, String email, String contact_reason, String feedback) {
-        //qui invia la mail bro
-
+    private boolean inviaEmail(String nome, String cognome, String email, String contact_reason, String feedback) {
         String host = SMTPConf.host;
         String port = SMTPConf.port;
         String mailFrom = SMTPConf.mailFrom;
         String password = SMTPConf.password;
 
         // outgoing message information
-        //String mailTo = "dalbosco.alby@gmail.com";
         String subject = "Richiesta contatto Tum4World";
 
         // message contains HTML markups
-        String message = " <h1>Richiesta contatto Tum4World </h1> <p> Gentile "
-                + nome + " " + cognome + ", la sua richiesta ricevuta e' stata ricevuta correttamente dal nostro staff,"
-                + "le faremo sapere al piu' presto!</p> " + " <p> Questi sono i dettagli della sua richiesta: <br> - Co"
-                + "ntattato per: " + contact_reason + " <br> - Dettagli richiesta: "
-                + feedback + " </p> <br> <br> <br> <p> Lo staff Tum4World </p>";
+        String message = " <h1>Richiesta contatto Tum4World </h1> <p> Nuova richiesta di contatto da:  "
+                + nome + " " + cognome +
+                "</p>, con la seguente mail: <p>" + email + "</p>" +
+                "<p> Motivo del contatto: <br> " + contact_reason + " <br> - Dettagli richiesta: "
+                + feedback;
         try {
-            sendHtmlEmail(host, port, mailFrom, password, email,
-                    subject, message);
-            System.out.println("Email sent.");
+            // Cambiata la logica:
+            // La mail deve essere inviata agli amministratori, che poi faranno una richiesta successivamente.
+            sendHtmlEmail(host, port, mailFrom, password, SMTPConf.emailAddress, subject, message);
+            Log.PrintLog(new Log("Email sent", "MailSevlet"));
         } catch (Exception ex) {
-            System.out.println("Failed to sent email.");
-            ex.printStackTrace();
+            Log.PrintLog(new Log("Failed to sent email. \n SQLException: " + ex, "MailServlet"));
+            return false;
         }
 
-        System.out.println("Dati della mail:");
-        System.out.println(message);
+        Log.PrintLog(new Log("Dati della mail: \n" + message, "MailServlet"));
+        return true;
     }
 
-
     public void sendHtmlEmail(String host, String port, final String userName, final String password,
-                              String toAddress, String subject, String message) throws AddressException, MessagingException {
+                              String toAddress, String subject, String message)
+            throws MessagingException {
+
         // setto le proprietà del server SMTP
         Properties properties = new Properties();
         properties.put("mail.smtp.host", host);

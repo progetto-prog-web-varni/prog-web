@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 
 <%-- Check if login, se no redirect --%>
 
@@ -10,6 +10,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%@ include file="../../Components/favicon_setting.jsp" %>
+
     <style>
         <%@ include file="../../resources/css/base.css" %>
         <%@ include file="../../resources/css/footer.css" %>
@@ -31,13 +33,33 @@
 <div class="body-container">
     <%@ include file="../aderente/base.jsp"%>
     <div>
-        <!-- Qui vanno tutti i dati dinamici in base a quello cliccato -->
         <h3 class="attivita-title">Cancella Iscrizioni</h3>
-        <h4>Scelta tra le attivita' che vengono seguite</h4>
+        <h4>Scelta tra le attività che vengono seguite</h4>
+        <button class="button" onclick="cancellaIscrizioni()">Cancella Iscrizioni</button>
     </div>
 </div>
 
 <%@ include file="../../Components/footer.jsp" %>
 </body>
+
+<script>
+    function cancellaIscrizioni() {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    // Cancellazione avvenuta con successo
+                    alert("Iscrizioni cancellate con successo");
+                } else {
+                    // Errore durante la cancellazione
+                    alert("Si è verificato un errore durante la cancellazione delle iscrizioni");
+                }
+            }
+        };
+        xhr.open('POST', '../../UnsubscribeServlet', true);
+        xhr.send();
+    }
+</script>
+
 
 </html>

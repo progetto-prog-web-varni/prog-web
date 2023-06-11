@@ -1,40 +1,91 @@
 package Controllers;
 
+import ConfImporter.Generics;
 import Utils.Database;
+import Utils.Log;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@WebFilter("/*")
+@WebFilter(urlPatterns = {"/index.jsp", "/chiSiamo.jsp","/contatti.jsp", "/login.jsp", "/signup.jsp", "/attivita.jsp"})
 public class CounterFilter implements Filter {
 
-    @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        HttpServletRequest httpRequest = (HttpServletRequest) request;
-        HttpServletResponse httpResponse = (HttpServletResponse) response;
-        Database db = new Database() ;
+    private Database db = null;
 
-        try {
-            db.createOrUpdateCounter(db.getConn(), ((HttpServletRequest) request).getRequestURI());
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("Error while counting");
+    public void init(FilterConfig config) throws ServletException {
+        this.db = new Database();
+    }
+
+    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
+            throws ServletException, IOException {
+
+        HttpServletRequest request = (HttpServletRequest) req;
+        String pageNameUri = request.getRequestURI();
+        String pageName = null;
+        switch (pageNameUri){
+            case Generics.DefStartingPage + "index.jsp":
+                pageName = "Home";
+                break;
+            case Generics.DefStartingPage + "chiSiamo.jsp":
+                pageName = "Chi_Siamo";
+                break;
+            case Generics.DefStartingPage + "attivita.jsp":
+                pageName = "Attivita";
+                break;
+            case Generics.DefStartingPage + "contatti.jsp":
+                pageName = "Contatti";
+                break;
+            case Generics.DefStartingPage + "sign-up.jsp":
+                pageName = "Signup";
+                break;
+            case Generics.DefStartingPage + "login.jsp":
+                pageName = "Login";
+                break;
+            default:
+                Log.PrintLog(new Log("Got hit from " + pageNameUri, "CounterFilter"));
         }
 
-        chain.doFilter(request, response);
+        if(pageName!=null) increaseCounter(pageName);
+
+        // Passa la richiesta al prossimo filtro o servlet
+        chain.doFilter(req, resp);
     }
 
-    @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-        // this.db = new Database();
-    }
-
-    @Override
     public void destroy() {
-        // non mi serve
+        this.db.Close();
+    }
+
+    private void increaseCounter(String pageName) {
+        try {
+            PreparedStatement checkStmt = this.db.getConn().prepareStatement("SELECT * FROM COUNTERS WHERE PAGENAME = ?");
+            checkStmt.setString(1, pageName);
+            ResultSet resultSet = checkStmt.executeQuery();
+
+            if (resultSet.next()) {
+                int currentHits = resultSet.getInt("HITS");
+                int newHits = currentHits + 1;
+
+                PreparedStatement updateStmt = this.db.getConn().prepareStatement("UPDATE COUNTERS SET HITS = ? WHERE PAGENAME = ?");
+                updateStmt.setInt(1, newHits);
+                updateStmt.setString(2, pageName);
+                updateStmt.executeUpdate();
+                updateStmt.close();
+            } else {
+                PreparedStatement insertStmt = this.db.getConn().prepareStatement("INSERT INTO COUNTERS (PAGENAME, HITS) VALUES (?, 1)");
+                insertStmt.setString(1, pageName);
+                insertStmt.executeUpdate();
+                insertStmt.close();
+            }
+
+            resultSet.close();
+            checkStmt.close();
+        } catch (SQLException ex) {
+            Log.PrintLog(new Log("SQLException: " + ex, "CounterFilter"));
+        }
     }
 }

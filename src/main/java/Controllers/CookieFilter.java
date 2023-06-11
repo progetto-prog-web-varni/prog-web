@@ -13,7 +13,8 @@ import java.io.IOException;
 public class CookieFilter implements Filter {
 
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
 
@@ -37,26 +38,17 @@ public class CookieFilter implements Filter {
     private boolean areCookiesSet(HttpServletRequest request) {
         Cookie[] cookies = request.getCookies();
 
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals(CookieConf.CookieName)) {
-                    // Il cookie specificato è presente
-                    return true;
-                }
-            }
-        }
+        if (cookies != null) // Il cookie specificato è presente
+            for (Cookie cookie : cookies)
+                if (cookie.getName().equals(CookieConf.DefaultCookieName)) return true;
 
         return false;
     }
 
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-        // non mi serve
-    }
+    public void init(FilterConfig filterConfig) throws ServletException {}
 
     @Override
-    public void destroy() {
-        // non mi serve
-    }
+    public void destroy() {}
 }

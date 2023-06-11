@@ -1,6 +1,6 @@
 #cookie-banner {
     position: fixed;
-    left: 0;
+    right: 0;
     top: calc(100vh - 100px);
     transform: translateY(-50%);
     width: 300px;
@@ -19,16 +19,16 @@
     color: white;
 }
 
-.message {
+#cookie-banner .message {
     margin-right: 10px;
     margin-bottom: 5px;
 }
 
-.buttons {
+#cookie-banner .buttons {
     display: flex;
 }
 
-button {
+#cookie-banner button {
     padding: 5px 10px;
     margin: 0 5px;
     border: 1px solid black;
@@ -37,13 +37,12 @@ button {
     border-radius: 5px;
 }
 
-#accept-btn {
+#cookie-banner #accept-btn {
     background-color: #6a1b1b;
     color: white;
-
 }
 
-#reject-btn {
+#cookie-banner #reject-btn {
     background-color: #6a1b1b;
     color: white;
 }

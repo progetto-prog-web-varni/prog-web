@@ -7,6 +7,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <%@ include file="Components/favicon_setting.jsp" %>
 
         <style>
             <%@ include file="resources/css/base.css" %>
@@ -19,10 +20,7 @@
 
 
         <title>Tum4World | HomePage</title>
-        <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/logo.png">
     </head>
-
-
     <body>
         <%@ include file="Components/header.jsp" %>
             <div class="container">
@@ -55,7 +53,7 @@
 
 
                     <div>
-                        <button onclick="scaricaPDF()">Scarica il volantino</button>
+                        <button class="button" onclick="scaricaPDF()">Scarica il volantino</button>
                     </div>
                 </div>
             </div>

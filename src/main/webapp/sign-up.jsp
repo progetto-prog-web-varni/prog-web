@@ -1,12 +1,11 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
-<!-- HOME PAGE -->
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%@ include file="Components/favicon_setting.jsp" %>
   <style>
     <%@ include file="resources/css/base.css" %>
     <%@ include file="resources/css/footer.css" %>
@@ -17,11 +16,10 @@
   </style>
 
   <title>Tum4World | Signup</title>
-  <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/logo.png">
 </head>
 
 <body>
-  <%@ include file="Components/header.jsp" %>
+<%@ include file="Components/header.jsp" %>
 
     <!-- do not add action here, resolved in the js -->
     <form class="centra"
@@ -30,10 +28,20 @@
           method="POST"
           action="SignupServlet">
 
-      <div id="popup-danger" class="alert">
+      <%
+        String err = request.getParameter("error");
+        if(err == null) {
+      %>
+      <div id="popup-danger" class="alert" hidden>
         <span class="close" onclick="return nascondiPopup()">&times;</span>
         <span id="error-text"><strong>Danger!</strong> Enter a valid mail!</span>
       </div>
+      <% } else { %>
+      <div class="alert-get-error">
+        <span class="close" onclick="return nascondiPopup()">&times;</span>
+        <span><strong>Danger!</strong><% out.print(err); %></span>
+      </div>
+      <% } %>
 
       <h2>Aderisci come <i>Simpatizzante</i> o <i>Aderente</i></h2>
 
@@ -101,7 +109,7 @@
         </div>
       </div>
     </form>
-    <%@ include file="Components/footer.jsp" %>
+<%@ include file="Components/footer.jsp" %>
 </body>
 
 <script>

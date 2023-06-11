@@ -3,11 +3,13 @@ package ConfImporter;
 public class DbConf {
     //public String dbURL = "jdbc:derby://derby:1527/WebDB";
     // System.getEnv(key_of_variable)
-    public String dbURL = "jdbc:derby://localhost:1527/WebDB";
-    public String user = "App";
-    public String password = "pw";
+    public final String dbURL = "jdbc:derby://localhost:1527/WebDB";
+    public final String user = "App";
+    public final String password = "pw";
 
-    public boolean useRealDB = false;
+    public final boolean useRealDB = true;
+
+
 }
 
 

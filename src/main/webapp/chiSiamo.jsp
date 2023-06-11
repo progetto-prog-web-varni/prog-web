@@ -1,10 +1,11 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
     <html>
 
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <%@ include file="Components/favicon_setting.jsp" %>
         <style>
             <%@ include file="resources/css/base.css" %>
             <%@ include file="resources/css/footer.css" %>
@@ -20,9 +21,6 @@
         </script>
 
         <title>Tum4World | Chi Siamo</title>
-        <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/logo.png">
-    </head>
-
     <body>
         <%@ include file="Components/header.jsp" %>
         <div class="container">

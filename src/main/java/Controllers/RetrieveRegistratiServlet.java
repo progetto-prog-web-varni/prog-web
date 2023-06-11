@@ -1,15 +1,12 @@
 package Controllers;
 
 import Utils.Database;
-import com.google.gson.Gson;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 
 @WebServlet(name = "RetrieveRegistratiServlet", value = "/RetrieveRegistratiServlet")
@@ -26,28 +23,9 @@ public class RetrieveRegistratiServlet extends HttpServlet {
         try {
             Statement stmt = this.db.getConn().createStatement();
             String sql = "SELECT * FROM USERS WHERE ROLE='aderente' OR ROLE='simpatizzante'";
-            ResultSet results = stmt.executeQuery(sql);
+            String resp = this.db.ExecuteRetrieveQuery(stmt, sql);
 
-            List<List<Object>> data = new ArrayList<>();
-
-            while (results.next()) {
-                String name = results.getString(2);
-                String surname = results.getString(3);
-
-                List<Object> entry = new ArrayList<>();
-                entry.add(name);
-                entry.add(surname);
-
-                data.add(entry);
-            }
-
-            results.close();
-            stmt.close();
-
-            Gson gson = new Gson();
-            String json = gson.toJson(data);
-
-            response.getWriter().write(json);
+            response.getWriter().write(resp);
         } catch (SQLException | NullPointerException ex) {
             ex.printStackTrace();
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
