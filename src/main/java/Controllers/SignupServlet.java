@@ -26,7 +26,8 @@ public class SignupServlet extends HttpServlet{
     protected boolean check_username(HttpServletResponse response, String username) throws IOException{
         try{
 
-            PreparedStatement checkStmt = this.db.getConn().prepareStatement("SELECT USERNAME FROM USERS WHERE USERNAME=?");
+            PreparedStatement checkStmt = this.db.getConn()
+                    .prepareStatement("SELECT USERNAME FROM USERS WHERE USERNAME=?");
             checkStmt.setString(1, username);
 
             boolean query_result = checkStmt.executeQuery().next();
@@ -34,11 +35,11 @@ public class SignupServlet extends HttpServlet{
             if(query_result){
                 System.out.println("username occupato");
                 checkStmt.close();
-                return true;                                    // trovata una corrispondenza.
+                return true;
             }else{
                 System.out.println("prosegui");
                 checkStmt.close();
-                return false;                       // non è stata trovata nessuna corrispondenza.
+                return false;
             }
         }catch(SQLException | NullPointerException ex){
             System.out.println("check user wrong");
@@ -47,10 +48,12 @@ public class SignupServlet extends HttpServlet{
         }
     }
 
-    protected void new_entry_db(HttpServletResponse response, String fname, String lname, String birthday, String email, String membershipType, String username, String password){
+    protected void new_entry_db(String fname, String lname, String birthday, String email, String membershipType,
+                                String username, String password){
         try{
 
-            PreparedStatement checkStmt = this.db.getConn().prepareStatement("INSERT INTO USERS (NAME, SURNAME, BIRTHDATE, EMAIL, USERNAME, PASSWORD, ROLE) VALUES (?,?,?,?,?,?,?)");
+            PreparedStatement checkStmt = this.db.getConn()
+                    .prepareStatement("INSERT INTO USERS (NAME, SURNAME, BIRTHDATE, EMAIL, USERNAME, PASSWORD, ROLE) VALUES (?,?,?,?,?,?,?)");
             checkStmt.setString(1, fname);
             checkStmt.setString(2, lname);
             checkStmt.setString(3, birthday);
@@ -73,12 +76,6 @@ public class SignupServlet extends HttpServlet{
 
             // response.setStatus(__immetere pagina di errore_);
         }
-    }
-
-    private String createResponse(String success, String message){
-        ResponseObj resp = new ResponseObj(success, message, "");
-        Gson gson = new Gson();
-        return gson.toJson(resp);
     }
 
     @Override
@@ -108,7 +105,9 @@ public class SignupServlet extends HttpServlet{
         } catch (NullPointerException  e) {
             response.setContentType("application/json;charset=UTF-8");
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            resp.write(createResponse("false", "Richiesto l'inserimento di password e username"));
+            ResponseObj respGson = new ResponseObj("false", "Richiesto l'inserimento di password e username", "");
+            Gson gson = new Gson();
+            resp.write(gson.toJson(respGson));
             return;
         }
 
@@ -128,8 +127,13 @@ public class SignupServlet extends HttpServlet{
         if(OK){
              response.sendRedirect("index.jsp");
         }else{
-            new_entry_db(response, fname, lname, birthday, email, membershipType, username, password);
-            response.sendRedirect("confirm_signup.jsp");       //NON SO IL NOME VERO! (EDDIE PAGE NAME)
+            new_entry_db(fname, lname, birthday, email, membershipType, username, password);
+            response.sendRedirect("confirm_signup.jsp");
         }
+    }
+
+    @Override
+    public void destroy() {
+        this.db.Close();
     }
 }

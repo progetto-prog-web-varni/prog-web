@@ -1,5 +1,6 @@
 package Controllers;
 
+import Models.User;
 import Utils.Database;
 import com.google.gson.Gson;
 
@@ -70,27 +71,6 @@ public class RetrieveInfoServlet extends HttpServlet {
     }
 
     public void destroy() {
-        try {
-            db.getConn().close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-    }
-
-    //meglio se lo prendo da model?
-    private static class User {
-        private final String name;
-        private final String surname;
-        private final String birthdate;
-        private final String email;
-        private final String username;
-
-        public User(String name, String surname, String birthdate, String email, String username) {
-            this.name = name;
-            this.surname = surname;
-            this.birthdate = birthdate;
-            this.email = email;
-            this.username = username;
-        }
+        this.db.Close();
     }
 }

@@ -1,5 +1,10 @@
 package ConfImporter;
 
 public class CookieConf {
-    public static String CookieName = "ciaone";
+    public static final String DefaultCookieName = "ciaone";
+    public static final int CookieDuration = 300;
+    public static final String DefaultCookiePath = "/";
+    public static final String DefaultCookieValue = "";
+
+    public static final int DefaultInactiveInterval = 60;
 }

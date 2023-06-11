@@ -11,17 +11,6 @@ public class ResponseObj {
         this.content = content;
     }
 
-    public ResponseObj() {
-    }
-
-    public void setSuccess(String success) {
-        this.success = success;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
     public void setContent(String content) {
         this.content = content;
     }

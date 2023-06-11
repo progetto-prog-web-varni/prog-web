@@ -12,12 +12,12 @@ import java.io.IOException;
 public class AuthMiddleware implements Filter {
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-        // non serve
-    }
+    public void init(FilterConfig filterConfig) throws ServletException {}
 
     @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
+            throws IOException, ServletException {
+
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
@@ -26,23 +26,18 @@ public class AuthMiddleware implements Filter {
         if (isProtectedPage(request)) {
             HttpSession session = request.getSession(false);
 
-
             // se utente ancora in sessione vai avanti
             if (session != null && session.getAttribute("username") != null && session.getAttribute("role") != null) {
-
                 filterChain.doFilter(request, response);
             } else {
                 // se utente non più in sessione vai in login
                 response.sendRedirect(request.getContextPath() + "/login.jsp");
-                return;
             }
         }
     }
 
     @Override
-    public void destroy() {
-        // non serve
-    }
+    public void destroy() {}
 
 
     private boolean isProtectedPage(HttpServletRequest request) {

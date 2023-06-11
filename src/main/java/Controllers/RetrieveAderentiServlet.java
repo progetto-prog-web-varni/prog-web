@@ -66,10 +66,6 @@ public class RetrieveAderentiServlet extends HttpServlet {
     }
 
     public void destroy(){
-        try {
-            db.getConn().close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
+        this.db.Close();
     }
 }

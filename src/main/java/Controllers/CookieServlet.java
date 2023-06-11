@@ -12,11 +12,11 @@ import java.io.IOException;
 
 @WebServlet(name = "CookieServlet", value = "/CookieServlet")
 public class CookieServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        Cookie cookie = new Cookie(CookieConf.CookieName, "");
-        cookie.setMaxAge(300);
-        cookie.setPath("/");
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        Cookie cookie = new Cookie(CookieConf.DefaultCookieName, CookieConf.DefaultCookieValue);
+        cookie.setMaxAge(CookieConf.CookieDuration);
+        cookie.setPath(CookieConf.DefaultCookiePath);
         response.addCookie(cookie);
     }
 }

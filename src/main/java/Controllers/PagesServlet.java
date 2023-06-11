@@ -1,6 +1,7 @@
 package Controllers;
 
 import Utils.Database;
+import Utils.Log;
 import com.google.gson.Gson;
 
 import javax.servlet.*;
@@ -47,7 +48,7 @@ public class PagesServlet extends HttpServlet {
 
             response.getWriter().write(json);
         } catch (SQLException | NullPointerException ex) {
-            ex.printStackTrace();
+            Log.PrintLog(new Log("SQLException: \n" + ex, "PageServlet"));
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             response.getWriter().write("Error retrieving data from the database.");
         }
@@ -64,10 +65,6 @@ public class PagesServlet extends HttpServlet {
     }
 
     public void destroy() {
-        try {
-            db.getConn().close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
+        this.db.Close();
     }
 }

@@ -32,6 +32,14 @@ public class User {
         this.role = role;
     }
 
+    public User(String name, String surname, String birthdate, String email, String username) {
+        this.name = name;
+        this.surname = surname;
+        this.birthdate = birthdate;
+        this.email = email;
+        this.username = username;
+    }
+
     public void setId(int id) {
         this.id = id;
     }

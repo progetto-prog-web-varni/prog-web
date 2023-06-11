@@ -1,8 +1,8 @@
 package Controllers;
 
-import ConfImporter.DbConf;
 import ConfImporter.Generics;
 import Utils.Database;
+import Utils.Log;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -23,9 +23,10 @@ public class CounterFilter implements Filter {
 
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
             throws ServletException, IOException {
+
         HttpServletRequest request = (HttpServletRequest) req;
         String pageNameUri = request.getRequestURI();
-        String pageName=null;
+        String pageName = null;
         switch (pageNameUri){
             case Generics.DefStartingPage + "index.jsp":
                 pageName = "Home";
@@ -46,23 +47,17 @@ public class CounterFilter implements Filter {
                 pageName = "Login";
                 break;
             default:
-                System.out.println("Default: "  + pageNameUri);
+                Log.PrintLog(new Log("Got hit from " + pageNameUri, "CounterFilter"));
         }
 
-        if(pageName!=null){
-            increaseCounter(pageName);
-        }
+        if(pageName!=null) increaseCounter(pageName);
 
         // Passa la richiesta al prossimo filtro o servlet
         chain.doFilter(req, resp);
     }
 
     public void destroy() {
-        try {
-            this.db.getConn().close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
+        this.db.Close();
     }
 
     private void increaseCounter(String pageName) {
@@ -90,7 +85,7 @@ public class CounterFilter implements Filter {
             resultSet.close();
             checkStmt.close();
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            Log.PrintLog(new Log("SQLException: " + ex, "CounterFilter"));
         }
     }
 }

@@ -1,6 +1,7 @@
 package Controllers;
 
 import ConfImporter.SMTPConf;
+import Utils.Log;
 
 import javax.servlet.ServletException;
 import javax.mail.internet.AddressException;
@@ -23,9 +24,11 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "MailServlet", value = "/MailServlet")
 public class MailServlet extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;         //boh?
+    private static final long serialVersionUID = 1L;
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
         String nome = request.getParameter("fname");
         String cognome = request.getParameter("lname");
         String email = request.getParameter("email");
@@ -40,39 +43,36 @@ public class MailServlet extends HttpServlet {
     }
 
     private void inviaEmail(String nome, String cognome, String email, String contact_reason, String feedback) {
-        //qui invia la mail bro
-
         String host = SMTPConf.host;
         String port = SMTPConf.port;
         String mailFrom = SMTPConf.mailFrom;
         String password = SMTPConf.password;
 
         // outgoing message information
-        //String mailTo = "dalbosco.alby@gmail.com";
         String subject = "Richiesta contatto Tum4World";
 
         // message contains HTML markups
-        String message = " <h1>Richiesta contatto Tum4World </h1> <p> Gentile "
-                + nome + " " + cognome + ", la sua richiesta ricevuta e' stata ricevuta correttamente dal nostro staff,"
-                + "le faremo sapere al piu' presto!</p> " + " <p> Questi sono i dettagli della sua richiesta: <br> - Co"
-                + "ntattato per: " + contact_reason + " <br> - Dettagli richiesta: "
-                + feedback + " </p> <br> <br> <br> <p> Lo staff Tum4World </p>";
+        String message = " <h1>Richiesta contatto Tum4World </h1> <p> Nuova richiesta di contatto da:  "
+                + nome + " " + cognome +
+                "</p>, con la seguente mail: <p>" + email + "</p>" +
+                "<p> Motivo del contatto: <br> " + contact_reason + " <br> - Dettagli richiesta: "
+                + feedback;
         try {
-            sendHtmlEmail(host, port, mailFrom, password, email,
-                    subject, message);
-            System.out.println("Email sent.");
+            // Cambiata la logica:
+            // La mail deve essere inviata agli amministratori, che poi faranno una richiesta successivamente.
+            sendHtmlEmail(host, port, mailFrom, password, SMTPConf.emailAddress, subject, message);
+            Log.PrintLog(new Log("Email sent", "MailSevlet"));
         } catch (Exception ex) {
-            System.out.println("Failed to sent email.");
-            ex.printStackTrace();
+            Log.PrintLog(new Log("Failed to sent email. \n SQLException: " + ex, "MailServlet"));
         }
 
-        System.out.println("Dati della mail:");
-        System.out.println(message);
+        Log.PrintLog(new Log("Dati della mail: \n" + message, "MailServlet"));
     }
 
-
     public void sendHtmlEmail(String host, String port, final String userName, final String password,
-                              String toAddress, String subject, String message) throws AddressException, MessagingException {
+                              String toAddress, String subject, String message)
+            throws AddressException, MessagingException {
+
         // setto le proprietà del server SMTP
         Properties properties = new Properties();
         properties.put("mail.smtp.host", host);

@@ -1,6 +1,7 @@
 package Controllers;
 
 import Utils.Database;
+import Utils.Log;
 import com.google.gson.Gson;
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -68,16 +69,12 @@ public class DonationServlet extends HttpServlet {
                 return rowsAffected > 0;
             }
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            Log.PrintLog(new Log("SQLException: " + ex, "DonationServlet"));
             return false;
         }
     }
 
     public void destroy() {
-        try {
-            this.db.getConn().close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
+        this.db.Close();
     }
 }

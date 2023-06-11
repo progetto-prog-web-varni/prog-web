@@ -65,10 +65,6 @@ public class RetrieveSimpatizzantiServlet extends HttpServlet {
     }
 
     public void destroy(){
-        try {
-            this.db.getConn().close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
+        this.db.Close();
     }
 }

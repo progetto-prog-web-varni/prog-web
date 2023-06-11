@@ -1,6 +1,8 @@
 package Controllers;
 
+import ConfImporter.CookieConf;
 import Utils.Database;
+import Utils.Log;
 import Utils.ResponseObj;
 import com.google.gson.Gson;
 
@@ -40,25 +42,28 @@ public class LoginServlet extends HttpServlet{
         String password;
 
         //guardo se ha cookies
+        // Non so se serve a qualcosa questa sezione, ma ho paura a toglierla.
         boolean hasCookie = false;
         String usernameCookie= null;
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
             for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("ciaone")) {
+                if (cookie.getName().equals(CookieConf.DefaultCookieName)) {
                     hasCookie = true;
                     if (!cookie.getValue().isEmpty()) {
-                        username = cookie.getValue();
+                        usernameCookie = cookie.getValue();
                     }
                     break;
                 }
             }
         }
+
         // Prova a recuperare i parametri dalla richiesta
         try {
             username = request.getParameter("username");
             password = request.getParameter("password");
         } catch (NullPointerException  e) {
+            Log.PrintLog(new Log("Username o Password non inseriti. \n " + e, "LoginServlet"));
             response.setContentType("application/json;charset=UTF-8");
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             resp.write(createResponse("false", "Richiesto l'inserimento di password e username"));
@@ -71,37 +76,42 @@ public class LoginServlet extends HttpServlet{
                 // Recupera il ruolo dell'utente dal database
                 String role = db.getUserRole(this.db.getConn(), username);
 
-
                 if(hasCookie){
-                    if(usernameCookie==null || usernameCookie.isEmpty()){
-                        Cookie updatedCookie = new Cookie("ciaone", username);
-                        updatedCookie.setMaxAge(300);
-                        updatedCookie.setPath("/");
-                        response.addCookie(updatedCookie);
-                    }
+                    Cookie updatedCookie = new Cookie(CookieConf.DefaultCookieName, username);
+                    updatedCookie.setMaxAge(CookieConf.CookieDuration);
+                    updatedCookie.setPath(CookieConf.DefaultCookiePath);
+                    response.addCookie(updatedCookie);
                 }
 
-                System.out.println("sessione creata");
+                Log.PrintLog(new Log("Sessione creata", "LoginServlet"));
                 HttpSession session = request.getSession();
                 session.setAttribute("username", username);
                 session.setAttribute("role", role);
-                session.setMaxInactiveInterval(60);
+                session.setMaxInactiveInterval(CookieConf.DefaultInactiveInterval);
 
 
-                    if (role.equals("amministratore")) {
-                        String encodeUrl=response.encodeURL("AreaRiservata/amministratore/index.jsp");
+                switch (role) {
+                    case "amministratore": {
+                        String encodeUrl = response.encodeURL("AreaRiservata/amministratore/index.jsp");
                         response.sendRedirect(encodeUrl);
-                    } else if (role.equals("simpatizzante")) {
-                        String encodeUrl=response.encodeURL("AreaRiservata/simpatizzante/index.jsp");
+                        break;
+                    }
+                    case "simpatizzante": {
+                        String encodeUrl = response.encodeURL("AreaRiservata/simpatizzante/index.jsp");
                         response.sendRedirect(encodeUrl);
-                    } else if (role.equals("aderente")) {
-                        String encodeUrl=response.encodeURL("AreaRiservata/aderente/index.jsp");
+                        break;
+                    }
+                    case "aderente": {
+                        String encodeUrl = response.encodeURL("AreaRiservata/aderente/index.jsp");
                         response.sendRedirect(encodeUrl);
-                    } else {
+                        break;
+                    }
+                    default:
                         response.setContentType("application/json;charset=UTF-8");
                         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                         resp.write(createResponse("false", "Ruolo non valido"));
-                    }
+                        break;
+                }
 
             } else {
                 // Gestisci l'errore in caso non siano corrette le informazioni di login
@@ -110,7 +120,7 @@ public class LoginServlet extends HttpServlet{
                 resp.write(createResponse("false", "User o password non corrispondono o l'utente non esiste"));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            Log.PrintLog(new Log("SQLException: " + e, "LoginServlet"));
             response.setContentType("application/json;charset=UTF-8");
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             resp.write(createResponse("false", "Avvenuto errore nella comunicazione con il database."));

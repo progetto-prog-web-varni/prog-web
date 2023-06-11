@@ -25,7 +25,7 @@ public class UnsubscribeServlet extends HttpServlet {
         String username = (String) session.getAttribute("username");
 
         try {
-            // Dtogli utente
+            // Togli utente
             PreparedStatement stmt = db.getConn().prepareStatement("DELETE FROM users WHERE username = ?");
             stmt.setString(1, username);
             int affectedRows = stmt.executeUpdate();
@@ -57,10 +57,6 @@ public class UnsubscribeServlet extends HttpServlet {
     }
 
     public void destroy() {
-        try {
-            db.getConn().close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
+       this.db.Close();
     }
 }
