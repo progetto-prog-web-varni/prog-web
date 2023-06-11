@@ -12,6 +12,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%@ include file="../Components/favicon_setting.jsp" %>
+
   <style>
     <%@ include file="../resources/css/base.css" %>
     <%@ include file="../resources/css/footer.css" %>
@@ -27,6 +29,7 @@
 
 <div>
   <h1 class="generic-text-center">Redirect</h1>
+  <h1>Go to <a href="/login.jsp">DashBoard</a></h1>
 </div>
 
 <%@ include file="../Components/footer.jsp" %>

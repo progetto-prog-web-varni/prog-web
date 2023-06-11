@@ -2,6 +2,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%@ include file="Components/favicon_setting.jsp" %>
   <style>
     <%@ include file="resources/css/base.css" %>
     <%@ include file="resources/css/footer.css" %>
@@ -10,10 +14,8 @@
 
     <%@ include file="resources/css/confirm.css" %>
   </style>
-  </style>
   <title>Invio confermato</title>
-  <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/logo.png">
-</head>
+  </head>
 <body>
 <%@ include file="Components/header.jsp" %>
 
@@ -21,12 +23,22 @@
   <h1 class="title">Contatto inviato</h1>
 <%
   String email = request.getParameter("email");
+  String err = request.getParameter("error");
 
-  if (email!=null ) {
+  if (email!=null && err == null) {
 %>
 
 <p>Grazie per aver inviato la tua mail, verrai ricontattato al più presto da Tum4World</p>
-<%
+
+  <%
+    }  else if (err != null ){
+%>
+  <div class="alert">
+    <span class="close" onclick="return hidePopup()">&times;</span>
+    <span><strong>Errore nel mandare la mail!</strong><% out.print(err); %> </span>
+  </div>
+
+  <%
   } else {
     response.sendRedirect("contatti.jsp");
   }

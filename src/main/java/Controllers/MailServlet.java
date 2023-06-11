@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.net.URLEncoder;
 import java.util.Date;
 import java.util.Properties;
 import javax.mail.Authenticator;
@@ -29,20 +30,35 @@ public class MailServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String nome = request.getParameter("fname");
-        String cognome = request.getParameter("lname");
-        String email = request.getParameter("email");
-        String contact_reason = request.getParameter("contact_reason");
-        String feedback = request.getParameter("feedback");
+        String nome;
+        String cognome;
+        String email;
+        String contact_reason;
+        String feedback;
+
+        try {
+            nome = request.getParameter("fname");
+            cognome = request.getParameter("lname");
+            email = request.getParameter("email");
+            contact_reason = request.getParameter("contact_reason");
+            feedback = request.getParameter("feedback");
+        } catch (NullPointerException ex) {
+            Log.PrintLog(new Log("Parametri della richiesta no validi.", "MailServlet"));
+            response.sendRedirect("confirm_contatti.jsp?error=" + URLEncoder.encode("Parametri non inseriti correttamente"));
+            return;
+        }
 
         // manda la mail
-        inviaEmail(nome, cognome, email, contact_reason, feedback);
-
-        // reindirizza alla pagina di conferma
-        response.sendRedirect("confirm_contatti.jsp?email=" + email);
+        boolean isSent = inviaEmail(nome, cognome, email, contact_reason, feedback);
+        if(isSent){
+            // reindirizza alla pagina di conferma
+            response.sendRedirect("confirm_contatti.jsp?email=" + email);
+        } else {
+            response.sendRedirect("confirm_contatti.jsp?error=" + email);
+        }
     }
 
-    private void inviaEmail(String nome, String cognome, String email, String contact_reason, String feedback) {
+    private boolean inviaEmail(String nome, String cognome, String email, String contact_reason, String feedback) {
         String host = SMTPConf.host;
         String port = SMTPConf.port;
         String mailFrom = SMTPConf.mailFrom;
@@ -64,9 +80,11 @@ public class MailServlet extends HttpServlet {
             Log.PrintLog(new Log("Email sent", "MailSevlet"));
         } catch (Exception ex) {
             Log.PrintLog(new Log("Failed to sent email. \n SQLException: " + ex, "MailServlet"));
+            return false;
         }
 
         Log.PrintLog(new Log("Dati della mail: \n" + message, "MailServlet"));
+        return true;
     }
 
     public void sendHtmlEmail(String host, String port, final String userName, final String password,

@@ -6,6 +6,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%@ include file="Components/favicon_setting.jsp" %>
+
     <style>
         @import './resources/css/base.css';
         @import './resources/css/header.css';
@@ -15,8 +17,7 @@
     </style>
 
     <title>Tum4World | Foto attività little coders</title>
-    <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/logo.png">
-</head>
+    </head>
 
 <body>
     <%@ include file="Components/header.jsp" %>
