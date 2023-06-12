@@ -1,5 +1,7 @@
 # Programmazione WEB - Varni
 
+> Corso di introduzione alla Programmazione Web, Professoressa Varni.
+
 Autori:
 @giovannifoletto
 @EddieVeronese
@@ -22,6 +24,9 @@ Altri comandi utili:
 - `make docker-old-run`: permette di eseguire `make docker-run` sopra con una vecchia versione di `compose`.
 - `make docker-install`: comando che scarica il commodity-script per docker e lo esegue. Non credo funzioni su Windows, 
   ma non è testato.
+  
+> NOTE: il deploy su docker non funziona con docker. Sarebbe da testare con un ambiente di Windows-in-docker, ma non essendo
+> lo scopo finale del progetto questa sezione di modifiche viene abbandonata.
 
 ## Organizzazione Della Repo
 
@@ -34,36 +39,6 @@ Altri comandi utili:
 
 Tutto il compilato viene incluso nella cartella `target`, che è esclusa attraverso il `.gitignore`.
 
-## TESTING METHODOLOGY
+Il database, con i relativi schemi e dati in esso presenti, sono tutti inseriti nel file `default.sql`, nella root del progetto.
+Tutte le dipendenze sono risolte attraverso maven, oppure descritte nel file del progetto su IntelliJ.
 
-- codice bene
-- ogni tanto un sacco di codice che non faceva nulla, rimosso
-- ogni tanto nomi dati a cose non proprimente comprensibile "MyCustomForm (?)"
-- non c'è molta divisione dei componenti, nel senso che tutto è all'interno dello stesso div/span (usare span non mi piace troppo, quindi ho rimosso, nonostante ci siano due scuole di pensiero)
-- le informazioni più importanti vanno nelle scritte più grandi
-- lo stile ogni tanto non è consistente (il bottone blu perché non lo hai usato ovunque ?)
-- quando bisogna centrare tante cose, meglio usare grid
-
-TODO: 
-
-- [ ] pagina delle singole attività, pagina delle attività tutte da rifare, troppo poco leggibile.
-  - [ ] si aggiunga un bottone alla fine di ogni piccola presentazione dove poter acceder la primaria
-  - [ ] creare pagine "figlie" con ogni attività nello specifico
-
-- [ ] Capire Perché non funziona lo shadow del **signup**, oppure renderlo coerente con il contatto, quindi con il contorno blu
-
-- [ ] `contatti.css` riga 20, classe inutilizzata, anche perché non rappresenta una classe.
-- [ ] cambiare grafiche aderente e simpatizzante come da note, rileggere.
-
-# Derby
-
-Docs: [HERE](https://db.apache.org/derby/papers/DerbyTut/ij_intro.html).
-
-Interactive SQL shell.
-```bash
-java org.apache.derby.tools.ij
-```
-
-## Eddie
-
-Models nella parte di Servlet forse?
