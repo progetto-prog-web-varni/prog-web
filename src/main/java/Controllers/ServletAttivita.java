@@ -89,6 +89,7 @@ public class ServletAttivita extends HttpServlet {
 
         HttpSession session = req.getSession();
         String username = (String) session.getAttribute("username");
+        String role= (String) session.getAttribute("role");
         Boolean act1=Boolean.parseBoolean(req.getParameter("Activity_1"));
         Boolean act2=Boolean.parseBoolean(req.getParameter("Activity_2"));
         Boolean act3=Boolean.parseBoolean(req.getParameter("Activity_3"));
@@ -106,7 +107,7 @@ public class ServletAttivita extends HttpServlet {
         boolean activity_change= new_entry_activityDB(username, act1, act2, act3);
         if(activity_change){
             //redirect to same page
-            String redirect_url= req.getContextPath() + "/AreaRiservata/simpatizzante/iscrizione_attivita.jsp";
+            String redirect_url= req.getContextPath() + "/AreaRiservata/" + role + "/iscrizione_attivita.jsp";
             resp.sendRedirect(redirect_url);
         } else {
             // Gestisce l'errore

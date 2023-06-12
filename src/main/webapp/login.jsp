@@ -1,3 +1,4 @@
+<%@ page import="ConfImporter.CookieConf" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <%
@@ -13,7 +14,7 @@
   Cookie[] cookies = request.getCookies();
   if (cookies != null) {
     for (Cookie cookie : cookies) {
-      if (cookie.getName().equals("ciaone")) {
+      if (cookie.getName().equals(CookieConf.DefaultCookieName)) {
         usernameCookie = cookie.getValue();
         break;
       }

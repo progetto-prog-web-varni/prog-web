@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {"/index.jsp", "/chiSiamo.jsp","/contatti.jsp", "/login.jsp", "/signup.jsp", "/singola_attivita.jsp"})
+@WebFilter(urlPatterns = {"/index.jsp", "/chiSiamo.jsp","/attivita.jsp", "/contatti.jsp", "/sign-up.jsp", "/login.jsp"})
 public class CookieFilter implements Filter {
 
     @Override

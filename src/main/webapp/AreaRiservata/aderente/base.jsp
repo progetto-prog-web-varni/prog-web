@@ -69,6 +69,33 @@
     </div>
 </div>
 
+<style>
+    /* Stile per il popup */
+    #custom-popup {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .popup-content {
+        background-color: #c3e6c9;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    #popup-message {
+        font-size: 18px;
+        color: #145214;
+    }
+</style>
+
 <script>
     // Funzione per chiudere il popup
     function closePopup() {
