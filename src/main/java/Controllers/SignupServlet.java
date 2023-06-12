@@ -23,7 +23,6 @@ public class SignupServlet extends HttpServlet{
 
 
     protected boolean check_username(HttpServletResponse response, String username) throws IOException{
-        /*
         try{
 
             PreparedStatement checkStmt = this.db.getConn()
@@ -45,14 +44,11 @@ public class SignupServlet extends HttpServlet{
             Log.PrintLog(new Log("Username Check andato male: \n" + ex, "SignupServlet"));
             return false;
         }
-
-         */
-        return false;
     }
 
     protected void new_entry_db(String fname, String lname, String birthday, String email, String membershipType,
                                 String username, String password){
-     /*   try{
+       try{
 
             PreparedStatement checkStmt = this.db.getConn()
                     .prepareStatement("INSERT INTO USERS (NAME, SURNAME, BIRTHDATE, EMAIL, USERNAME, PASSWORD, ROLE) VALUES (?,?,?,?,?,?,?)");
@@ -62,20 +58,46 @@ public class SignupServlet extends HttpServlet{
             checkStmt.setString(4, email);
             checkStmt.setString(5, username);
             checkStmt.setString(6, password);
-            checkStmt.setString(7, membershipType);
-
+            checkStmt.setString(7, membershipType.toLowerCase());
 
             int risultato = checkStmt.executeUpdate();
             Log.PrintLog(new Log("Inserimento nuovo username. (" + risultato + ")", "SignupServlet"));
 
             checkStmt.close();
+
+           PreparedStatement checkStmt1 = this.db.getConn()
+                   .prepareStatement("SELECT ID FROM USERS WHERE USERNAME = ?");
+
+           checkStmt1.setString(1, username);
+
+
+           ResultSet res = checkStmt1.executeQuery();
+
+           if(res.next()) {
+               String userid = res.getString("ID");
+
+               checkStmt1.close();
+
+               Log.PrintLog(new Log("Username id: " + userid, "SignupServlet"));
+
+               PreparedStatement checkStmt2 = this.db.getConn()
+                       .prepareStatement("INSERT INTO ACTIVITY (USERID, ACTIVITY1, ACTIVITY2, ACTIVITY3) VALUES (?,?,?,?)");
+               checkStmt2.setString(1, userid);
+               checkStmt2.setBoolean(2, false);
+               checkStmt2.setBoolean(3, false);
+               checkStmt2.setBoolean(4, false);
+
+               risultato = checkStmt2.executeUpdate();
+
+               Log.PrintLog(new Log("Insert activities: " + risultato, "SignupServlet"));
+
+               checkStmt2.close();
+           }
         }catch(SQLException | NullPointerException ex){
             Log.PrintLog(new Log("Errore nell'inserimento nuovo username: \n" + ex, "SignupServlet"));
 
             // response.setStatus(__immetere pagina di errore_);
         }
-
-      */
     }
 
     @Override
@@ -111,7 +133,7 @@ public class SignupServlet extends HttpServlet{
             return;
         }
 
-        System.out.println(
+        /*System.out.println(
                 "USERNAME:" + fname +
                         " LASTNAME: " + lname +
                         " Birtday: " + birthday +
@@ -120,7 +142,7 @@ public class SignupServlet extends HttpServlet{
                         " SelectionInput: " + membershipType +
                         " Username: " + username +
                         " Password: " + password +
-                        " Conferma Password: " + confirm_password);
+                        " Conferma Password: " + confirm_password);*/
 
         // true => username già presente
         boolean OK=check_username(response, username);

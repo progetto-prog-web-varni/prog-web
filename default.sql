@@ -1,12 +1,12 @@
 CREATE TABLE USERS (
     ID INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     NAME VARCHAR(255),
-                       SURNAME VARCHAR(255),
-                       BIRTHDATE VARCHAR(10),
-                       EMAIL VARCHAR(255),
-                       USERNAME VARCHAR(255),
-                       PASSWORD VARCHAR(255),
-                       ROLE VARCHAR(50)
+    SURNAME VARCHAR(255),
+    BIRTHDATE VARCHAR(10),
+    EMAIL VARCHAR(255),
+    USERNAME VARCHAR(255),
+    PASSWORD VARCHAR(255),
+    ROLE VARCHAR(50)
 );
 
 INSERT INTO USERS (NAME, SURNAME, BIRTHDATE, EMAIL, USERNAME, PASSWORD, ROLE)
@@ -34,8 +34,8 @@ VALUES
 
 
 CREATE TABLE PAYMENT (
-                         MESE INT,
-                         VALORE INT
+    MESE INT,
+    VALORE INT
 );
 
 
@@ -57,10 +57,11 @@ VALUES
 
 
 CREATE TABLE ACTIVITY (
-                          USERID INT,
-                          ACTIVITY1 BOOLEAN,
-                          ACTIVITY2 BOOLEAN,
-                          ACTIVITY3 BOOLEAN
+    USERID INT PRIMARY KEY,
+    ACTIVITY1 BOOLEAN,
+    ACTIVITY2 BOOLEAN,
+    ACTIVITY3 BOOLEAN,
+    FOREIGN KEY (USERID) REFERENCES USERS(ID)
 );
 
 
@@ -70,12 +71,13 @@ VALUES
     (3, false, true, true),
     (4, false, false, true),
     (5, true, true, true),
-    (6, true, false, true);
+    (126, true, false, true),
+    (122, true, false, true);
 
 CREATE TABLE COUNTERS (
-                          ID INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-                          PAGENAME VARCHAR(300),
-                          HITS INT
+     ID INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+     PAGENAME VARCHAR(300),
+     HITS INT
 );
 
 INSERT INTO COUNTERS (PAGENAME, HITS)

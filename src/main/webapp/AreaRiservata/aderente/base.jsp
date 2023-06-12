@@ -5,8 +5,8 @@
     <div>
 
         <h4><a href="<% response.encodeURL(request.getContextPath() + "/AreaRiservata/aderente/dati_personali.jsp"); %>">Visualizza Dati Personali</a></h4>
-        <h4><a href="<% response.encodeURL(request.getContextPath() + "/AreaRiservata/aderente/iscrizione_attivita.jsp"); %>">Visualizza Dati Personali</a></h4>
-        <h4><a href="<% response.encodeURL(request.getContextPath() + "/AreaRiservata/aderente/cancella_iscrizione.jsp"); %>">Visualizza Dati Personali</a></h4>
+        <h4><a href="<% response.encodeURL(request.getContextPath() + "/AreaRiservata/aderente/iscrizione_attivita.jsp"); %>">Iscrizione Attivita'</a></h4>
+        <h4><a href="<% response.encodeURL(request.getContextPath() + "/AreaRiservata/aderente/cancella_iscrizione.jsp"); %>">Cancella iscrizione</a></h4>
 
         <h4>Esegui Donazione</h4>
         <div class="esegui-donazione">
