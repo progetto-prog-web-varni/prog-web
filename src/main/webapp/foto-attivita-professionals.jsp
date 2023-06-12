@@ -31,7 +31,7 @@
         <p class="description">
             Questa attività consiste in una serie di 15 lezioni incentrate sull'informatica applicata alla programmazione web e allo sviluppo di app mobile.<br>
             L'obiettivo del corso è la comprensione degli elementi di base della programmazione web con un focus iniziale sul front-end,
-            quindi tutta la parte visibile all'utente di un programma e con cui egli può interagire, tipicamente un'interfaccia utente;
+            ossia tutta la parte visibile all'utente di un programma e con cui egli può interagire, tipicamente un'interfaccia utente;
             e poi tutta la parte "invisibile" al visitatore: il back-end.<br>
             Con questo si intende, invece, tutta quella parte dietro le quinte del sito che permette l'effettivo funzionamento di queste interazioni.
             Si tratta quindi d'interagire con database, Servlet, gestione dei dati, sicurezza, ...<br>
