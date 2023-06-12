@@ -52,7 +52,13 @@
             preparati che dedicano gran parte del loro tempo alla ricerca e allo sviluppo. <br><br>
           </p>
           <br><br>
-          <img class="foto_activity" onclick="window.open('foto-attivita-little-coders.jsp')" src="${pageContext.request.contextPath}/resources/img/foto_attivita/bambini1.jpg" alt="foto robot con bambino">
+          <figure>
+            <img class="foto_activity" onclick="window.open('foto-attivita-little-coders.jsp')" src="${pageContext.request.contextPath}/resources/img/foto_attivita/bambini1.jpg" alt="foto robot con bambino">
+            <figcaption>
+              <p>Clicca sull'immagine per scoprire di pù sul corso di robotica ora disponibile! </p>
+            </figcaption>
+          </figure>
+
         </div>
 
         <br><br><br>
@@ -60,8 +66,8 @@
         <div class="single-activity second-activity">
           <h3>Tum4World for professionals </h3>
           <p>
-            Diventa un esperto informatico con questo corso di informatica!<br>
-            Offriamo una formazione all'avanguardia attraverso le nostre attività on-demand per aiutarvi ad ottenere
+            Diventa un esperto informatico con questo corso d'informatica!<br>
+            Offriamo una formazione all'avanguardia attraverso le nostre attività on-demand per aiutarvi a ottenere
             le migliori conoscenze e competenze possibili per ambire al lavoro dei sogni.<br>
             Il nostro centro di formazione offre un'ampia gamma di attività per programmatori organizzati in modo
             professionale, con metodi innovativi e non liberali. <br>
@@ -84,7 +90,14 @@
             Dai uno slancio al tuo curriculum, apprendi nuovi linguaggi di programmazione con i nostri corsi!<br><br>
           </p>
           <br><br>
-          <img class="foto_activity" onclick="window.open('foto-attivita-professionals.jsp')" src="${pageContext.request.contextPath}/resources/img/foto_attivita/professional5.jpeg"  alt="foto programmatore">
+          <figure>
+            <img class="foto_activity" onclick="window.open('foto-attivita-professionals.jsp')" src="${pageContext.request.contextPath}/resources/img/foto_attivita/professional5.jpeg"  alt="foto programmatore">
+            <figcaption>
+              <p>
+                Clicca sull'immagine per scoprire di più sull'attività di Web Developer, ora disponibile!
+              </p>
+            </figcaption>
+          </figure>
         </div>
 
         <br><br><br>
@@ -104,7 +117,7 @@
             essere utilizzata solo dai giovani. Una cosa è certa: non è mai troppo tardi per imparare l'informatica e
             per affidarsi a questo corso base.<br>
             Ogni insegnante avrà una preparazione tale da spiegare in modo semplice, efficace tutti i contenuti della
-            formazione di base, adattandola ad ogni individuo. <br>
+            formazione di base, adattandola a ogni individuo. <br>
             Argomenti base affrontati nel corso: <br>
           </p>
           <ul class="elenco-circle">
@@ -118,7 +131,12 @@
           </ul>
           </ul>
           <br><br>
-          <img class="foto_activity" onclick="window.open('foto-attivita-seniors.jsp')" src="${pageContext.request.contextPath}/resources/img/foto_attivita/anziani1.jpg" alt="foto anziani">
+          <figure>
+            <img class="foto_activity" onclick="window.open('foto-attivita-seniors.jsp')" src="${pageContext.request.contextPath}/resources/img/foto_attivita/anziani1.jpg" alt="foto anziani">
+            <figcaption>
+              <p> Clicca sull'immagine per scoprire di più! </p>
+            </figcaption>
+          </figure>
         </div>
 
         <br><br><br>
