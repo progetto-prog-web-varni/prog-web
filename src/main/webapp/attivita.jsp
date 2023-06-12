@@ -129,7 +129,6 @@
             <li>Risoluzione di problemi di base presenti nel quotidiano
             <li>Utilizzo di dispositivi mobile come smartphone e tablet
           </ul>
-          </ul>
           <br><br>
           <figure>
             <img class="foto_activity" onclick="window.open('foto-attivita-seniors.jsp')" src="${pageContext.request.contextPath}/resources/img/foto_attivita/anziani1.jpg" alt="foto anziani">
