@@ -40,7 +40,7 @@
     <%@ include file="base.jsp"%>
     <div>
         <!-- Qui vanno tutti i dati dinamici in base a quello cliccato -->
-        <h1>Analytics Sito</h1>
+        <h3>Analytics Sito</h3>
         <button class="button" onclick="loadPagesData()">Carica dati</button>
         <div id="chartContainer" style="display: none;"></div>
     </div>

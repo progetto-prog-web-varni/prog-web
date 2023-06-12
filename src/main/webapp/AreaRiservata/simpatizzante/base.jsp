@@ -9,7 +9,7 @@
     <!--pulsante logout-->
     <div class="logout">
         <form action="../../LogoutServlet" method="get">
-            <button class="button "type="submit"> Logout </button>
+            <button class="button" type="submit"> Logout </button>
         </form>
     </div>
 </div>
