@@ -38,6 +38,7 @@
             <h3><strong>Cognome:</strong> <span id="surname"></span></h3>
             <h3><strong>Data di Nascita:</strong> <span id="birthdate"></span></h3>
             <h3><strong>Email:</strong> <span id="email"></span></h3>
+            <h3><strong>Phone:</strong> <span id="phone"></span></h3>
             <h3><strong>Username:</strong> <span id="username"></span></h3>
         </div>
     </div>
@@ -65,6 +66,7 @@
         document.getElementById('surname').textContent = info.surname;
         document.getElementById('birthdate').textContent = info.birthdate;
         document.getElementById('email').textContent = info.email;
+        document.getElementById('phone').textContent = info.phone;
         document.getElementById('username').textContent = info.username;
     }
 

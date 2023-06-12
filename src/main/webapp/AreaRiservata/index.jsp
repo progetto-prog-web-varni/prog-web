@@ -29,7 +29,7 @@
 
 <div>
   <h1 class="generic-text-center">Redirect</h1>
-  <h1>Go to <a href="/login.jsp">DashBoard</a></h1>
+  <h1>Go to <a href="${pageContext.request.contextPath}/login.jsp">DashBoard</a></h1>
 </div>
 
 <%@ include file="../Components/footer.jsp" %>

@@ -46,29 +46,58 @@ public class SignupServlet extends HttpServlet{
         }
     }
 
-    protected void new_entry_db(String fname, String lname, String birthday, String email, String membershipType,
-                                String username, String password){
-        try{
+    protected boolean new_entry_db(String fname, String lname, String birthday, String email, String phone,
+                                String membershipType, String username, String password){
+       try{
 
             PreparedStatement checkStmt = this.db.getConn()
-                    .prepareStatement("INSERT INTO USERS (NAME, SURNAME, BIRTHDATE, EMAIL, USERNAME, PASSWORD, ROLE) VALUES (?,?,?,?,?,?,?)");
+                    .prepareStatement("INSERT INTO USERS (NAME, SURNAME, BIRTHDATE, EMAIL, PHONE, USERNAME, PASSWORD, ROLE) VALUES (?,?,?,?,?,?,?,?)");
             checkStmt.setString(1, fname);
             checkStmt.setString(2, lname);
             checkStmt.setString(3, birthday);
             checkStmt.setString(4, email);
-            checkStmt.setString(5, username);
-            checkStmt.setString(6, password);
-            checkStmt.setString(7, membershipType);
-
+            checkStmt.setString(5, phone);
+            checkStmt.setString(6, username);
+            checkStmt.setString(7, password);
+            checkStmt.setString(8, membershipType.toLowerCase());
 
             int risultato = checkStmt.executeUpdate();
             Log.PrintLog(new Log("Inserimento nuovo username. (" + risultato + ")", "SignupServlet"));
 
             checkStmt.close();
+
+           PreparedStatement checkStmt1 = this.db.getConn()
+                   .prepareStatement("SELECT ID FROM USERS WHERE USERNAME = ?");
+
+           checkStmt1.setString(1, username);
+
+
+           ResultSet res = checkStmt1.executeQuery();
+
+           if(res.next()) {
+               String userid = res.getString("ID");
+
+               checkStmt1.close();
+
+               Log.PrintLog(new Log("Username id: " + userid, "SignupServlet"));
+
+               PreparedStatement checkStmt2 = this.db.getConn()
+                       .prepareStatement("INSERT INTO ACTIVITY (USERID, ACTIVITY1, ACTIVITY2, ACTIVITY3) VALUES (?,?,?,?)");
+               checkStmt2.setString(1, userid);
+               checkStmt2.setBoolean(2, false);
+               checkStmt2.setBoolean(3, false);
+               checkStmt2.setBoolean(4, false);
+
+               risultato = checkStmt2.executeUpdate();
+
+               Log.PrintLog(new Log("Insert activities: " + risultato, "SignupServlet"));
+
+               checkStmt2.close();
+           }
+           return true;
         }catch(SQLException | NullPointerException ex){
             Log.PrintLog(new Log("Errore nell'inserimento nuovo username: \n" + ex, "SignupServlet"));
-
-            // response.setStatus(__immetere pagina di errore_);
+            return false;
         }
     }
 
@@ -119,10 +148,17 @@ public class SignupServlet extends HttpServlet{
         // true => username già presente
         boolean OK=check_username(response, username);
         if(OK){
-            response.sendRedirect("sign-up.jsp?error=" + URLEncoder.encode("Err 13: Username già presente!", "UTF-8"));
+            response.sendRedirect("sign-up.jsp?error=" +
+                    URLEncoder.encode("Err 13: Username già presente!", "UTF-8"));
         }else{
-            new_entry_db(fname, lname, birthday, email, membershipType, username, password);
-            response.sendRedirect("confirm_signup.jsp");
+            boolean checkNewEntry = new_entry_db(fname, lname, birthday, email, phone, membershipType, username, password);
+            if(checkNewEntry){
+                response.sendRedirect("confirm_signup.jsp");
+            } else {
+                response.sendRedirect("sign-up.jsp?error=" +
+                        URLEncoder.encode("Err 13: Errore Generico durante la creazione dell'user!", "UTF-8"));
+            }
+
         }
     }
 

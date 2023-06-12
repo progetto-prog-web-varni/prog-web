@@ -49,10 +49,10 @@
 	document.addEventListener("DOMContentLoaded", () => {
 		try{
 			let xhr = new XMLHttpRequest();
-			xhr.open('GET', 'SendnewPhrasesServlet', true);
+			xhr.open('GET', '${pageContext.request.contextPath}/SendnewPhrasesServlet', true);
 			xhr.setRequestHeader("Content-Type", "application/json");
 
-			xhr.onreadystatechange = () => requestOnStateChanges(xhr);
+			xhr.onreadystatechange = () => requestOnStateChangesFooter(xhr);
 
 			xhr.send();
 
@@ -61,14 +61,15 @@
 		}
 	});
 
-	const requestOnStateChanges = (xhr) => {
+	const requestOnStateChangesFooter = (xhr) => {
 		try {
 			if (xhr.readyState === 4 && xhr.status === 200) {
 				//console.log(JSON.parse(xhr.responseText));
 				console.log("Frasi ok.");
 				frasi = [...JSON.parse(xhr.responseText)["pWa"]];
 			}else {
-				console.log("ALL:", xhr);
+				console.log("Not ok");
+				//console.log("ALL:", xhr);
 			}
 		} catch(e) {
 			console.log("CATCH Error nella richiesa xhr per gestire le frasi.");

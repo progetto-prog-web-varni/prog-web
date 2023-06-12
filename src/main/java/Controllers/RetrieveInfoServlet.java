@@ -30,7 +30,7 @@ public class RetrieveInfoServlet extends HttpServlet {
         String usernameServlet = (String) session.getAttribute("username");
 
         try {
-            PreparedStatement stmt = db.getConn().prepareStatement("SELECT name, surname, birthdate, email, username FROM users WHERE username = ?");
+            PreparedStatement stmt = db.getConn().prepareStatement("SELECT name, surname, birthdate, email, phone, username FROM users WHERE username = ?");
             stmt.setString(1, usernameServlet);
             ResultSet results = stmt.executeQuery();
 
@@ -39,11 +39,12 @@ public class RetrieveInfoServlet extends HttpServlet {
                 String surname = results.getString("surname");
                 String birthdate = results.getString("birthdate");
                 String email = results.getString("email");
+                String phone = results.getString("phone");
                 String username = results.getString("username");
 
                 //creo json
                 Gson gson = new Gson();
-                String json = gson.toJson(new User(name, surname, birthdate, email, username));
+                String json = gson.toJson(new User(name, surname, birthdate, email, phone, username));
 
                 response.getWriter().write(json);
             } else {

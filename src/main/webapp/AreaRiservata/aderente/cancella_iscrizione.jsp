@@ -31,7 +31,7 @@
 
 <!-- BODY of web page -->
 <div class="body-container">
-    <%@ include file="../aderente/base.jsp"%>
+    <%@ include file="base.jsp"%>
     <div>
         <h3 class="attivita-title">Cancella Iscrizioni</h3>
         <h4>Scelta tra le attività che vengono seguite</h4>
