@@ -25,7 +25,7 @@ Altri comandi utili:
 - `make docker-install`: comando che scarica il commodity-script per docker e lo esegue. Non credo funzioni su Windows, 
   ma non è testato.
   
-> NOTE: il deploy su docker non funziona con docker. Sarebbe da testare con un ambiente di Windows-in-docker, ma non essendo
+> NOTE: il deploy su docker non funziona con derby. Sarebbe da testare con un ambiente di Windows-in-docker, ma non essendo
 > lo scopo finale del progetto questa sezione di modifiche viene abbandonata.
 
 ## Organizzazione Della Repo
