@@ -7,6 +7,7 @@ public class User {
     private String surname;
     private String birthdate;
     private String email;
+    private String phone;
     private String username;
     private String password;
     private Role role ;
@@ -16,27 +17,18 @@ public class User {
         this.surname = "";
         this.birthdate = "";
         this.email = "";
+        this.phone = "000-000-0000";
         this.username = "";
         this.password = "";
         this.role = Role.ADERENTE; // default
     }
 
-    //costruttore senza id
-    public User(String name, String surname, String birthdate, String email, String username, String password, Role role) {
+    public User(String name, String surname, String birthdate, String email,String phone, String username) {
         this.name = name;
         this.surname = surname;
         this.birthdate = birthdate;
         this.email = email;
-        this.username = username;
-        this.password = password;
-        this.role = role;
-    }
-
-    public User(String name, String surname, String birthdate, String email, String username) {
-        this.name = name;
-        this.surname = surname;
-        this.birthdate = birthdate;
-        this.email = email;
+        this.phone = phone;
         this.username = username;
     }
 

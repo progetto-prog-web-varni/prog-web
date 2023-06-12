@@ -37,7 +37,7 @@
         <h3 class="margin-bottom-5 attivita-title"></h3>
         <h1>Lista delle attivita' possibili</h1>
 
-        <button class="button margin-bottom-5" onclick="loadOnClick()">Carica Dati</button>
+        <button class="button margin-bottom-5" onclick="loadOnClick()" id="loadButton">Carica Dati</button>
 
         <form action="../../ServletAttivita" id="formAction" method="POST">
             <div class="alert" id="alert-div" hidden>
@@ -74,6 +74,7 @@
                         console.log(resp);
                         if (!occupato) {
                             occupato = true;
+                            document.getElementById("loadButton").style.display =  "none";
                             for(let i=0; i<resp["activities"].length; i++) {
 
                                 let actCheck = "";

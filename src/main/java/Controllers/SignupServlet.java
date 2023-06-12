@@ -46,19 +46,20 @@ public class SignupServlet extends HttpServlet{
         }
     }
 
-    protected void new_entry_db(String fname, String lname, String birthday, String email, String membershipType,
-                                String username, String password){
+    protected boolean new_entry_db(String fname, String lname, String birthday, String email, String phone,
+                                String membershipType, String username, String password){
        try{
 
             PreparedStatement checkStmt = this.db.getConn()
-                    .prepareStatement("INSERT INTO USERS (NAME, SURNAME, BIRTHDATE, EMAIL, USERNAME, PASSWORD, ROLE) VALUES (?,?,?,?,?,?,?)");
+                    .prepareStatement("INSERT INTO USERS (NAME, SURNAME, BIRTHDATE, EMAIL, PHONE, USERNAME, PASSWORD, ROLE) VALUES (?,?,?,?,?,?,?,?)");
             checkStmt.setString(1, fname);
             checkStmt.setString(2, lname);
             checkStmt.setString(3, birthday);
             checkStmt.setString(4, email);
-            checkStmt.setString(5, username);
-            checkStmt.setString(6, password);
-            checkStmt.setString(7, membershipType.toLowerCase());
+            checkStmt.setString(5, phone);
+            checkStmt.setString(6, username);
+            checkStmt.setString(7, password);
+            checkStmt.setString(8, membershipType.toLowerCase());
 
             int risultato = checkStmt.executeUpdate();
             Log.PrintLog(new Log("Inserimento nuovo username. (" + risultato + ")", "SignupServlet"));
@@ -93,10 +94,10 @@ public class SignupServlet extends HttpServlet{
 
                checkStmt2.close();
            }
+           return true;
         }catch(SQLException | NullPointerException ex){
             Log.PrintLog(new Log("Errore nell'inserimento nuovo username: \n" + ex, "SignupServlet"));
-
-            // response.setStatus(__immetere pagina di errore_);
+            return false;
         }
     }
 
@@ -133,7 +134,7 @@ public class SignupServlet extends HttpServlet{
             return;
         }
 
-        /*System.out.println(
+        System.out.println(
                 "USERNAME:" + fname +
                         " LASTNAME: " + lname +
                         " Birtday: " + birthday +
@@ -142,15 +143,22 @@ public class SignupServlet extends HttpServlet{
                         " SelectionInput: " + membershipType +
                         " Username: " + username +
                         " Password: " + password +
-                        " Conferma Password: " + confirm_password);*/
+                        " Conferma Password: " + confirm_password);
 
         // true => username già presente
         boolean OK=check_username(response, username);
         if(OK){
-            response.sendRedirect("sign-up.jsp?error=" + URLEncoder.encode("Err 13: Username già presente!", "UTF-8"));
+            response.sendRedirect("sign-up.jsp?error=" +
+                    URLEncoder.encode("Err 13: Username già presente!", "UTF-8"));
         }else{
-            new_entry_db(fname, lname, birthday, email, membershipType, username, password);
-            response.sendRedirect("confirm_signup.jsp");
+            boolean checkNewEntry = new_entry_db(fname, lname, birthday, email, phone, membershipType, username, password);
+            if(checkNewEntry){
+                response.sendRedirect("confirm_signup.jsp");
+            } else {
+                response.sendRedirect("sign-up.jsp?error=" +
+                        URLEncoder.encode("Err 13: Errore Generico durante la creazione dell'user!", "UTF-8"));
+            }
+
         }
     }
 
