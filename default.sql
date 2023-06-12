@@ -31,7 +31,7 @@ VALUES
     ('Davide', 'Colombo', '1997-12-19', 'davide.colombo@example.com',  '123-123-1234', 'davidecolombo', 'Age0017!', 'aderente'),
     ('Samuele', 'Mancini', '1994-02-09', 'samuele.mancini@example.com', '123-123-1234', 'samuelemancini', 'Age0018!', 'aderente'),
     ('Gianmarco', 'Longo', '1991-06-26', 'gianmarco.longo@example.com', '123-123-1234', 'gianmarcolongo', 'Age0019!', 'aderente'),
-    ('Luca', 'Leone', '1996-10-14', 'luca.leone@example.com', 'lucaleone', '123-123-1234', 'Age0020!' , 'aderente');
+    ('Luca', 'Leone', '1996-10-14', 'luca.leone@example.com', '123-123-1234', 'lucaleone', 'Age0020!' , 'aderente');
 
 
 CREATE TABLE PAYMENT (
