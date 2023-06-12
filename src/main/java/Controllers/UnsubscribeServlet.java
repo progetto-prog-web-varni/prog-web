@@ -27,7 +27,7 @@ public class UnsubscribeServlet extends HttpServlet {
 
         try {
             // Togli utente
-            PreparedStatement stmt = db.getConn().prepareStatement("DELETE CASCADE FROM users WHERE username = ?");
+            PreparedStatement stmt = db.getConn().prepareStatement("DELETE FROM users WHERE username = ?");
             stmt.setString(1, username);
             int affectedRows = stmt.executeUpdate();
             stmt.close();
