@@ -57,7 +57,10 @@ public class ServletAttivita extends HttpServlet {
             PreparedStatement checkStmt = this.db.getConn()
                     .prepareStatement("SELECT ID from USERS where USERNAME = ?");
             checkStmt.setString(1, username);
-            String id = checkStmt.executeQuery().getString(1);
+
+            ResultSet res = checkStmt.executeQuery();
+            String id = "";
+            if(res.next()) id = res.getString("ID");
 
             PreparedStatement checkStmt1 = this.db.getConn()
                     .prepareStatement("UPDATE ACTIVITY SET ACTIVITY1 = ?, ACTIVITY2 = ?, ACTIVITY3 = ? WHERE USERID = ?");
@@ -82,7 +85,7 @@ public class ServletAttivita extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         HttpSession session = req.getSession();
         String username = (String) session.getAttribute("username");
