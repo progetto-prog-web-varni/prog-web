@@ -15,6 +15,14 @@ import java.sql.SQLException;
 
 import static Utils.Database.loginQuery;
 
+/**
+ * This servlet handles the Login process.
+ * Function called from the login.jsp page. Redirect if successful, return errors if not.
+ * The function need the request to contain <code>username</code> and <code>password</code>.
+ * If validated <bold>correctly</bold>, the function can return a redirect to the private section.
+ * If validate <bold>not correct</bold>, the function return a JSON object containing all the information about the error/s
+ * occurred.
+ */
 @WebServlet(name = "LoginServlet", value = "/LoginServlet")
 public class LoginServlet extends HttpServlet{
 

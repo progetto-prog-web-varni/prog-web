@@ -12,6 +12,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * This servlet allow the statistic of every page for the <i>Admin Page Analytics Function</i>
+ * The Filters intercept every call done to the pages in the lists.
+ * To make it works, need the <code>Generics.DefStartingPage</code> that is only a variable that tells about the location
+ * of the apps, to correct filtering the requests.
+ */
 @WebFilter(urlPatterns = {"/index.jsp", "/chiSiamo.jsp","/contatti.jsp", "/login.jsp", "/signup.jsp", "/attivita.jsp"})
 public class CounterFilter implements Filter {
 

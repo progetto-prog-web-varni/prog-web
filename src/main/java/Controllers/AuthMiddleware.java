@@ -7,7 +7,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-// Filtro per la gestione delle sessions
+/**
+ * This servlet handles the Sessions management for the whole application, where there is in bound an authorizations
+ * mechanism or an authorized section.
+ */
 @WebFilter("/AreaRiservata/*")
 public class AuthMiddleware implements Filter {
 
@@ -38,7 +41,6 @@ public class AuthMiddleware implements Filter {
 
     @Override
     public void destroy() {}
-
 
     private boolean isProtectedPage(HttpServletRequest request) {
         //applica a tutte le private

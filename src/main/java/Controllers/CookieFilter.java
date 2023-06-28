@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * This servlet handles the insert of the style and HTML objects in the pages every transaction and handle the Cookie
+ * management.
+ */
 @WebFilter(urlPatterns = {"/index.jsp", "/chiSiamo.jsp","/attivita.jsp", "/contatti.jsp", "/sign-up.jsp", "/login.jsp"})
 public class CookieFilter implements Filter {
 

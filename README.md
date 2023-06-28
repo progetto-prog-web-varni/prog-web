@@ -42,3 +42,17 @@ Tutto il compilato viene incluso nella cartella `target`, che è esclusa attrave
 Il database, con i relativi schemi e dati in esso presenti, sono tutti inseriti nel file `default.sql`, nella root del progetto.
 Tutte le dipendenze sono risolte attraverso maven, oppure descritte nel file del progetto su IntelliJ.
 
+## Possible Improvements
+
+There are some improvements possible:
+
+- Security:
+  - All the database passwords are in-clear. If there is the possibility, runs over hash.
+  - All the env variables are in-clear. It would be better to get them from the environment context.
+- Database:
+  - the connection handling is not the best solutions. Opening/Closing all this time the application could result
+  in a performance loss. There is a better solution, called database [connection pooling](https://www.baeldung.com/java-connection-pooling)
+  - There are a lot of in-place SQL statements. There are better solutions, like a function wrapper to make low level usage
+  in conjunction with externalizing to function resident in the Model package.
+- `CouterFilter`: need a methods to automatically understand where is the correct endpoint,so can automatically log every
+  page request.

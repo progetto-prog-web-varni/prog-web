@@ -10,6 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * This Servlet handles the creations of the Cookies in the frontend if there is the confirmation in the <code>CookieFilter</code>
+ * Servlet.
+ */
 @WebServlet(name = "CookieServlet", value = "/CookieServlet")
 public class CookieServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

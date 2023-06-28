@@ -11,7 +11,9 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Calendar;
 
-
+/**
+ * This controller is responsible for getting the donation value and processing it.
+ */
 @WebServlet(name = "DonationServlet", value = "/DonationServlet")
 public class DonationServlet extends HttpServlet {
 
@@ -21,6 +23,13 @@ public class DonationServlet extends HttpServlet {
         this.db = new Database();
     }
 
+    /**
+     * Execute the requests coming from AreaRiservata/aderente/*. This call allow the users to make a donation.
+     * @param request from the request get the <code>amount</code> params that contains the value of the donation.
+     * @param response jsp page AreaRiservata/aderente/*?message=
+     * @throws ServletException come from {@link javax.servlet.ServletException}
+     * @throws IOException comes from {@link java.lang.Exception}
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String amountParam = request.getParameter("amount");
