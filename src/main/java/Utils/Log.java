@@ -3,6 +3,9 @@ package Utils;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * This class contains only the static methods to standardize logging.
+ */
 public class Log {
     final String message;
     final String location;

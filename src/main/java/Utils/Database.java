@@ -12,6 +12,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class is a wrapper for the db connection, this allows to create all the connection with the same logic, without
+ * repeat all the things.
+ */
 public class Database {
     private static final ArrayList<Activity> activityArray = new ArrayList<>();
     private static final ArrayList<User> userArray = new ArrayList<>();

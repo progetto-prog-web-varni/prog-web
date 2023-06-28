@@ -19,6 +19,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Return all the activity in JSON.
+ */
 @WebServlet(name = "ServletAttivita", value = "/ServletAttivita")
 public class ServletAttivita extends HttpServlet {
     Database db=null;

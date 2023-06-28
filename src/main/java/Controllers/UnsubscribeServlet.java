@@ -8,6 +8,12 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.*;
+
+/**
+ * Allows users to unsibscribe from the site and remove all the data from database.
+ * If ok, return to <code>login.jsp</code>.
+ * if not ok, return to <code>error.jsp</code>
+ */
 @WebServlet(name = "UnsubscribeServlet", value = "/UnsubscribeServlet")
 public class UnsubscribeServlet extends HttpServlet {
     Database db = null;

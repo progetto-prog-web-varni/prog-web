@@ -13,6 +13,20 @@ import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.sql.*;
 
+/**
+ * Allow the users to sign-up to the site.
+ * Accept a request with this params:
+ *         String fname;
+ *         String lname;
+ *         String birthday;
+ *         String email;
+ *         String phone;
+ *         String membershipType;
+ *         String username;
+ *         String password;
+ *         String confirm_password;
+ *  Return a redirect to login if ok. If not ok, return an error message URL encoded.
+ */
 @WebServlet(name = "SignupServlet", value = "/SignupServlet")
 public class SignupServlet extends HttpServlet{
 
@@ -101,6 +115,13 @@ public class SignupServlet extends HttpServlet{
         }
     }
 
+    /**
+     * Check if the required information are all present and create a success/error response.
+     * @param request contains all the information described before.
+     * @param response is a redirect or the same page with the <code>error</code> params
+     * @throws ServletException from {@link javax.servlet}
+     * @throws IOException from {@link java.io}
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

@@ -22,6 +22,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * Execute the operations of sending to the admin of the site a request of contact.
+ * In the request there must be present: fname, lname, email, contact_reason, feedback.
+ * Returns to <code>confirm_contatti.jsp</code> with the possibility of adding a <code>message</code> URL params
+ * to contains some sort of error/success message to be print in the interface.
+ */
 @WebServlet(name = "MailServlet", value = "/MailServlet")
 public class MailServlet extends HttpServlet {
 
@@ -58,6 +64,15 @@ public class MailServlet extends HttpServlet {
         }
     }
 
+    /**
+     * Execute the controls before sending the mail. This function also create the text of what the mail have to contain.
+     * @param nome post param got in the precedent function
+     * @param cognome post param got in the precedent function
+     * @param email post param got in the precedent function
+     * @param contact_reason post param got in the precedent function
+     * @param feedback post param got in the precedent function
+     * @return (boolean) status of the mail sending procedure (fail/success)
+     */
     private boolean inviaEmail(String nome, String cognome, String email, String contact_reason, String feedback) {
         String host = SMTPConf.host;
         String port = SMTPConf.port;
@@ -87,7 +102,18 @@ public class MailServlet extends HttpServlet {
         return true;
     }
 
-    public void sendHtmlEmail(String host, String port, final String userName, final String password,
+    /**
+     * Contains the logic to connect to the SMTP provider and send the message to the mail defined in the config.
+     * @param host SMTPConf.host
+     * @param port SMTPConf.port
+     * @param userName SMTPConf.userName
+     * @param password SMTPConf.password
+     * @param toAddress SMTPConf.emailAddress
+     * @param subject create in the precedent function
+     * @param message created in the precedent function
+     * @throws MessagingException from {@link com.sun.mail}
+     */
+    private void sendHtmlEmail(String host, String port, final String userName, final String password,
                               String toAddress, String subject, String message)
             throws MessagingException {
 

@@ -10,6 +10,9 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.*;
 
+/**
+ * Return all the users personal information in JSON.
+ */
 @WebServlet(name = "RetrieveInfoServlet", value = "/RetrieveInfoServlet")
 public class RetrieveInfoServlet extends HttpServlet {
     Database db = null;

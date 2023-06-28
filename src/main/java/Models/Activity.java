@@ -1,5 +1,8 @@
 package Models;
 
+/**
+ * Contains the type of Activity, present in the DB, and some standardize function with some query.
+ */
 public class Activity {
     private int userId;
     private boolean activity1;

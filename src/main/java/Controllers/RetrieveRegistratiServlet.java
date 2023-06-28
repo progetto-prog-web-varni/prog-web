@@ -8,7 +8,9 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.*;
 
-
+/**
+ * Return all the registered users in JSON format.
+ */
 @WebServlet(name = "RetrieveRegistratiServlet", value = "/RetrieveRegistratiServlet")
 public class RetrieveRegistratiServlet extends HttpServlet {
 

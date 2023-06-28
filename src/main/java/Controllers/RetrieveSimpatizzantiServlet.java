@@ -9,6 +9,9 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.*;
 
+/**
+ * Return all the <code>Simpatizzanti</code> users in JSON.
+ */
 @WebServlet(name = "RetrieveSimpatizzantiServlet", value = "/RetrieveSimpatizzantiServlet")
 public class RetrieveSimpatizzantiServlet extends HttpServlet {
     Database db = null;

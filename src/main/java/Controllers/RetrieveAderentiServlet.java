@@ -9,6 +9,9 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.*;
 
+/**
+ * Returns a JSON object with all the Aderenti Users
+ */
 @WebServlet(name = "RetrieveAderentiServlet", value = "/RetrieveAderentiServlet")
 public class RetrieveAderentiServlet extends HttpServlet {
 

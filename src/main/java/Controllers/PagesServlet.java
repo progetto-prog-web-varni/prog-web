@@ -11,6 +11,10 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
+/**
+ * Return a JSON object with this structure: <code>pageName: pageCounter</code>
+ */
 @WebServlet(name = "PagesServlet", value = "/PagesServlet")
 public class PagesServlet extends HttpServlet {
     Database db = null;

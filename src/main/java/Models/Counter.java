@@ -1,5 +1,8 @@
 package Models;
 
+/**
+ * Contains the type representations of this kind of data present in the DB, with some commodity functions and query.
+ */
 public class Counter {
     private int ID;
     public String pageName;

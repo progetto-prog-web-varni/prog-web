@@ -12,7 +12,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * Returns all the payments data from the database with a JSON object.
+ */
 @WebServlet(name = "PaymentServlet", value = "/PaymentServlet")
 public class PaymentServlet extends HttpServlet {
 

@@ -17,6 +17,9 @@ import java.util.List;
 
 import static Utils.Database.loginQuery;
 
+/**
+ * Send to front the lists with all the phrases in JSON.
+ */
 @WebServlet(name = "SendnewPhrasesServlet", value = "/SendnewPhrasesServlet")
 public class SendnewPhrasesServlet extends HttpServlet {
 

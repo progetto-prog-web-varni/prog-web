@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;;
 
+/**
+ * Execute the logout actions server side (deleting the Sessions).
+ */
 @WebServlet(name = "LogoutServlet", value = "/LogoutServlet")
 public class LogoutServlet extends HttpServlet {
 

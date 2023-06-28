@@ -56,3 +56,4 @@ There are some improvements possible:
   in conjunction with externalizing to function resident in the Model package.
 - `CouterFilter`: need a methods to automatically understand where is the correct endpoint,so can automatically log every
   page request.
+- `error.jsp`: do not exists.
